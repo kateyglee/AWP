@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWP Design System · v2</title>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style id="awp-tokens">
+/* ════════════════════════════════════════════════════════════════════
+   AWP DESIGN TOKENS · v2
+   Source of truth: this file. Mirrors Figma variables 1:1.
+
+   Architecture:
+   1. PRIMITIVES — raw color/spacing/radius scales (never used directly)
+   2. ALIASES    — semantic, role-based tokens (components reference these)
+   3. DARK MODE  — same alias names, different primitive references
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ─────────────────────────────────────────────────
+     1 · PRIMITIVES — raw scales
+     ───────────────────────────────────────────────── */
+
+  /* ─ Brand-Sand · warm neutrals · light-mode surface scale */
+  --color-brand-sand-50:   #faf9f6;
+  --color-brand-sand-100:  #f4f4f0;
+  --color-brand-sand-200:  #edeeea;
+  --color-brand-sand-300:  #e5e6e2;
+  --color-brand-sand-400:  #c8c5bf;
+  --color-brand-sand-500:  #928e87;
+  --color-brand-sand-600:  #6c6963;
+  --color-brand-sand-700:  #54524f;
+  --color-brand-sand-800:  #3a3936;
+  --color-brand-sand-900:  #1d1c1a;
+  --color-brand-sand-950:  #0e0d0c;
+
+  /* ─ Brand-Slate · cool neutrals · dark-mode surface + all text */
+  --color-brand-slate-50:   #f5f7f9;
+  --color-brand-slate-100:  #eef0f3;
+  --color-brand-slate-200:  #e3e6ea;
+  --color-brand-slate-300:  #d2d6dd;
+  --color-brand-slate-400:  #a8aeb6;
+  --color-brand-slate-500:  #7c8189;
+  --color-brand-slate-600:  #5d6168;
+  --color-brand-slate-700:  #4d5057;
+  --color-brand-slate-800:  #33363a;
+  --color-brand-slate-900:  #181a1c;
+  --color-brand-slate-950:  #0c0d0e;
+
+  /* ─ White */
+  --color-white:           #ffffff;
+
+  /* ─ Gray · cool neutral utility */
+  --color-gray-50:    #f9fafb;
+  --color-gray-100:   #f3f4f6;
+  --color-gray-200:   #e5e7eb;
+  --color-gray-300:   #d1d5db;
+  --color-gray-400:   #9ca3af;
+  --color-gray-500:   #6b7280;
+  --color-gray-600:   #4b5563;
+  --color-gray-700:   #374151;
+  --color-gray-800:   #1f2937;
+  --color-gray-900:   #111827;
+  --color-gray-950:   #030712;
+
+  /* ─ Amber · pending / warning / override (semantic) */
+  --color-amber-50:    #fffbeb;
+  --color-amber-100:   #faeeda;
+  --color-amber-200:   #fde68a;
+  --color-amber-300:   #fcd34d;
+  --color-amber-400:   #fbbf24;
+  --color-amber-500:   #f59e0b;
+  --color-amber-600:   #d97706;
+  --color-amber-700:   #854f0b;
+  --color-amber-800:   #6b3a08;
+  --color-amber-900:   #4a2806;
+  --color-amber-950:   #2a1604;
+
+  /* ─ Green · success / deployed (semantic) */
+  --color-green-50:    #f7fcef;
+  --color-green-100:   #eaf3de;
+  --color-green-200:   #d2e8b9;
+  --color-green-300:   #a9d378;
+  --color-green-400:   #7eb945;
+  --color-green-500:   #5a9728;
+  --color-green-600:   #467818;
+  --color-green-700:   #3b6d11;
+  --color-green-800:   #2a4f0c;
+  --color-green-900:   #1c3608;
+  --color-green-950:   #0e1b04;
+
+  /* ─ Red · error / failed / destructive (semantic) */
+  --color-red-50:      #fdf2f1;
+  --color-red-100:     #fadcd9;
+  --color-red-200:     #f3b8b3;
+  --color-red-300:     #e9897f;
+  --color-red-400:     #dc5b4d;
+  --color-red-500:     #c0382a;
+  --color-red-600:     #a02a1f;
+  --color-red-700:     #7e2118;
+  --color-red-800:     #5e1812;
+  --color-red-900:     #3f0e0a;
+  --color-red-950:     #220505;
+
+  /* ─ Blue · informational accents */
+  --color-blue-50:    #eff6ff;
+  --color-blue-100:   #dbeafe;
+  --color-blue-200:   #bfdbfe;
+  --color-blue-300:   #93c5fd;
+  --color-blue-400:   #60a5fa;
+  --color-blue-500:   #3b82f6;
+  --color-blue-600:   #2563eb;
+  --color-blue-700:   #1d4ed8;
+  --color-blue-800:   #1e40af;
+  --color-blue-900:   #1e3a8a;
+  --color-blue-950:   #172554;
+
+  /* ─ Violet · purple accent · AI / emphasis */
+  --color-violet-50:    #f6f3ff;
+  --color-violet-100:   #ede5ff;
+  --color-violet-200:   #ddc9fe;
+  --color-violet-300:   #c4a5fc;
+  --color-violet-400:   #a677f7;
+  --color-violet-500:   #8b54ed;
+  --color-violet-600:   #7338d6;
+  --color-violet-700:   #5d2bb1;
+  --color-violet-800:   #491f88;
+  --color-violet-900:   #311557;
+  --color-violet-950:   #1a0a30;
+
+  /* ─ Teal · NEW · data-viz hue */
+  --color-teal-50:    #f0fdfa;
+  --color-teal-100:   #ccfbf1;
+  --color-teal-200:   #99f6e4;
+  --color-teal-300:   #5eead4;
+  --color-teal-400:   #2dd4bf;
+  --color-teal-500:   #14b8a6;
+  --color-teal-600:   #0d9488;
+  --color-teal-700:   #0f766e;
+  --color-teal-800:   #115e59;
+  --color-teal-900:   #134e4a;
+  --color-teal-950:   #042f2e;
+
+  /* ─ Pink · NEW · data-viz hue */
+  --color-pink-50:    #fdf2f8;
+  --color-pink-100:   #fce7f3;
+  --color-pink-200:   #fbcfe8;
+  --color-pink-300:   #f9a8d4;
+  --color-pink-400:   #f472b6;
+  --color-pink-500:   #ec4899;
+  --color-pink-600:   #db2777;
+  --color-pink-700:   #be185d;
+  --color-pink-800:   #9d174d;
+  --color-pink-900:   #831843;
+  --color-pink-950:   #500724;
+
+  /* ─ Yellow · NEW · data-viz hue (distinct from Amber) */
+  --color-yellow-50:    #fefce8;
+  --color-yellow-100:   #fef9c3;
+  --color-yellow-200:   #fef08a;
+  --color-yellow-300:   #fde047;
+  --color-yellow-400:   #facc15;
+  --color-yellow-500:   #eab308;
+  --color-yellow-600:   #ca8a04;
+  --color-yellow-700:   #a16207;
+  --color-yellow-800:   #854d0e;
+  --color-yellow-900:   #713f12;
+  --color-yellow-950:   #422006;
+
+  /* ─ Radius (Tailwind-aligned, AWP capped at xl for cards) */
+  --radius-none:      0px;
+  --radius-sm:        4px;
+  --radius:           6px;
+  --radius-md:        6px;
+  --radius-lg:        8px;
+  --radius-xl:        10px;
+  --radius-2xl:       12px;
+  --radius-3xl:       16px;
+  --radius-full:      9999px;
+
+  /* ─ Spacing (4px base, Tailwind-aligned) */
+  --spacing-0_5:      2px;
+  --spacing-1:        4px;
+  --spacing-1_5:      6px;
+  --spacing-2:        8px;
+  --spacing-2_5:      10px;
+  --spacing-3:        12px;
+  --spacing-3_5:      14px;
+  --spacing-4:        16px;
+  --spacing-5:        20px;
+  --spacing-6:        24px;
+  --spacing-7:        28px;
+  --spacing-8:        32px;
+  --spacing-9:        36px;
+  --spacing-10:       40px;
+  --spacing-11:       44px;
+  --spacing-12:       48px;
+  --spacing-14:       56px;
+  --spacing-16:       64px;
+  --spacing-20:       80px;
+  --spacing-24:       96px;
+  --spacing-28:       112px;
+
+  /* ─ Breakpoints */
+  --bp-sm:            640px;
+  --bp-md:            768px;
+  --bp-lg:            1024px;
+  --bp-xl:            1280px;
+  --bp-2xl:           1536px;
+
+  /* ─ Typography · families */
+  --font-primary:     "Satoshi", system-ui, sans-serif;
+  --font-mono:        "JetBrains Mono", monospace;
+
+  /* ─ Typography · semantic role tokens */
+  --font-display:     var(--font-primary);
+  --font-page-title:  var(--font-primary);
+  --font-heading-1:   var(--font-primary);
+  --font-heading-2:   var(--font-primary);
+  --font-heading-3:   var(--font-primary);
+  --font-body-lg:     var(--font-primary);
+  --font-body:        var(--font-primary);
+  --font-body-sm:     var(--font-primary);
+  --font-caption:     var(--font-primary);
+  --font-button:      var(--font-primary);
+
+  --font-data-lg:     var(--font-mono);
+  --font-data:        var(--font-mono);
+  --font-data-sm:     var(--font-mono);
+  --font-meta:        var(--font-mono);
+  --font-pill:        var(--font-mono);
+  --font-eyebrow:     var(--font-mono);
+  --font-label-sm:    var(--font-mono);
+
+  /* ─ Letter-spacing */
+  --tracking-tighter: -0.02em;
+  --tracking-tight:   -0.015em;
+  --tracking-snug:    -0.01em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+  --tracking-widest:  0.12em;
+
+  /* ─ Font weights */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+
+
+  /* ═════════════════════════════════════════════════
+     2 · ALIASES — semantic, role-based · LIGHT MODE
+     Components reference these names ONLY.
+     ═════════════════════════════════════════════════ */
+
+  /* ─ Surface · stacked layers */
+  --surface-canvas:                 var(--color-brand-sand-50);
+  --surface-base:                   var(--color-brand-sand-100);
+  --surface-raised:                 var(--color-brand-sand-200);
+  --surface-elevated:               var(--color-brand-sand-300);
+  --surface-card:                   var(--color-white);
+  --surface-modal:                  var(--color-white);
+  --surface-overlay:                rgba(29, 28, 26, 0.40);
+
+  /* ─ Surface · semantic states */
+  --surface-pending:                var(--color-amber-100);
+  --surface-pending-soft:           var(--color-amber-50);
+  --surface-success:                var(--color-green-100);
+  --surface-success-soft:           var(--color-green-50);
+  --surface-error:                  var(--color-red-100);
+  --surface-error-soft:             var(--color-red-50);
+  --surface-info:                   var(--color-blue-100);
+  --surface-info-soft:              var(--color-blue-50);
+
+  /* ─ Text · roles (always Brand-Slate for legibility consistency) */
+  --text-dk:                        var(--color-brand-slate-900);
+  --text-md:                        var(--color-brand-slate-700);
+  --text-lt:                        var(--color-brand-slate-500);
+  --text-disabled:                  var(--color-brand-slate-400);
+  --text-placeholder:               var(--color-brand-slate-500);
+  --text-on-primary:                var(--color-brand-slate-50);
+  --text-on-success:                var(--color-green-700);
+  --text-on-error:                  var(--color-red-700);
+  --text-on-pending:                var(--color-amber-700);
+  --text-on-info:                   var(--color-blue-700);
+  --text-link:                      var(--color-blue-600);
+  --text-error:                     var(--color-red-700);
+  --text-success:                   var(--color-green-700);
+  --text-pending:                   var(--color-amber-700);
+
+  /* ─ Border · roles */
+  --border-stroke:                  var(--color-brand-sand-300);
+  --border-stroke-light:            var(--color-brand-sand-200);
+  --border-stroke-dark:             var(--color-brand-sand-700);
+  --border-focus:                   var(--color-brand-sand-900);
+  --border-error:                   var(--color-red-500);
+  --border-success:                 var(--color-green-700);
+  --border-pending:                 var(--color-amber-700);
+
+  /* ─ Icon · roles (mirrors text scale — Brand-Slate in both modes) */
+  --icon-dk:                        var(--color-brand-slate-900);
+  --icon-md:                        var(--color-brand-slate-700);
+  --icon-lt:                        var(--color-brand-slate-500);
+  --icon-disabled:                  var(--color-brand-slate-400);
+  --icon-on-primary:                var(--color-brand-slate-50);
+  --icon-error:                     var(--color-red-500);
+  --icon-success:                   var(--color-green-700);
+  --icon-pending:                   var(--color-amber-700);
+
+  /* ─ Button · roles */
+  --button-bg-primary:              var(--color-brand-sand-700);
+  --button-bg-primary-hover:        var(--color-brand-sand-900);
+  --button-bg-primary-disabled:     var(--color-brand-sand-400);
+  --button-bg-secondary:            var(--color-brand-sand-300);
+  --button-bg-secondary-hover:      var(--color-brand-sand-400);
+  --button-bg-tertiary:             transparent;
+  --button-bg-tertiary-hover:       var(--color-brand-sand-100);
+  --button-bg-destructive:          var(--color-red-500);
+  --button-bg-destructive-hover:    var(--color-red-700);
+
+  --button-text-primary:            var(--color-brand-sand-50);
+  --button-text-secondary:          var(--color-brand-sand-900);
+  --button-text-tertiary:           var(--color-brand-sand-700);
+  --button-text-destructive:        var(--color-brand-sand-50);
+
+  /* ─ Tag / Badge · roles */
+  --tag-bg-neutral:                 var(--color-brand-sand-300);
+  --tag-text-neutral:               var(--color-brand-sand-500);
+  --tag-bg-pending:                 var(--color-amber-100);
+  --tag-text-pending:               var(--color-amber-700);
+  --tag-bg-success:                 var(--color-green-100);
+  --tag-text-success:               var(--color-green-700);
+  --tag-bg-error:                   var(--color-red-100);
+  --tag-text-error:                 var(--color-red-700);
+  --tag-bg-info:                    var(--color-blue-100);
+  --tag-text-info:                  var(--color-blue-700);
+
+  /* ─ Data Viz · status (separate from tag-* — for chart elements) */
+  --viz-status-success:             var(--color-green-700);
+  --viz-status-warning:             var(--color-amber-700);
+  --viz-status-error:               var(--color-red-500);
+  --viz-status-info:                var(--color-blue-600);
+
+  /* ─ Data Viz · categorical · desaturated (12-color sequence)
+     Slots 1-10 are direct hex values (data-viz only — never used outside charts).
+     Slots 11-12 reference existing brand-slate primitives (neutrals stay tied to system).
+     Same values in light & dark mode — the palette's luminance works on both canvases. */
+  --viz-cat-1:                      #4a90c8;                          /* steel-blue */
+  --viz-cat-2:                      #9bc4e0;                          /* sky-pale */
+  --viz-cat-3:                      #9ec882;                          /* sage */
+  --viz-cat-4:                      #e8d272;                          /* buttercup */
+  --viz-cat-5:                      #d49475;                          /* terracotta */
+  --viz-cat-6:                      #bca8d4;                          /* lavender */
+  --viz-cat-7:                      #94c4bd;                          /* dusty-teal */
+  --viz-cat-8:                      #e0a4b8;                          /* blush */
+  --viz-cat-9:                      #bccd86;                          /* olive-sage */
+  --viz-cat-10:                     #e8b894;                          /* peach */
+  --viz-cat-11:                     var(--color-brand-slate-400);     /* slate · primitive ref */
+  --viz-cat-12:                     var(--color-brand-slate-300);     /* pale-gray · primitive ref */
+
+  /* ─ Data Viz · diverging red-blue (temperature) */
+  --viz-div-rb-1:                   var(--color-red-700);
+  --viz-div-rb-2:                   var(--color-red-500);
+  --viz-div-rb-3:                   var(--color-red-300);
+  --viz-div-rb-4:                   var(--color-brand-slate-200);
+  --viz-div-rb-5:                   var(--color-blue-300);
+  --viz-div-rb-6:                   var(--color-blue-500);
+  --viz-div-rb-7:                   var(--color-blue-700);
+
+  /* ─ Data Viz · diverging purple-teal (no temperature) */
+  --viz-div-pt-1:                   var(--color-violet-700);
+  --viz-div-pt-2:                   var(--color-violet-500);
+  --viz-div-pt-3:                   var(--color-violet-300);
+  --viz-div-pt-4:                   var(--color-brand-slate-200);
+  --viz-div-pt-5:                   var(--color-teal-300);
+  --viz-div-pt-6:                   var(--color-teal-500);
+  --viz-div-pt-7:                   var(--color-teal-700);
+
+  /* ─ Shadow (CSS-only · Figma uses parallel Effect Styles) */
+  --shadow-sm:                      0 1px 2px rgba(29, 28, 26, 0.04);
+  --shadow:                         0 2px 8px rgba(29, 28, 26, 0.06);
+  --shadow-lg:                      0 8px 24px rgba(47, 52, 48, 0.08), 0 2px 6px rgba(47, 52, 48, 0.04);
+  --shadow-modal:                   0 40px 40px -10px rgba(47, 52, 48, 0.04);
+  --shadow-focus:                   0 0 0 3px rgba(96, 94, 91, 0.07);
+
+  /* ─ Backdrop blur */
+  --backdrop-blur:                  blur(14px);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   3 · DARK MODE — same alias names, swapped primitive references
+   Activate: <html data-theme="dark">
+   ════════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] {
+
+  /* ─ Surface · stacked layers (Brand-Slate for cool dark surfaces) */
+  --surface-canvas:                 var(--color-brand-slate-950);
+  --surface-base:                   var(--color-brand-slate-900);
+  --surface-raised:                 var(--color-brand-slate-800);
+  --surface-elevated:               var(--color-brand-slate-700);
+  --surface-card:                   var(--color-brand-slate-800);
+  --surface-modal:                  var(--color-brand-slate-800);
+  --surface-overlay:                rgba(0, 0, 0, 0.6);
+
+  /* ─ Surface · semantic states (deeper backgrounds in dark mode) */
+  --surface-pending:                var(--color-amber-900);
+  --surface-pending-soft:           var(--color-amber-950);
+  --surface-success:                var(--color-green-900);
+  --surface-success-soft:           var(--color-green-950);
+  --surface-error:                  var(--color-red-900);
+  --surface-error-soft:             var(--color-red-950);
+  --surface-info:                   var(--color-blue-900);
+  --surface-info-soft:              var(--color-blue-950);
+
+  /* ─ Text · roles */
+  --text-dk:                        var(--color-brand-slate-50);
+  --text-md:                        var(--color-brand-slate-300);
+  --text-lt:                        var(--color-brand-slate-400);
+  --text-disabled:                  var(--color-brand-slate-700);
+  --text-placeholder:               var(--color-brand-slate-500);
+  --text-on-primary:                var(--color-brand-slate-900);
+  --text-on-success:                var(--color-green-300);
+  --text-on-error:                  var(--color-red-300);
+  --text-on-pending:                var(--color-amber-300);
+  --text-on-info:                   var(--color-blue-300);
+  --text-link:                      var(--color-blue-400);
+  --text-error:                     var(--color-red-400);
+  --text-success:                   var(--color-green-400);
+  --text-pending:                   var(--color-amber-400);
+
+  /* ─ Border · roles */
+  --border-stroke:                  var(--color-brand-slate-700);
+  --border-stroke-light:            var(--color-brand-slate-800);
+  --border-stroke-dark:             var(--color-brand-slate-400);
+  --border-focus:                   var(--color-brand-slate-50);
+  --border-error:                   var(--color-red-400);
+  --border-success:                 var(--color-green-400);
+  --border-pending:                 var(--color-amber-400);
+
+  /* ─ Icon · roles */
+  --icon-dk:                        var(--color-brand-slate-50);
+  --icon-md:                        var(--color-brand-slate-300);
+  --icon-lt:                        var(--color-brand-slate-400);
+  --icon-disabled:                  var(--color-brand-slate-700);
+  --icon-on-primary:                var(--color-brand-slate-900);
+  --icon-error:                     var(--color-red-400);
+  --icon-success:                   var(--color-green-400);
+  --icon-pending:                   var(--color-amber-400);
+
+  /* ─ Button · roles */
+  --button-bg-primary:              var(--color-brand-slate-50);
+  --button-bg-primary-hover:        var(--color-white);
+  --button-bg-primary-disabled:     var(--color-brand-slate-700);
+  --button-bg-secondary:            var(--color-brand-slate-700);
+  --button-bg-secondary-hover:      var(--color-brand-slate-600);
+  --button-bg-tertiary:             transparent;
+  --button-bg-tertiary-hover:       var(--color-brand-slate-800);
+  --button-bg-destructive:          var(--color-red-600);
+  --button-bg-destructive-hover:    var(--color-red-500);
+
+  --button-text-primary:            var(--color-brand-slate-900);
+  --button-text-secondary:          var(--color-brand-slate-50);
+  --button-text-tertiary:           var(--color-brand-slate-300);
+  --button-text-destructive:        var(--color-brand-slate-50);
+
+  /* ─ Tag · roles */
+  --tag-bg-neutral:                 var(--color-brand-slate-700);
+  --tag-text-neutral:               var(--color-brand-slate-400);
+  --tag-bg-pending:                 var(--color-amber-900);
+  --tag-text-pending:               var(--color-amber-300);
+  --tag-bg-success:                 var(--color-green-900);
+  --tag-text-success:               var(--color-green-300);
+  --tag-bg-error:                   var(--color-red-900);
+  --tag-text-error:                 var(--color-red-300);
+  --tag-bg-info:                    var(--color-blue-900);
+  --tag-text-info:                  var(--color-blue-300);
+
+  /* ─ Data Viz · status (unchanged values across modes — semantics are absolute) */
+  --viz-status-success:             var(--color-green-700);
+  --viz-status-warning:             var(--color-amber-700);
+  --viz-status-error:               var(--color-red-500);
+  --viz-status-info:                var(--color-blue-600);
+
+  /* ─ Data Viz · categorical
+     No dark-mode override — desaturated values are defined once in :root and used in both modes.
+     Their luminance (~65-75%) reads correctly against both warm-Sand light surface and cool-Slate dark surface. */
+
+  /* ─ Data Viz · diverging red-blue */
+  --viz-div-rb-1:                   var(--color-red-700);
+  --viz-div-rb-2:                   var(--color-red-500);
+  --viz-div-rb-3:                   var(--color-red-300);
+  --viz-div-rb-4:                   var(--color-brand-slate-700);
+  --viz-div-rb-5:                   var(--color-blue-300);
+  --viz-div-rb-6:                   var(--color-blue-500);
+  --viz-div-rb-7:                   var(--color-blue-700);
+
+  /* ─ Data Viz · diverging purple-teal */
+  --viz-div-pt-1:                   var(--color-violet-700);
+  --viz-div-pt-2:                   var(--color-violet-500);
+  --viz-div-pt-3:                   var(--color-violet-300);
+  --viz-div-pt-4:                   var(--color-brand-slate-700);
+  --viz-div-pt-5:                   var(--color-teal-300);
+  --viz-div-pt-6:                   var(--color-teal-500);
+  --viz-div-pt-7:                   var(--color-teal-700);
+
+  /* ─ Shadow (heavier in dark mode) */
+  --shadow-sm:                      0 1px 2px rgba(0, 0, 0, 0.30);
+  --shadow:                         0 2px 8px rgba(0, 0, 0, 0.40);
+  --shadow-lg:                      0 8px 24px rgba(0, 0, 0, 0.50);
+  --shadow-modal:                   0 40px 40px -10px rgba(0, 0, 0, 0.50);
+  --shadow-focus:                   0 0 0 3px rgba(168, 174, 182, 0.20);
+}
+</style>
+
+<style>
+  /* ─── Reset & base ─────────────────────────────────────────── */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--surface-canvas); color: var(--text-dk); }
+  body {
+    font-family: var(--font-primary);
+    line-height: 1.5;
+    transition: background 0.2s, color 0.2s;
+    min-height: 100vh;
+  }
+  a { color: var(--text-link); text-decoration: none; }
+
+  /* ─── Layout shell ────────────────────────────────────────── */
+  .shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 32px 96px;
+  }
+
+  /* ─── Doc header ──────────────────────────────────────────── */
+  .doc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border-stroke-light);
+  }
+  .doc-head-left { flex: 1; min-width: 0; }
+  .doc-eyebrow {
+    font-family: var(--font-eyebrow);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-bottom: 8px;
+  }
+  .doc-title {
+    font-family: var(--font-primary);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--text-dk);
+    margin-bottom: 6px;
+  }
+  .doc-sub {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text-md);
+    max-width: 720px;
+  }
+
+  .doc-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .meta-pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text-md);
+    background: var(--surface-base);
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-stroke-light);
+  }
+
+  /* ─── Theme toggle ────────────────────────────────────────── */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-base);
+    border: 1px solid var(--border-stroke-light);
+    border-radius: var(--radius-md);
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-md);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .theme-toggle:hover {
+    background: var(--surface-raised);
+    border-color: var(--border-stroke);
+  }
+  .theme-toggle i { font-size: 14px; color: var(--icon-md); }
+
+  /* ─── Tab navigation ──────────────────────────────────────── */
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-stroke);
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    padding: 14px 0;
+    margin-right: 32px;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-lt);
+    position: relative;
+    transition: color 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab i { font-size: 16px; color: var(--icon-lt); transition: color 0.15s; }
+  .tab:hover { color: var(--text-md); }
+  .tab:hover i { color: var(--icon-md); }
+  .tab.active {
+    color: var(--text-dk);
+    font-weight: 600;
+  }
+  .tab.active i { color: var(--icon-dk); }
+  .tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--text-dk);
+  }
+  .tab-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-lt);
+    background: var(--surface-base);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    margin-left: 4px;
+  }
+  .tab.active .tab-count {
+    background: var(--surface-raised);
+    color: var(--text-md);
+  }
+
+  /* ─── Tab panels ──────────────────────────────────────────── */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ─── Page intro (top of each tab) ────────────────────────── */
+  .page-intro {
+    margin-bottom: 32px;
+    padding: 20px 24px;
+    background: var(--surface-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-stroke-light);
+  }
+  .page-intro-title {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--text-dk);
+    margin-bottom: 6px;
+  }
+  .page-intro-text {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-md);
+  }
+
+  /* ─── In-page section navigation ──────────────────────────── */
+  .page-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 40px;
+    padding: 12px 16px;
+    background: var(--surface-base);
+    border-radius: var(--radius-md);
+  }
+  .page-toc-label {
+    font-family: var(--font-eyebrow);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-right: 8px;
+    align-self: center;
+  }
+  .page-toc a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-md);
+    background: var(--surface-card);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .page-toc a:hover {
+    background: var(--surface-raised);
+    color: var(--text-dk);
+  }
+
+  /* ─── Section blocks ──────────────────────────────────────── */
+  .section { margin-bottom: 56px; scroll-margin-top: 24px; }
+  .section-head {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-stroke-light);
+  }
+  .section-num {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--font-primary);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-dk);
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-md);
+    max-width: 820px;
+  }
+  .section-sub code {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    background: var(--surface-base);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--text-dk);
+  }
+
+  .subhead {
+    font-family: var(--font-eyebrow);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin: 28px 0 12px;
+  }
+
+  /* ─── Notes & callouts ────────────────────────────────────── */
+  .notes-box {
+    background: var(--surface-base);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-top: 18px;
+  }
+  .notes-box-lbl {
+    font-family: var(--font-eyebrow);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-bottom: 10px;
+  }
+  .notes-box ul { padding-left: 16px; }
+  .notes-box li {
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-md);
+    margin-bottom: 8px;
+  }
+  .notes-box li:last-child { margin-bottom: 0; }
+  .notes-box code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--surface-card);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--text-dk);
+  }
+
+  /* ─── Color swatch grid (primitives) ──────────────────────── */
+  .scale-block { margin-bottom: 28px; }
+  .scale-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .scale-name {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--text-dk);
+  }
+  .scale-name .scale-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    background: var(--surface-base);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: 1px;
+  }
+  .scale-name .scale-tag.new {
+    color: var(--color-violet-700);
+    background: var(--color-violet-100);
+  }
+  [data-theme="dark"] .scale-name .scale-tag.new {
+    color: var(--color-violet-300);
+    background: var(--color-violet-900);
+  }
+  .scale-desc {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-lt);
+  }
+  .scale-row {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 4px;
+  }
+  .scale-cell {
+    height: 56px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6px 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scale-cell-step {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .scale-cell-hex {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1;
+    opacity: 0.78;
+  }
+  .scale-cell.lt { color: rgba(0,0,0,0.78); }
+  .scale-cell.dk { color: rgba(255,255,255,0.92); }
+
+  /* ─── Alias swatch rows ───────────────────────────────────── */
+  .alias-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border-stroke-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .alias-row {
+    display: grid;
+    grid-template-columns: 240px 60px 230px 1fr;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 16px;
+    background: var(--surface-card);
+  }
+  .alias-row-name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dk);
+  }
+  .alias-row-resolves {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    color: var(--text-md);
+    line-height: 1.55;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .alias-row-resolves-line {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .alias-row-resolves-mode {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-lt);
+    background: var(--surface-base);
+    padding: 1px 5px;
+    border-radius: 3px;
+    min-width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .alias-row-resolves-token {
+    color: var(--text-md);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .alias-row-resolves-line.same .alias-row-resolves-mode {
+    background: var(--surface-raised);
+    color: var(--text-md);
+  }
+  .alias-row-resolves-note {
+    font-family: var(--font-primary);
+    font-size: 10.5px;
+    font-style: italic;
+    color: var(--text-lt);
+  }
+  .alias-row-swatch-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .alias-row-swatch {
+    width: 32px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--border-stroke-light);
+    flex-shrink: 0;
+  }
+  .alias-row-swatch.transparent {
+    background-image:
+      linear-gradient(45deg, var(--surface-base) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--surface-base) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--surface-base) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--surface-base) 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+  }
+  .alias-row-meta {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-lt);
+    line-height: 1.4;
+  }
+
+  /* ─── Foundation grid (radius, spacing, breakpoints) ──────── */
+  .foundation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+  }
+  .foundation-card {
+    background: var(--surface-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-stroke-light);
+    padding: 18px 20px;
+  }
+  .foundation-card-title {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dk);
+    margin-bottom: 4px;
+  }
+  .foundation-card-sub {
+    font-family: var(--font-primary);
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--text-lt);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .foundation-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-stroke-light);
+    gap: 12px;
+  }
+  .foundation-row:last-child { border-bottom: 0; }
+  .foundation-row-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-md);
+  }
+  .foundation-row-val {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-lt);
+  }
+
+  /* ─── Typography table ────────────────────────────────────── */
+  .type-table {
+    background: var(--surface-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-stroke-light);
+    overflow: hidden;
+  }
+  .type-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 240px;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-stroke-light);
+  }
+  .type-row:last-child { border-bottom: 0; }
+  .type-label {
+    font-family: var(--font-eyebrow);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+  }
+  .type-meta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    color: var(--text-lt);
+    text-align: right;
+  }
+
+  /* ─── Side-by-side mode comparison ────────────────────────── */
+  .modes-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .modes-card {
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    overflow: hidden;
+  }
+  .modes-card.lt { background: #faf9f6; color: #181a1c; border: 1px solid #e5e6e2; }
+  .modes-card.dk { background: #0c0d0e; color: #f5f7f9; border: 1px solid #33363a; }
+  .modes-card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .modes-card.lt .modes-card-eyebrow { color: #7c8189; }
+  .modes-card.dk .modes-card-eyebrow { color: #a8aeb6; }
+
+  /* Sample card inside mode preview */
+  .sample-card {
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .modes-card.lt .sample-card { background: #ffffff; border: 1px solid #e5e6e2; }
+  .modes-card.dk .sample-card { background: #33363a; border: 1px solid #4d5057; }
+  .sample-pill {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .modes-card.lt .sample-pill { background: #faeeda; color: #854f0b; }
+  .modes-card.dk .sample-pill { background: #4a2806; color: #fcd34d; }
+  .sample-title {
+    font-family: var(--font-primary);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    margin-bottom: 4px;
+  }
+  .modes-card.lt .sample-title { color: #181a1c; }
+  .modes-card.dk .sample-title { color: #f5f7f9; }
+  .sample-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .modes-card.lt .sample-meta { color: #7c8189; }
+  .modes-card.dk .sample-meta { color: #a8aeb6; }
+  .sample-data {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .modes-card.lt .sample-data { color: #3b6d11; }
+  .modes-card.dk .sample-data { color: #a9d378; }
+
+  /* ─── Code blocks ─────────────────────────────────────────── */
+  .code-block {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    line-height: 1.7;
+    background: var(--surface-base);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    color: var(--text-md);
+    margin-top: 14px;
+    overflow-x: auto;
+  }
+  .code-block .key { color: var(--text-dk); font-weight: 500; }
+  .code-block .comment { color: var(--text-lt); font-style: italic; }
+  .code-block .value { color: var(--color-blue-600); }
+  [data-theme="dark"] .code-block .value { color: var(--color-blue-300); }
+
+  /* ─── Data Viz · categorical grid ────────────────────────── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .cat-cell {
+    aspect-ratio: 1.4 / 1;
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+  }
+  .cat-cell.lt { color: rgba(0,0,0,0.78); }
+  .cat-cell-num {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .cat-cell-name {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    opacity: 0.85;
+  }
+
+  /* ─── Diverging palette stripes ──────────────────────────── */
+  .div-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .div-cell {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    color: white;
+  }
+  .div-cell.lt { color: rgba(0,0,0,0.78); }
+  .div-label {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    margin-bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-lt);
+  }
+  .div-label-end-l { text-align: left; }
+  .div-label-end-r { text-align: right; }
+  .div-label-mid { padding: 0 16px; }
+
+  /* ─── Mono palette demo ──────────────────────────────────── */
+  .mono-block { margin-bottom: 18px; }
+  .mono-block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .mono-block-name {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dk);
+  }
+  .mono-block-sub {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-lt);
+  }
+  .mono-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .mono-cell {
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .mono-cell.lt { color: rgba(0,0,0,0.78); }
+  .mono-cell.dk { color: rgba(255,255,255,0.9); }
+
+  /* ─── Combination cards (data viz) ───────────────────────── */
+  .combo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .combo-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-stroke-light);
+    border-radius: var(--radius-md);
+    padding: 16px;
+  }
+  .combo-card-title {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dk);
+    margin-bottom: 2px;
+  }
+  .combo-card-sub {
+    font-family: var(--font-primary);
+    font-size: 11.5px;
+    color: var(--text-lt);
+    margin-bottom: 12px;
+  }
+  .combo-strip {
+    display: grid;
+    gap: 4px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .combo-strip > div {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ─── Status cards ───────────────────────────────────────── */
+  .status-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .status-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-stroke-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .status-card-swatch { height: 48px; }
+  .status-card-meta { padding: 10px 14px; }
+  .status-card-title {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dk);
+    margin-bottom: 2px;
+  }
+  .status-card-hex {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-lt);
+  }
+
+  /* ─── Architecture diagram ───────────────────────────────── */
+  .arch {
+    background: var(--surface-card);
+    border: 1px solid var(--border-stroke-light);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .arch-tier {
+    display: grid;
+    grid-template-columns: 90px 140px 1fr;
+    align-items: start;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-stroke-light);
+  }
+  .arch-tier:last-child { border-bottom: 0; padding-bottom: 0; }
+  .arch-tier:first-child { padding-top: 0; }
+  .arch-tier-num {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-disabled);
+    line-height: 1;
+  }
+  .arch-tier-title {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dk);
+    margin-bottom: 4px;
+  }
+  .arch-tier-tag {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+  }
+  .arch-tier-desc {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-md);
+  }
+  .arch-tier-desc code {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    background: var(--surface-base);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--text-dk);
+  }
+
+  /* ─── Two-column intro grid ──────────────────────────────── */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+  .intro-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-stroke-light);
+    border-radius: var(--radius-xl);
+    padding: 22px 24px;
+  }
+  .intro-card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-lt);
+    margin-bottom: 8px;
+  }
+  .intro-card-title {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dk);
+    margin-bottom: 6px;
+    letter-spacing: -0.005em;
+  }
+  .intro-card-text {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-md);
+  }
+
+  /* ─── Mobile / smaller widths ────────────────────────────── */
+  @media (max-width: 900px) {
+    .shell { padding: 24px 20px 64px; }
+    .doc-head { flex-direction: column; gap: 16px; }
+    .scale-row { grid-template-columns: repeat(6, 1fr); }
+    .alias-row { grid-template-columns: 1fr; gap: 8px; }
+    .alias-row-resolves { font-size: 11px; }
+    .foundation-grid { grid-template-columns: 1fr; }
+    .modes-row { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: repeat(4, 1fr); }
+    .combo-grid { grid-template-columns: 1fr; }
+    .status-row { grid-template-columns: repeat(2, 1fr); }
+    .type-row { grid-template-columns: 1fr; gap: 8px; }
+    .type-meta { text-align: left; }
+    .arch-tier { grid-template-columns: 1fr; gap: 8px; }
+  }
+</style>
+</head>
+
+<body>
+<div class="shell">
+
+  <!-- ════════════════════════════════════════════════════════
+       DOC HEADER
+       ════════════════════════════════════════════════════════ -->
+  <div class="doc-head">
+    <div class="doc-head-left">
+      <div class="doc-eyebrow">Design System · v2</div>
+      <h1 class="doc-title">AWP Design System</h1>
+      <p class="doc-sub">The token system that powers AWP — from primitive color scales through semantic aliases to chart palettes. Source of truth for designers and engineers building the publisher-facing AI agent for programmatic ad ops.</p>
+    </div>
+    <div class="doc-meta">
+      <span class="meta-pill">Light + Dark</span>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="ph ph-moon" id="theme-icon"></i>
+        <span id="theme-label">Dark mode</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB NAVIGATION
+       ════════════════════════════════════════════════════════ -->
+  <div class="tab-nav" role="tablist">
+    <button class="tab active" role="tab" data-target="tab-system" onclick="selectTab(this)">
+      <i class="ph ph-stack"></i>
+      <span>System</span>
+      <span class="tab-count">7</span>
+    </button>
+    <button class="tab" role="tab" data-target="tab-dataviz" onclick="selectTab(this)">
+      <i class="ph ph-chart-line"></i>
+      <span>Data Viz</span>
+      <span class="tab-count">6</span>
+    </button>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 1 · SYSTEM
+       ════════════════════════════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-system" role="tabpanel">
+
+    <div class="page-intro">
+      <div class="page-intro-title">The system in one paragraph</div>
+      <div class="page-intro-text">AWP uses a two-tier token architecture. <strong>Primitives</strong> are the raw color/spacing/radius scales — never referenced in components. <strong>Aliases</strong> are semantic role-based names like <code>--text-dk</code>, <code>--surface-card</code>, <code>--button-bg-primary</code>. Components reference only aliases. Light and dark modes share alias names but point at different primitives, so the same component code renders correctly in both modes.</div>
+    </div>
+
+    <div class="page-toc">
+      <span class="page-toc-label">Sections</span>
+      <a href="#sec-architecture">01 · Architecture</a>
+      <a href="#sec-primitives">02 · Color primitives</a>
+      <a href="#sec-foundations">03 · Foundations</a>
+      <a href="#sec-typography">04 · Typography</a>
+      <a href="#sec-aliases">05 · Aliases</a>
+      <a href="#sec-modes">06 · Modes</a>
+      <a href="#sec-implementation">07 · Implementation</a>
+    </div>
+
+    <!-- 01 · ARCHITECTURE -->
+    <div class="section" id="sec-architecture">
+      <div class="section-head">
+        <div class="section-num">01</div>
+        <div class="section-title">Architecture &amp; principles</div>
+        <div class="section-sub">Two tiers of tokens. Components only ever reference the alias layer — that's what makes light/dark mode and future brand portability possible without re-touching components.</div>
+      </div>
+
+      <div class="arch">
+        <div class="arch-tier">
+          <div class="arch-tier-num">01</div>
+          <div>
+            <div class="arch-tier-title">Primitives</div>
+            <div class="arch-tier-tag">Raw scales</div>
+          </div>
+          <div class="arch-tier-desc">Numbered color ramps (<code>--color-brand-sand-100</code>…<code>950</code>), spacing increments, radius steps, breakpoints. These are the design system's vocabulary, but components <strong>never</strong> reference them directly. Reaching for a primitive in component CSS breaks dark mode and ties the component to a specific palette.</div>
+        </div>
+        <div class="arch-tier">
+          <div class="arch-tier-num">02</div>
+          <div>
+            <div class="arch-tier-title">Aliases</div>
+            <div class="arch-tier-tag">Semantic roles</div>
+          </div>
+          <div class="arch-tier-desc">Role-based names: <code>--text-dk</code>, <code>--surface-card</code>, <code>--tag-bg-pending</code>, <code>--button-bg-primary</code>. Each alias maps to a primitive in light mode and (usually) a different primitive in dark mode. Components reference only aliases.</div>
+        </div>
+        <div class="arch-tier">
+          <div class="arch-tier-num">03</div>
+          <div>
+            <div class="arch-tier-title">Modes</div>
+            <div class="arch-tier-tag">Theme switch</div>
+          </div>
+          <div class="arch-tier-desc">Light mode is the default at <code>:root</code>. Dark mode overrides aliases under <code>[data-theme="dark"]</code>. Theme switching swaps alias values; component CSS is identical across modes.</div>
+        </div>
+      </div>
+
+      <div class="intro-grid">
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Principle</div>
+          <div class="intro-card-title">Color is reserved for state</div>
+          <div class="intro-card-text">Surfaces and text are warm/cool neutrals. Saturated color appears only on status pills, impact tags, diff additions, errors, and chart data. The interface looks calm in light mode and focused in dark mode because color carries meaning, never decoration.</div>
+        </div>
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Principle</div>
+          <div class="intro-card-title">Tone replaces borders</div>
+          <div class="intro-card-text">Surface tone shifts (canvas → base → raised → elevated → card) carry structure. Border tokens exist but are used sparingly — only where tonal contrast alone is insufficient. Cards lift through brightness, not shadow.</div>
+        </div>
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Principle</div>
+          <div class="intro-card-title">Two type families, two purposes</div>
+          <div class="intro-card-text">Satoshi for human-authored content (titles, body, buttons). JetBrains Mono for system or AI-calculated content (data values, IDs, status pills, parameter paths). When a publisher sees mono, they know "this is computed by the system." The split is meaningful, not decorative.</div>
+        </div>
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Principle</div>
+          <div class="intro-card-title">State-based naming</div>
+          <div class="intro-card-text">Tags and pills are named for the state they represent (<code>pending</code>, <code>success</code>, <code>error</code>, <code>info</code>, <code>neutral</code>) — never the color. The alias layer handles which color a state maps to. If brand color shifts, the state name doesn't change.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 · COLOR PRIMITIVES -->
+    <div class="section" id="sec-primitives">
+      <div class="section-head">
+        <div class="section-num">02</div>
+        <div class="section-title">Color primitives</div>
+        <div class="section-sub">Eleven 11-step scales. <strong>Brand-Sand</strong> and <strong>Brand-Slate</strong> are AWP's two structural neutrals — Sand for warm light surfaces, Slate for cool dark surfaces and all text in both modes. <strong>Amber, Green, Red, Blue, Violet</strong> carry semantic meaning. <strong>Teal, Pink, Yellow</strong> are reserved for data viz. Components never reference primitives directly — they reference aliases. The hex values shown here resolve through the alias layer.</div>
+      </div>
+
+      <div class="subhead">Structural neutrals</div>
+<!-- Generated structural neutrals -->
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Brand-Sand <span class="scale-tag">Warm neutral</span></div>
+    <div class="scale-desc">Light-mode surfaces (canvas → card)</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#faf9f6"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#faf9f6</span></div>
+    <div class="scale-cell lt" style="background:#f4f4f0"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#f4f4f0</span></div>
+    <div class="scale-cell lt" style="background:#edeeea"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#edeeea</span></div>
+    <div class="scale-cell lt" style="background:#e5e6e2"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#e5e6e2</span></div>
+    <div class="scale-cell lt" style="background:#c8c5bf"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#c8c5bf</span></div>
+    <div class="scale-cell dk" style="background:#928e87"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#928e87</span></div>
+    <div class="scale-cell dk" style="background:#6c6963"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#6c6963</span></div>
+    <div class="scale-cell dk" style="background:#54524f"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#54524f</span></div>
+    <div class="scale-cell dk" style="background:#3a3936"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#3a3936</span></div>
+    <div class="scale-cell dk" style="background:#1d1c1a"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#1d1c1a</span></div>
+    <div class="scale-cell dk" style="background:#0e0d0c"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#0e0d0c</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Brand-Slate <span class="scale-tag">Cool neutral</span></div>
+    <div class="scale-desc">Dark-mode surfaces + all text in both modes</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#f5f7f9"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f5f7f9</span></div>
+    <div class="scale-cell lt" style="background:#eef0f3"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#eef0f3</span></div>
+    <div class="scale-cell lt" style="background:#e3e6ea"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#e3e6ea</span></div>
+    <div class="scale-cell lt" style="background:#d2d6dd"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#d2d6dd</span></div>
+    <div class="scale-cell lt" style="background:#a8aeb6"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#a8aeb6</span></div>
+    <div class="scale-cell dk" style="background:#7c8189"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#7c8189</span></div>
+    <div class="scale-cell dk" style="background:#5d6168"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#5d6168</span></div>
+    <div class="scale-cell dk" style="background:#4d5057"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#4d5057</span></div>
+    <div class="scale-cell dk" style="background:#33363a"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#33363a</span></div>
+    <div class="scale-cell dk" style="background:#181a1c"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#181a1c</span></div>
+    <div class="scale-cell dk" style="background:#0c0d0e"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#0c0d0e</span></div>
+  </div>
+</div>
+
+<div class="subhead">Semantic colors</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Amber <span class="scale-tag">Pending / warning</span></div>
+    <div class="scale-desc">Pending state, override warnings</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#fffbeb"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#fffbeb</span></div>
+    <div class="scale-cell lt" style="background:#faeeda"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#faeeda</span></div>
+    <div class="scale-cell lt" style="background:#fde68a"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#fde68a</span></div>
+    <div class="scale-cell lt" style="background:#fcd34d"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#fcd34d</span></div>
+    <div class="scale-cell lt" style="background:#fbbf24"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#fbbf24</span></div>
+    <div class="scale-cell dk" style="background:#f59e0b"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#f59e0b</span></div>
+    <div class="scale-cell dk" style="background:#d97706"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#d97706</span></div>
+    <div class="scale-cell dk" style="background:#854f0b"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#854f0b</span></div>
+    <div class="scale-cell dk" style="background:#6b3a08"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#6b3a08</span></div>
+    <div class="scale-cell dk" style="background:#4a2806"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#4a2806</span></div>
+    <div class="scale-cell dk" style="background:#2a1604"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#2a1604</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Green <span class="scale-tag">Success</span></div>
+    <div class="scale-desc">Deployed, success, high impact</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#f7fcef"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f7fcef</span></div>
+    <div class="scale-cell lt" style="background:#eaf3de"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#eaf3de</span></div>
+    <div class="scale-cell lt" style="background:#d2e8b9"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#d2e8b9</span></div>
+    <div class="scale-cell lt" style="background:#a9d378"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#a9d378</span></div>
+    <div class="scale-cell lt" style="background:#7eb945"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#7eb945</span></div>
+    <div class="scale-cell dk" style="background:#5a9728"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#5a9728</span></div>
+    <div class="scale-cell dk" style="background:#467818"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#467818</span></div>
+    <div class="scale-cell dk" style="background:#3b6d11"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#3b6d11</span></div>
+    <div class="scale-cell dk" style="background:#2a4f0c"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#2a4f0c</span></div>
+    <div class="scale-cell dk" style="background:#1c3608"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#1c3608</span></div>
+    <div class="scale-cell dk" style="background:#0e1b04"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#0e1b04</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Red <span class="scale-tag">Error</span></div>
+    <div class="scale-desc">Failed, destructive (brick — clean red, not coppery)</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#fdf2f1"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#fdf2f1</span></div>
+    <div class="scale-cell lt" style="background:#fadcd9"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#fadcd9</span></div>
+    <div class="scale-cell lt" style="background:#f3b8b3"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#f3b8b3</span></div>
+    <div class="scale-cell lt" style="background:#e9897f"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#e9897f</span></div>
+    <div class="scale-cell lt" style="background:#dc5b4d"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#dc5b4d</span></div>
+    <div class="scale-cell dk" style="background:#c0382a"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#c0382a</span></div>
+    <div class="scale-cell dk" style="background:#a02a1f"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#a02a1f</span></div>
+    <div class="scale-cell dk" style="background:#7e2118"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#7e2118</span></div>
+    <div class="scale-cell dk" style="background:#5e1812"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#5e1812</span></div>
+    <div class="scale-cell dk" style="background:#3f0e0a"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#3f0e0a</span></div>
+    <div class="scale-cell dk" style="background:#220505"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#220505</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Blue <span class="scale-tag">Info</span></div>
+    <div class="scale-desc">Informational accents, links</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#eff6ff"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#eff6ff</span></div>
+    <div class="scale-cell lt" style="background:#dbeafe"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#dbeafe</span></div>
+    <div class="scale-cell lt" style="background:#bfdbfe"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#bfdbfe</span></div>
+    <div class="scale-cell lt" style="background:#93c5fd"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#93c5fd</span></div>
+    <div class="scale-cell lt" style="background:#60a5fa"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#60a5fa</span></div>
+    <div class="scale-cell dk" style="background:#3b82f6"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#3b82f6</span></div>
+    <div class="scale-cell dk" style="background:#2563eb"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#2563eb</span></div>
+    <div class="scale-cell dk" style="background:#1d4ed8"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#1d4ed8</span></div>
+    <div class="scale-cell dk" style="background:#1e40af"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#1e40af</span></div>
+    <div class="scale-cell dk" style="background:#1e3a8a"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#1e3a8a</span></div>
+    <div class="scale-cell dk" style="background:#172554"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#172554</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Violet <span class="scale-tag">Accent</span></div>
+    <div class="scale-desc">AI emphasis, premium states</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#f6f3ff"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f6f3ff</span></div>
+    <div class="scale-cell lt" style="background:#ede5ff"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#ede5ff</span></div>
+    <div class="scale-cell lt" style="background:#ddc9fe"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#ddc9fe</span></div>
+    <div class="scale-cell lt" style="background:#c4a5fc"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#c4a5fc</span></div>
+    <div class="scale-cell lt" style="background:#a677f7"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#a677f7</span></div>
+    <div class="scale-cell dk" style="background:#8b54ed"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#8b54ed</span></div>
+    <div class="scale-cell dk" style="background:#7338d6"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#7338d6</span></div>
+    <div class="scale-cell dk" style="background:#5d2bb1"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#5d2bb1</span></div>
+    <div class="scale-cell dk" style="background:#491f88"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#491f88</span></div>
+    <div class="scale-cell dk" style="background:#311557"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#311557</span></div>
+    <div class="scale-cell dk" style="background:#1a0a30"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#1a0a30</span></div>
+  </div>
+</div>
+
+<div class="subhead">Data-viz hues</div>
+<div class="notes-box" style="margin-top:0;margin-bottom:18px"><div class="notes-box-lbl">Why three new scales</div><ul><li>The categorical chart palette needs <strong>12 distinct hues</strong> with maximum neighbor contrast. AWP's existing scales (Slate, Blue, Violet) cover only the cool-end of the spectrum.</li><li><strong>Teal</strong> and <strong>Pink</strong> fill mid-warm and warm gaps. <strong>Yellow</strong> is distinct from Amber — Amber is reserved for the pending/warning semantic role; Yellow is categorical-only.</li><li>These three are used by the data viz layer (categorical, monochromatic, diverging). They do not appear in any non-chart alias token.</li></ul></div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Teal <span class="scale-tag new">NEW</span></div>
+    <div class="scale-desc">Data viz hue · categorical slots 3, 9 + diverging cool side</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#f0fdfa"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f0fdfa</span></div>
+    <div class="scale-cell lt" style="background:#ccfbf1"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#ccfbf1</span></div>
+    <div class="scale-cell lt" style="background:#99f6e4"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#99f6e4</span></div>
+    <div class="scale-cell lt" style="background:#5eead4"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#5eead4</span></div>
+    <div class="scale-cell lt" style="background:#2dd4bf"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#2dd4bf</span></div>
+    <div class="scale-cell dk" style="background:#14b8a6"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#14b8a6</span></div>
+    <div class="scale-cell dk" style="background:#0d9488"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#0d9488</span></div>
+    <div class="scale-cell dk" style="background:#0f766e"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#0f766e</span></div>
+    <div class="scale-cell dk" style="background:#115e59"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#115e59</span></div>
+    <div class="scale-cell dk" style="background:#134e4a"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#134e4a</span></div>
+    <div class="scale-cell dk" style="background:#042f2e"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#042f2e</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Pink <span class="scale-tag new">NEW</span></div>
+    <div class="scale-desc">Data viz hue · categorical slots 4, 11 (warm-cool magenta family)</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#fdf2f8"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#fdf2f8</span></div>
+    <div class="scale-cell lt" style="background:#fce7f3"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#fce7f3</span></div>
+    <div class="scale-cell lt" style="background:#fbcfe8"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#fbcfe8</span></div>
+    <div class="scale-cell lt" style="background:#f9a8d4"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#f9a8d4</span></div>
+    <div class="scale-cell lt" style="background:#f472b6"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#f472b6</span></div>
+    <div class="scale-cell dk" style="background:#ec4899"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#ec4899</span></div>
+    <div class="scale-cell dk" style="background:#db2777"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#db2777</span></div>
+    <div class="scale-cell dk" style="background:#be185d"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#be185d</span></div>
+    <div class="scale-cell dk" style="background:#9d174d"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#9d174d</span></div>
+    <div class="scale-cell dk" style="background:#831843"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#831843</span></div>
+    <div class="scale-cell dk" style="background:#500724"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#500724</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Yellow <span class="scale-tag new">NEW</span></div>
+    <div class="scale-desc">Data viz hue · categorical slot 6 (distinct from semantic Amber)</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#fefce8"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#fefce8</span></div>
+    <div class="scale-cell lt" style="background:#fef9c3"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#fef9c3</span></div>
+    <div class="scale-cell lt" style="background:#fef08a"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#fef08a</span></div>
+    <div class="scale-cell lt" style="background:#fde047"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#fde047</span></div>
+    <div class="scale-cell lt" style="background:#facc15"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#facc15</span></div>
+    <div class="scale-cell dk" style="background:#eab308"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#eab308</span></div>
+    <div class="scale-cell dk" style="background:#ca8a04"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#ca8a04</span></div>
+    <div class="scale-cell dk" style="background:#a16207"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#a16207</span></div>
+    <div class="scale-cell dk" style="background:#854d0e"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#854d0e</span></div>
+    <div class="scale-cell dk" style="background:#713f12"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#713f12</span></div>
+    <div class="scale-cell dk" style="background:#422006"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#422006</span></div>
+  </div>
+</div>
+
+    </div>
+
+    <!-- 03 · FOUNDATIONS -->
+    <div class="section" id="sec-foundations">
+      <div class="section-head">
+        <div class="section-num">03</div>
+        <div class="section-title">Foundations</div>
+        <div class="section-sub">Spacing, radius, and breakpoint scales. All values follow the 4px grid. Aligned with Tailwind's defaults so engineering can reach for utility classes when needed.</div>
+      </div>
+
+      <div class="foundation-grid">
+        <div class="foundation-card">
+          <div class="foundation-card-title">Spacing</div>
+          <div class="foundation-card-sub">4px base. Use semantic increments — never arbitrary values.</div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-0_5</span><span class="foundation-row-val">2px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-1</span><span class="foundation-row-val">4px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-1_5</span><span class="foundation-row-val">6px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-2</span><span class="foundation-row-val">8px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-2_5</span><span class="foundation-row-val">10px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-3</span><span class="foundation-row-val">12px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-3_5</span><span class="foundation-row-val">14px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-4</span><span class="foundation-row-val">16px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-5</span><span class="foundation-row-val">20px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-6</span><span class="foundation-row-val">24px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-7</span><span class="foundation-row-val">28px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-8</span><span class="foundation-row-val">32px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-9</span><span class="foundation-row-val">36px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-10</span><span class="foundation-row-val">40px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-11</span><span class="foundation-row-val">44px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-12</span><span class="foundation-row-val">48px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-14</span><span class="foundation-row-val">56px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-16</span><span class="foundation-row-val">64px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-20</span><span class="foundation-row-val">80px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-24</span><span class="foundation-row-val">96px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-28</span><span class="foundation-row-val">112px</span></div>
+        </div>
+
+        <div class="foundation-card">
+          <div class="foundation-card-title">Radius</div>
+          <div class="foundation-card-sub">Cards cap at <code style="font-family:var(--font-mono);font-size:11px;background:var(--surface-base);padding:1px 4px;border-radius:3px">--radius-xl</code> (10px). Pills are an exception at 7.5px.</div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-none</span><span class="foundation-row-val">0px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-sm</span><span class="foundation-row-val">4px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius / -md</span><span class="foundation-row-val">6px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-lg</span><span class="foundation-row-val">8px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-xl</span><span class="foundation-row-val">10px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-2xl</span><span class="foundation-row-val">12px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-3xl</span><span class="foundation-row-val">16px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-full</span><span class="foundation-row-val">9999px</span></div>
+        </div>
+
+        <div class="foundation-card">
+          <div class="foundation-card-title">Breakpoints</div>
+          <div class="foundation-card-sub">Tailwind-aligned. AWP is desktop-first; mobile is responsive-not-broken for MVP.</div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-sm</span><span class="foundation-row-val">640px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-md</span><span class="foundation-row-val">768px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-lg</span><span class="foundation-row-val">1024px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-xl</span><span class="foundation-row-val">1280px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-2xl</span><span class="foundation-row-val">1536px</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 · TYPOGRAPHY -->
+    <div class="section" id="sec-typography">
+      <div class="section-head">
+        <div class="section-num">04</div>
+        <div class="section-title">Typography</div>
+        <div class="section-sub">Two families, two purposes. <strong>Satoshi</strong> for human-authored content (titles, body, buttons). <strong>JetBrains Mono</strong> for AI-generated, calculated, or system content (data values, status pills, parameter paths, IDs, metadata). Token names describe the role — the family is enforced by the system. The complete scale spans 9px (in-card labels) to 36px (display).</div>
+      </div>
+
+      <div class="subhead">Satoshi · human-authored</div>
+
+      <div class="type-table">
+        <div class="type-row">
+          <div class="type-label">Display</div>
+          <div style="font-family: var(--font-primary); font-size: 36px; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--text-dk)">Raise mobile timeout</div>
+          <div class="type-meta">36 / Bold / 120% / -2%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Page Title</div>
+          <div style="font-family: var(--font-primary); font-size: 28px; font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; color: var(--text-dk)">Raise mobile timeout</div>
+          <div class="type-meta">28 / Bold / 120% / -1.5%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Heading 1</div>
+          <div style="font-family: var(--font-primary); font-size: 24px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--text-dk)">Section heading</div>
+          <div class="type-meta">24 / Bold / 125% / -1%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Heading 2</div>
+          <div style="font-family: var(--font-primary); font-size: 20px; font-weight: 500; line-height: 1.3; letter-spacing: -0.005em; color: var(--text-dk)">Raise mobile timeout to 1100ms</div>
+          <div class="type-meta">20 / Medium / 130% / -0.5%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Heading 3</div>
+          <div style="font-family: var(--font-primary); font-size: 16px; font-weight: 700; line-height: 1.5; color: var(--text-dk)">Subsection heading</div>
+          <div class="type-meta">16 / Bold / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Body LG · Reg</div>
+          <div style="font-family: var(--font-primary); font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--text-dk)">The agent proposes a wrapper change with rationale and projected impact.</div>
+          <div class="type-meta">16 / Regular / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Body LG · Med</div>
+          <div style="font-family: var(--font-primary); font-size: 16px; font-weight: 500; line-height: 1.5; color: var(--text-dk)">The agent proposes a wrapper change with rationale and projected impact.</div>
+          <div class="type-meta">16 / Medium / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Body · Reg</div>
+          <div style="font-family: var(--font-primary); font-size: 14px; font-weight: 400; line-height: 1.4; color: var(--text-dk)">The agent proposes a wrapper change with rationale and projected impact.</div>
+          <div class="type-meta">14 / Regular / 140%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Body · Med</div>
+          <div style="font-family: var(--font-primary); font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--text-dk)">The agent proposes a wrapper change with rationale and projected impact.</div>
+          <div class="type-meta">14 / Medium / 140%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Body SM</div>
+          <div style="font-family: var(--font-primary); font-size: 12px; font-weight: 400; line-height: 1.5; color: var(--text-md)">1 change · affects ~15.4M imps/wk</div>
+          <div class="type-meta">12 / Regular / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Caption · Reg</div>
+          <div style="font-family: var(--font-primary); font-size: 11px; font-weight: 400; line-height: 1.3; color: var(--text-lt)">caption text or tertiary information</div>
+          <div class="type-meta">11 / Regular / 130%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Caption · Med</div>
+          <div style="font-family: var(--font-primary); font-size: 11px; font-weight: 500; line-height: 1.3; color: var(--text-lt)">caption text or tertiary information</div>
+          <div class="type-meta">11 / Medium / 130%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Button</div>
+          <div style="font-family: var(--font-primary); font-size: 14px; font-weight: 500; line-height: 1.15; letter-spacing: 0.01em; color: var(--text-dk)">Approve &amp; Deploy</div>
+          <div class="type-meta">14 / Medium / 115% / 1%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Button SM</div>
+          <div style="font-family: var(--font-primary); font-size: 12px; font-weight: 500; line-height: 1.15; letter-spacing: 0.01em; color: var(--text-dk)">Approve</div>
+          <div class="type-meta">12 / Medium / 115% / 1%</div>
+        </div>
+      </div>
+
+      <div class="subhead">JetBrains Mono · system / AI</div>
+
+      <div class="type-table">
+        <div class="type-row">
+          <div class="type-label">Data LG</div>
+          <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; line-height: 1.4; color: var(--text-dk)">+$2,380/wk</div>
+          <div class="type-meta">16 / Bold / 140%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Data Reg</div>
+          <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--text-dk)">timeout.mobile: 1100ms</div>
+          <div class="type-meta">14 / Regular / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Data Reg Bold</div>
+          <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--text-dk)">timeout.mobile: 1100ms</div>
+          <div class="type-meta">14 / Bold / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Data SM</div>
+          <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 400; line-height: 1.5; color: var(--text-dk)">CW-4812</div>
+          <div class="type-meta">12 / Regular / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Data SM Bold</div>
+          <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; line-height: 1.5; color: var(--text-dk)">CW-4812</div>
+          <div class="type-meta">12 / Bold / 150%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Meta</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 400; line-height: 1.4; color: var(--text-lt)">deployed 4h ago · CW-4812</div>
+          <div class="type-meta">11 / Regular / 140%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Pill</div>
+          <div><span style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; line-height: 1; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 8px; background: var(--tag-bg-pending); color: var(--tag-text-pending)">PENDING</span></div>
+          <div class="type-meta">11 / Medium / caps / 8%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Eyebrow</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 500; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lt)">SECTION EYEBROW</div>
+          <div class="type-meta">10 / Medium / caps / 12%</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Label SM</div>
+          <div style="font-family: var(--font-mono); font-size: 9px; font-weight: 500; line-height: 1; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-lt)">MOBILE TIMEOUT</div>
+          <div class="type-meta">9 / Medium / caps / 10%</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">Family rules</div>
+        <ul>
+          <li><strong>Family is automatic.</strong> Tokens in the human-authored group always render in Satoshi; tokens in the system / AI group always render in JetBrains Mono. Components reference the role; the system enforces the family.</li>
+          <li><strong>The split is meaningful.</strong> When a publisher sees JetBrains Mono, they know "this is computed by the system or pulled from data." When they see Satoshi, they know "this is presented to me by the product."</li>
+          <li><strong>Caps treatment is part of the role.</strong> Pill, Eyebrow, and Label SM are always uppercase — the typography token carries the case transformation.</li>
+          <li><strong>No 13px sizes.</strong> Satoshi sizes are 11 / 12 / 14 / 16 / 20 / 24 / 28 / 36. Mono sizes are 9 / 10 / 11 / 12 / 14 / 16. Anything that previously sat at 13px migrates up to 14px.</li>
+          <li><strong>"Reg" and "Med" variants</strong> at the same size give designers an emphasis dial without changing the type ramp. Body, Body LG, and Caption all have both.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 05 · ALIASES -->
+    <div class="section" id="sec-aliases">
+      <div class="section-head">
+        <div class="section-num">05</div>
+        <div class="section-title">Semantic aliases</div>
+        <div class="section-sub">Components reference these names. Each alias maps to one primitive in light mode and (usually) a different primitive in dark mode. Naming follows AWP's role pattern: <code>--text-dk</code>, <code>--surface-card</code>, <code>--button-bg-primary</code>. The swatches below show the current mode — toggle dark mode to see how they shift.</div>
+      </div>
+
+      <div class="subhead">Surface · stacked layers</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--surface-canvas</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-canvas)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-950</span></div></div><span class="alias-row-meta">Page canvas — the outermost background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-base</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-base)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-900</span></div></div><span class="alias-row-meta">Primary workspaces, code blocks, neutral panels</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-raised</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-raised)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Nested controls, segmented controls, input chips</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-elevated</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-elevated)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-300</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Hover targets, dividers between diff rows</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-card</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-white</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Cards on canvas — the brightest surface in light mode</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-modal</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-modal)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-white</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Modal dialogs, lifted popovers</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-overlay</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-overlay)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">rgba(29,28,26,0.40)</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">rgba(0,0,0,0.6)</span></div></div><span class="alias-row-meta">Modal backdrop scrim</span></div>
+      </div>
+
+      <div class="subhead">Surface · semantic states</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--surface-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-900</span></div></div><span class="alias-row-meta">Pending status background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-pending-soft</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-pending-soft)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-950</span></div></div><span class="alias-row-meta">Pending background — softer tint</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-900</span></div></div><span class="alias-row-meta">Deployed / success background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-success-soft</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-success-soft)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-950</span></div></div><span class="alias-row-meta">Success background — softer tint</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-900</span></div></div><span class="alias-row-meta">Failed / error background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-error-soft</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-error-soft)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-950</span></div></div><span class="alias-row-meta">Error background — softer tint</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-info</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-info)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-blue-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-blue-900</span></div></div><span class="alias-row-meta">Informational background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-info-soft</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-info-soft)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-blue-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-blue-950</span></div></div><span class="alias-row-meta">Informational background — softer tint</span></div>
+      </div>
+
+      <div class="subhead">Text · roles</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--text-dk</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-dk)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-900</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div></div><span class="alias-row-meta">Primary text — titles, body, key values</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-md</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-md)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-300</span></div></div><span class="alias-row-meta">Secondary text — descriptions, secondary labels</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-lt</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-lt)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-500</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div></div><span class="alias-row-meta">Tertiary text — metadata, captions</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-disabled</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-disabled)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Disabled / unavailable text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-placeholder</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-placeholder)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-brand-slate-500</span></div></div><span class="alias-row-meta">Input placeholder text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-on-primary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-on-primary)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-900</span></div></div><span class="alias-row-meta">Text on primary buttons / dark surfaces</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-on-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-on-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-300</span></div></div><span class="alias-row-meta">Text on success-tinted surfaces</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-on-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-on-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-300</span></div></div><span class="alias-row-meta">Text on error-tinted surfaces</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-on-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-on-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-300</span></div></div><span class="alias-row-meta">Text on pending-tinted surfaces</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-on-info</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-on-info)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-blue-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-blue-300</span></div></div><span class="alias-row-meta">Text on info-tinted surfaces</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-link</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-link)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-blue-600</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-blue-400</span></div></div><span class="alias-row-meta">Hyperlinks</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-400</span></div></div><span class="alias-row-meta">Error message text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-400</span></div></div><span class="alias-row-meta">Success message text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--text-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--text-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-400</span></div></div><span class="alias-row-meta">Pending message text</span></div>
+      </div>
+
+      <div class="subhead">Border · roles</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--border-stroke</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-stroke)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-300</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Default border for cards, modals, structured panels</span></div>
+        <div class="alias-row"><span class="alias-row-name">--border-stroke-light</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-stroke-light)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Subtle dividers between rows / sections</span></div>
+        <div class="alias-row"><span class="alias-row-name">--border-stroke-dark</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-stroke-dark)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div></div><span class="alias-row-meta">Emphasized border / divider</span></div>
+        <div class="alias-row"><span class="alias-row-name">--border-focus</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-focus)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-900</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div></div><span class="alias-row-meta">Input focus ring / active outline</span></div>
+        <div class="alias-row"><span class="alias-row-name">--border-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-500</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-400</span></div></div><span class="alias-row-meta">Error border for inputs / containers</span></div>
+        <div class="alias-row"><span class="alias-row-name">--border-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-400</span></div></div><span class="alias-row-meta">Success border (e.g., recommended cards)</span></div>
+        <div class="alias-row"><span class="alias-row-name">--border-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-400</span></div></div><span class="alias-row-meta">Pending border</span></div>
+      </div>
+
+      <div class="subhead">Icon · roles (mirrors text scale — Brand-Slate in both modes)</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--icon-dk</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-dk)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-900</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div></div><span class="alias-row-meta">Primary icon — same emphasis as text-dk</span></div>
+        <div class="alias-row"><span class="alias-row-name">--icon-md</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-md)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-300</span></div></div><span class="alias-row-meta">Secondary icon</span></div>
+        <div class="alias-row"><span class="alias-row-name">--icon-lt</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-lt)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-500</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div></div><span class="alias-row-meta">Tertiary / muted icon</span></div>
+        <div class="alias-row"><span class="alias-row-name">--icon-disabled</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-disabled)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Disabled icon</span></div>
+        <div class="alias-row"><span class="alias-row-name">--icon-on-primary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-on-primary)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-900</span></div></div><span class="alias-row-meta">Icon on primary buttons</span></div>
+        <div class="alias-row"><span class="alias-row-name">--icon-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-500</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-400</span></div></div><span class="alias-row-meta">Error icon</span></div>
+        <div class="alias-row"><span class="alias-row-name">--icon-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-400</span></div></div><span class="alias-row-meta">Success icon</span></div>
+        <div class="alias-row"><span class="alias-row-name">--icon-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--icon-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-400</span></div></div><span class="alias-row-meta">Pending icon</span></div>
+      </div>
+
+      <div class="subhead">Button · roles</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--button-bg-primary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-primary)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div></div><span class="alias-row-meta">Primary CTA background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-primary-hover</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-primary-hover)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-900</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-white</span></div></div><span class="alias-row-meta">Primary CTA hover</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-primary-disabled</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-primary-disabled)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-400</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Primary CTA disabled</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-text-primary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-text-primary)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-900</span></div></div><span class="alias-row-meta">Primary CTA text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-secondary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-secondary)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-300</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Secondary button background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-secondary-hover</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-secondary-hover)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-400</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-600</span></div></div><span class="alias-row-meta">Secondary button hover</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-text-secondary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-text-secondary)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-900</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div></div><span class="alias-row-meta">Secondary button text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-tertiary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch transparent"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">transparent</span></div></div><span class="alias-row-meta">Tertiary button background — CSS only (Figma can't hold transparent)</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-tertiary-hover</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-tertiary-hover)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Tertiary button hover</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-text-tertiary</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-text-tertiary)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-300</span></div></div><span class="alias-row-meta">Tertiary button text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-destructive</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-destructive)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-500</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-600</span></div></div><span class="alias-row-meta">Destructive action background</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-bg-destructive-hover</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-bg-destructive-hover)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-500</span></div></div><span class="alias-row-meta">Destructive action hover</span></div>
+        <div class="alias-row"><span class="alias-row-name">--button-text-destructive</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--button-text-destructive)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div></div><span class="alias-row-meta">Destructive action text</span></div>
+      </div>
+
+      <div class="subhead">Tag &amp; pill · state-based</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--tag-bg-neutral</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-bg-neutral)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-300</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Neutral / rejected pill bg</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-text-neutral</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-text-neutral)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-500</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div></div><span class="alias-row-meta">Neutral pill text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-bg-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-bg-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-900</span></div></div><span class="alias-row-meta">Pending pill bg</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-text-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-text-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-300</span></div></div><span class="alias-row-meta">Pending pill text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-bg-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-bg-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-900</span></div></div><span class="alias-row-meta">Success / deployed pill bg</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-text-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-text-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-300</span></div></div><span class="alias-row-meta">Success pill text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-bg-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-bg-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-900</span></div></div><span class="alias-row-meta">Error / failed pill bg</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-text-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-text-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-300</span></div></div><span class="alias-row-meta">Error pill text</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-bg-info</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-bg-info)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-blue-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-blue-900</span></div></div><span class="alias-row-meta">Info pill bg</span></div>
+        <div class="alias-row"><span class="alias-row-name">--tag-text-info</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-text-info)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-blue-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-blue-300</span></div></div><span class="alias-row-meta">Info pill text</span></div>
+      </div>
+
+      <div class="subhead">Shadow &amp; backdrop</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--shadow-sm</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-sm)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Subtle lift — tooltips, micro elevation</span></div>
+        <div class="alias-row"><span class="alias-row-name">--shadow</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Default lift — small popovers</span></div>
+        <div class="alias-row"><span class="alias-row-name">--shadow-lg</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-lg)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Lifted popovers (Decisions panel, Modify popup)</span></div>
+        <div class="alias-row"><span class="alias-row-name">--shadow-modal</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-modal)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Modal dialogs only</span></div>
+        <div class="alias-row"><span class="alias-row-name">--shadow-focus</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-focus)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Focus ring</span></div>
+        <div class="alias-row"><span class="alias-row-name">--backdrop-blur</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-overlay);backdrop-filter:var(--backdrop-blur)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">blur(14px)</span></div></div><span class="alias-row-meta">Glassmorphism — modal backdrops, floating elements</span></div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">Implementation notes</div>
+        <ul>
+          <li><strong>Reference aliases only.</strong> Component CSS should never reference primitives like <code>--color-brand-sand-700</code>. Reaching for primitives breaks dark mode and ties components to a specific palette.</li>
+          <li><strong>Tertiary buttons are CSS-only conveniences.</strong> <code>--button-bg-tertiary</code> resolves to <code>transparent</code> — Figma can't hold "transparent" as a paint variable, so this token lives in CSS only. The hover, text, and disabled states all have proper Figma variables.</li>
+          <li><strong>Icon tokens use Brand-Slate in both modes.</strong> Icons match text legibility, regardless of whether the surrounding surface is warm Sand or cool Slate.</li>
+          <li><strong>Shadow tokens are CSS-only.</strong> Figma's Effect Styles don't auto-swap with Variable modes. Designers maintain parallel Effect Styles named <code>shadow/lt/sm</code>, <code>shadow/lt/md</code>, etc., and swap manually when toggling modes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 06 · MODES -->
+    <div class="section" id="sec-modes">
+      <div class="section-head">
+        <div class="section-num">06</div>
+        <div class="section-title">Light &amp; dark modes</div>
+        <div class="section-sub">The same component code renders correctly in both modes because it references aliases — and the alias values flip when <code>data-theme="dark"</code> is applied to the document root. Below: a proposal card built once, rendered twice. Component code references <code>--surface-card</code>, <code>--text-dk</code>, <code>--tag-bg-pending</code> — those resolve differently per mode.</div>
+      </div>
+
+      <div class="modes-row">
+        <div class="modes-card lt">
+          <div class="modes-card-eyebrow">Light mode · :root</div>
+          <div class="sample-card">
+            <span class="sample-pill">PENDING</span>
+            <div class="sample-title">Raise mobile timeout to 1100ms</div>
+            <div class="sample-meta">cw-4812 · proposed 4h ago</div>
+            <div class="sample-data">+$2,380/wk · projected</div>
+          </div>
+        </div>
+        <div class="modes-card dk">
+          <div class="modes-card-eyebrow">Dark mode · [data-theme=&quot;dark&quot;]</div>
+          <div class="sample-card">
+            <span class="sample-pill">PENDING</span>
+            <div class="sample-title">Raise mobile timeout to 1100ms</div>
+            <div class="sample-meta">cw-4812 · proposed 4h ago</div>
+            <div class="sample-data">+$2,380/wk · projected</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">What changes between modes</div>
+        <ul>
+          <li><strong>Surfaces flip neutral families.</strong> Light mode surfaces use Brand-Sand (warm); dark mode surfaces use Brand-Slate (cool). The structural hierarchy (canvas → base → raised → elevated → card) is preserved in both.</li>
+          <li><strong>Text stays on Brand-Slate in both modes.</strong> Slate gives more consistent legibility against both warm and cool backgrounds than swapping text families would.</li>
+          <li><strong>Semantic state colors deepen in dark mode.</strong> Pending/success/error/info backgrounds shift from <code>-100</code> tints in light mode to <code>-900</code> tones in dark mode. Text on those surfaces inverts to <code>-300</code>.</li>
+          <li><strong>Buttons invert.</strong> Primary buttons go dark-on-light in light mode; light-on-dark in dark mode.</li>
+          <li><strong>Components don't change.</strong> The proposal card above uses identical CSS — only the alias values resolve to different primitives.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 07 · IMPLEMENTATION -->
+    <div class="section" id="sec-implementation">
+      <div class="section-head">
+        <div class="section-num">07</div>
+        <div class="section-title">Implementation</div>
+        <div class="section-sub">How to apply the system in code. The pattern is the same whether you're writing component CSS, Figma variables, or Tailwind utilities — reference the alias name; let the system resolve the primitive.</div>
+      </div>
+
+      <div class="subhead">Component CSS — the only pattern</div>
+      <div class="code-block"><span class="comment">/* GOOD — references aliases, works in both modes */</span>
+.proposal-card {
+  <span class="key">background</span>: <span class="value">var(--surface-card)</span>;
+  <span class="key">color</span>: <span class="value">var(--text-dk)</span>;
+  <span class="key">border</span>: 1px solid <span class="value">var(--border-stroke)</span>;
+  <span class="key">border-radius</span>: <span class="value">var(--radius-xl)</span>;
+  <span class="key">padding</span>: <span class="value">var(--spacing-4) var(--spacing-5)</span>;
+}
+
+<span class="comment">/* BAD — references a primitive directly. Breaks dark mode. */</span>
+.proposal-card {
+  <span class="key">background</span>: <span class="value">var(--color-white)</span>;       <span class="comment">/* don't do this */</span>
+  <span class="key">color</span>: <span class="value">var(--color-brand-slate-900)</span>; <span class="comment">/* don't do this */</span>
+}</div>
+
+      <div class="subhead">Activating dark mode</div>
+      <div class="code-block"><span class="comment">/* HTML: add data-theme on the root element */</span>
+&lt;html <span class="key">data-theme</span>=<span class="value">"dark"</span>&gt;...&lt;/html&gt;
+
+<span class="comment">/* JS: toggle the attribute */</span>
+<span class="key">document</span>.documentElement.<span class="key">dataset</span>.theme = isDark ? <span class="value">'dark'</span> : <span class="value">'light'</span>;</div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">Source-of-truth contract</div>
+        <ul>
+          <li><strong>Figma variables and CSS variables stay 1:1.</strong> Every primitive and alias in this doc has a matching Figma variable with the same name. When tokens change, both update together.</li>
+          <li><strong>Three exceptions live in CSS only.</strong> <code>--button-bg-tertiary</code> (transparent), <code>--shadow-*</code> (Effect Styles in Figma swap manually), and <code>--backdrop-blur</code> (filter, not paint) — all called out in their respective sections.</li>
+          <li><strong>Designers reach for the alias name first.</strong> If no alias exists for the role you need, ask whether a new alias should be added rather than reaching for a primitive.</li>
+          <li><strong>Engineers ship with aliases too.</strong> Tailwind utilities like <code>bg-surface-card</code> or <code>text-dk</code> map directly through the same custom property layer.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- /tab-system -->
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 2 · DATA VIZ
+       ════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-dataviz" role="tabpanel">
+
+    <div class="page-intro">
+      <div class="page-intro-title">A complete chart palette system</div>
+      <div class="page-intro-text">AWP's data viz system is structured around four palette types — categorical (12 colors in strict sequence), monochromatic (single-hue intensity scales), diverging (two opposing scales meeting at a neutral center), and status (semantic state, separate from data). Inspired by IBM Carbon's palette framework and adapted to AWP's neutral system. Categorical and diverging palettes have dedicated alias tokens. Monochromatic and recommended combinations use primitive references directly — they're patterns, not separate tokens.</div>
+    </div>
+
+    <div class="page-toc">
+      <span class="page-toc-label">Sections</span>
+      <a href="#viz-architecture">01 · Architecture</a>
+      <a href="#viz-categorical">02 · Categorical</a>
+      <a href="#viz-mono">03 · Monochromatic</a>
+      <a href="#viz-diverging">04 · Diverging</a>
+      <a href="#viz-combinations">05 · Combinations</a>
+      <a href="#viz-status">06 · Status</a>
+    </div>
+
+    <!-- 01 · DATA VIZ ARCHITECTURE -->
+    <div class="section" id="viz-architecture">
+      <div class="section-head">
+        <div class="section-num">01</div>
+        <div class="section-title">Architecture</div>
+        <div class="section-sub">Four palette types, each with a job. Categorical separates unrelated series. Monochromatic shows intensity within a single dimension. Diverging shows magnitude in two directions from a neutral center. Status carries semantic state and stays out of categorical use. Picking the right palette is the most important decision in any chart.</div>
+      </div>
+
+      <div class="intro-grid">
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Palette · 01</div>
+          <div class="intro-card-title">Categorical</div>
+          <div class="intro-card-text">12 colors applied in strict sequence. Use when each series is unrelated and equally weighted (bidder names, ad units, geos). Stops at 12 — past that the palette breaks down and you need a different chart strategy.</div>
+        </div>
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Palette · 02</div>
+          <div class="intro-card-title">Monochromatic</div>
+          <div class="intro-card-text">Single-hue ramps for charts where intensity matters more than category — heatmaps, density plots, ordinal data. Four hues to choose from: Slate (default), Blue, Teal, Violet.</div>
+        </div>
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Palette · 03</div>
+          <div class="intro-card-title">Diverging</div>
+          <div class="intro-card-text">Two opposing scales meeting at a neutral center. Two options: red-blue (carries temperature association) and purple-teal (no temperature, neutral). 7 steps each.</div>
+        </div>
+        <div class="intro-card">
+          <div class="intro-card-eyebrow">Palette · 04</div>
+          <div class="intro-card-title">Status</div>
+          <div class="intro-card-text">Reserved for chart elements that carry semantic state — annotation lines, alert markers, KPI sparkline directionality. Never used as a series color in a categorical chart.</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">Ground rules</div>
+        <ul>
+          <li><strong>The status alias values are reserved.</strong> The exact shades used by status tokens (green-700, red-500, amber-700, blue-600) carry meaning across the entire system. Other shades from the same hue family can appear in the categorical palette — but if a chart's subject matter is performance or alerting, avoid those hues even at different shades.</li>
+          <li><strong>Monochromatic is not categorical with opacity.</strong> Mono palettes use primitive ramp steps directly (e.g., blue-100 through blue-700), not transparency. Opacity introduces visual noise from underlying surface tone.</li>
+          <li><strong>Categorical sequence is non-negotiable.</strong> Always start at slot 1. Two-series charts use slots 1 + 2. Don't skip slots, don't reorder, don't reuse out of sequence.</li>
+          <li><strong>There is no slot 13.</strong> The categorical palette stops at 12. When data has more than 12 distinct categories, the chart needs a different strategy — not more colors. Reusing or generating new categorical colors past slot 12 causes false meaning collisions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 02 · CATEGORICAL -->
+    <div class="section" id="viz-categorical">
+      <div class="section-head">
+        <div class="section-num">02</div>
+        <div class="section-title">Categorical sequence</div>
+        <div class="section-sub">12 colors, applied in strict order. The palette is intentionally <strong>desaturated</strong> — chalky and dusty rather than vivid — so that charts feel calm against AWP's warm-Sand light surface and cool-Slate dark surface. Slots 1–10 are direct hex values that live only in <code>--viz-cat-*</code> aliases (they don't pull from any primitive scale because they're chart-only by design). Slots 11–12 reference existing brand-slate primitives. Same values render in both light and dark mode — the luminance works on both canvases. Single-series charts use <code>--viz-cat-1</code>; two-series adds slot 2; etc. The sequence is non-negotiable.</div>
+      </div>
+
+      <div class="cat-grid">
+        <div class="cat-cell" style="background:#4a90c8"><span class="cat-cell-num">1</span><span class="cat-cell-name">steel-blue</span></div>
+        <div class="cat-cell lt" style="background:#9bc4e0"><span class="cat-cell-num">2</span><span class="cat-cell-name">sky-pale</span></div>
+        <div class="cat-cell lt" style="background:#9ec882"><span class="cat-cell-num">3</span><span class="cat-cell-name">sage</span></div>
+        <div class="cat-cell lt" style="background:#e8d272"><span class="cat-cell-num">4</span><span class="cat-cell-name">buttercup</span></div>
+        <div class="cat-cell lt" style="background:#d49475"><span class="cat-cell-num">5</span><span class="cat-cell-name">terracotta</span></div>
+        <div class="cat-cell lt" style="background:#bca8d4"><span class="cat-cell-num">6</span><span class="cat-cell-name">lavender</span></div>
+        <div class="cat-cell lt" style="background:#94c4bd"><span class="cat-cell-num">7</span><span class="cat-cell-name">dusty-teal</span></div>
+        <div class="cat-cell lt" style="background:#e0a4b8"><span class="cat-cell-num">8</span><span class="cat-cell-name">blush</span></div>
+        <div class="cat-cell lt" style="background:#bccd86"><span class="cat-cell-num">9</span><span class="cat-cell-name">olive-sage</span></div>
+        <div class="cat-cell lt" style="background:#e8b894"><span class="cat-cell-num">10</span><span class="cat-cell-name">peach</span></div>
+        <div class="cat-cell lt" style="background:var(--color-brand-slate-400)"><span class="cat-cell-num">11</span><span class="cat-cell-name">slate-400</span></div>
+        <div class="cat-cell lt" style="background:var(--color-brand-slate-300)"><span class="cat-cell-num">12</span><span class="cat-cell-name">slate-300</span></div>
+      </div>
+
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#4a90c8 · steel-blue</span></div></div><span class="alias-row-meta">Anchor — single-series default</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#9bc4e0 · sky-pale</span></div></div><span class="alias-row-meta">Adds with slot 1 for two-series charts</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#9ec882 · sage</span></div></div><span class="alias-row-meta">Three-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#e8d272 · buttercup</span></div></div><span class="alias-row-meta">Four-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#d49475 · terracotta</span></div></div><span class="alias-row-meta">Five-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#bca8d4 · lavender</span></div></div><span class="alias-row-meta">Six-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#94c4bd · dusty-teal</span></div></div><span class="alias-row-meta">Seven-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-8</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-8)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#e0a4b8 · blush</span></div></div><span class="alias-row-meta">Eight-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-9</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-9)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#bccd86 · olive-sage</span></div></div><span class="alias-row-meta">Nine-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-10</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-10)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#e8b894 · peach</span></div></div><span class="alias-row-meta">Ten-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-11</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-11)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div></div><span class="alias-row-meta">Eleven-series · primitive ref</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-12</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-12)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-brand-slate-300</span></div></div><span class="alias-row-meta">Twelve-series · primitive ref · past this, change chart strategy</span></div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">How to apply categorical</div>
+        <ul>
+          <li><strong>Always start at slot 1.</strong> Single-series charts use <code>--viz-cat-1</code>. Two-series adds slot 2. Etc. The sequence guarantees adequate neighbor contrast — skipping or reordering breaks that guarantee.</li>
+          <li><strong>The order is the contrast structure.</strong> Slot 1 (steel-blue) is intentionally slightly more saturated than the rest — it gives the primary series visual weight. Slots 2–10 sit at uniform desaturation; slots 11–12 are neutrals.</li>
+          <li><strong>Stops at 12 — no slot 13.</strong> When data has more than 12 distinct categories, the chart needs a different strategy — not more colors. Reusing or generating new categorical colors past slot 12 causes false meaning collisions.</li>
+        </ul>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">Why these aren't primitives</div>
+        <ul>
+          <li><strong>Slots 1–10 are direct hex values</strong> in <code>--viz-cat-*</code> aliases, with no primitive layer. Categorical chart colors are inherently chart-only — promoting them to primitives would imply they could be used as button backgrounds, surfaces, or text colors, which would break their chart-only intent.</li>
+          <li><strong>Mnemonic names</strong> (steel-blue, sage, terracotta, etc.) live only in comments and docs. They are <strong>not</strong> exposed as CSS variable names. The categorical contract is positional — <code>--viz-cat-1</code> through <code>--viz-cat-12</code> — because position is the contract, not the hue.</li>
+          <li><strong>Slots 11–12 reference existing brand-slate primitives</strong> (slate-400 and slate-300). Slate is structural and is correctly reused across the system; the neutrals stay tied to the system rather than duplicated.</li>
+          <li><strong>Same values in light and dark mode.</strong> The desaturated palette's luminance (~65–75%) reads correctly against both warm-Sand light surface and cool-Slate dark surface, so no mode override is needed.</li>
+          <li><strong>No collision with status colors.</strong> The new categorical contains no green, amber, or red — the hue families reserved for semantic state are entirely outside the chart palette.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 03 · MONOCHROMATIC PATTERNS -->
+    <div class="section" id="viz-mono">
+      <div class="section-head">
+        <div class="section-num">03</div>
+        <div class="section-title">Monochromatic patterns</div>
+        <div class="section-sub">Single-hue intensity ramps for charts where ordinal weight or magnitude matters more than category — heatmaps, density plots, ranked bar charts, treemaps. <strong>These are patterns, not separate tokens.</strong> Pull steps directly from the primitive ramps. Four hues are sanctioned for monochromatic use: Slate (default), Blue, Teal, and Violet. Red, Amber, Green, and Yellow are excluded — their hue family carries semantic meaning that would mislead in a non-status chart.</div>
+      </div>
+
+      <div class="mono-block">
+        <div class="mono-block-head">
+          <div class="mono-block-name">Slate · default monochromatic</div>
+          <div class="mono-block-sub">--color-brand-slate-100 → -700</div>
+        </div>
+        <div class="mono-row">
+          <div class="mono-cell lt" style="background:var(--color-brand-slate-100)">100</div>
+          <div class="mono-cell lt" style="background:var(--color-brand-slate-200)">200</div>
+          <div class="mono-cell lt" style="background:var(--color-brand-slate-300)">300</div>
+          <div class="mono-cell lt" style="background:var(--color-brand-slate-400)">400</div>
+          <div class="mono-cell dk" style="background:var(--color-brand-slate-500)">500</div>
+          <div class="mono-cell dk" style="background:var(--color-brand-slate-600)">600</div>
+          <div class="mono-cell dk" style="background:var(--color-brand-slate-700)">700</div>
+        </div>
+      </div>
+
+      <div class="mono-block">
+        <div class="mono-block-head">
+          <div class="mono-block-name">Blue</div>
+          <div class="mono-block-sub">--color-blue-100 → -700</div>
+        </div>
+        <div class="mono-row">
+          <div class="mono-cell lt" style="background:var(--color-blue-100)">100</div>
+          <div class="mono-cell lt" style="background:var(--color-blue-200)">200</div>
+          <div class="mono-cell lt" style="background:var(--color-blue-300)">300</div>
+          <div class="mono-cell lt" style="background:var(--color-blue-400)">400</div>
+          <div class="mono-cell dk" style="background:var(--color-blue-500)">500</div>
+          <div class="mono-cell dk" style="background:var(--color-blue-600)">600</div>
+          <div class="mono-cell dk" style="background:var(--color-blue-700)">700</div>
+        </div>
+      </div>
+
+      <div class="mono-block">
+        <div class="mono-block-head">
+          <div class="mono-block-name">Teal</div>
+          <div class="mono-block-sub">--color-teal-100 → -700</div>
+        </div>
+        <div class="mono-row">
+          <div class="mono-cell lt" style="background:var(--color-teal-100)">100</div>
+          <div class="mono-cell lt" style="background:var(--color-teal-200)">200</div>
+          <div class="mono-cell lt" style="background:var(--color-teal-300)">300</div>
+          <div class="mono-cell lt" style="background:var(--color-teal-400)">400</div>
+          <div class="mono-cell dk" style="background:var(--color-teal-500)">500</div>
+          <div class="mono-cell dk" style="background:var(--color-teal-600)">600</div>
+          <div class="mono-cell dk" style="background:var(--color-teal-700)">700</div>
+        </div>
+      </div>
+
+      <div class="mono-block">
+        <div class="mono-block-head">
+          <div class="mono-block-name">Violet</div>
+          <div class="mono-block-sub">--color-violet-100 → -700</div>
+        </div>
+        <div class="mono-row">
+          <div class="mono-cell lt" style="background:var(--color-violet-100)">100</div>
+          <div class="mono-cell lt" style="background:var(--color-violet-200)">200</div>
+          <div class="mono-cell lt" style="background:var(--color-violet-300)">300</div>
+          <div class="mono-cell lt" style="background:var(--color-violet-400)">400</div>
+          <div class="mono-cell dk" style="background:var(--color-violet-500)">500</div>
+          <div class="mono-cell dk" style="background:var(--color-violet-600)">600</div>
+          <div class="mono-cell dk" style="background:var(--color-violet-700)">700</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">Why no tokens for monochromatic</div>
+        <ul>
+          <li><strong>The pattern is the contract, not a name.</strong> A mono palette is "steps 100 through 700 of a sanctioned hue." Encoding that as 28 alias tokens (4 hues × 7 steps) would duplicate the primitive ramps and add maintenance overhead with zero semantic benefit — the alias would just be a rename of the primitive.</li>
+          <li><strong>Pull from primitives directly in chart code.</strong> Reference <code>--color-blue-100</code> through <code>--color-blue-700</code> (or whichever hue is chosen). This is the one place in the system where component code can reach for primitives.</li>
+          <li><strong>Use Slate by default.</strong> When the chart subject doesn't suggest a hue, use Slate. It carries no associations and works in both light and dark modes without re-tuning.</li>
+          <li><strong>Four hues, not all of them.</strong> Red, Amber, Green, and Yellow are excluded from monochromatic use — those hue families carry status semantics. A "red heatmap" reads as "errors" even when it isn't.</li>
+          <li><strong>Step direction depends on encoding.</strong> For "more is more important" (heatmap intensity), darkest step represents the highest value. For "less is less data" (density plots), lightest step is sparse data.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 04 · DIVERGING -->
+    <div class="section" id="viz-diverging">
+      <div class="section-head">
+        <div class="section-num">04</div>
+        <div class="section-title">Diverging palettes</div>
+        <div class="section-sub">Two opposing scales meeting at a neutral center. Use when data has a meaningful midpoint and movement in either direction matters (above/below benchmark, before/after change, gain/loss). Two diverging palettes are sanctioned: <strong>Red-Blue</strong> carries temperature association — red is "hot" or "negative", blue is "cool" or "positive". <strong>Purple-Teal</strong> has no temperature — use when the data shouldn't read as good/bad.</div>
+      </div>
+
+      <div class="subhead">Red-Blue · temperature</div>
+      <div class="div-row">
+        <div class="div-cell" style="background:var(--viz-div-rb-1)">rb-1</div>
+        <div class="div-cell" style="background:var(--viz-div-rb-2)">rb-2</div>
+        <div class="div-cell lt" style="background:var(--viz-div-rb-3)">rb-3</div>
+        <div class="div-cell lt" style="background:var(--viz-div-rb-4)">rb-4</div>
+        <div class="div-cell lt" style="background:var(--viz-div-rb-5)">rb-5</div>
+        <div class="div-cell" style="background:var(--viz-div-rb-6)">rb-6</div>
+        <div class="div-cell" style="background:var(--viz-div-rb-7)">rb-7</div>
+      </div>
+      <div class="div-label">
+        <span class="div-label-end-l">red end · negative / hot</span>
+        <span class="div-label-mid">neutral center</span>
+        <span class="div-label-end-r">blue end · positive / cool</span>
+      </div>
+
+      <div class="subhead">Purple-Teal · neutral</div>
+      <div class="div-row">
+        <div class="div-cell" style="background:var(--viz-div-pt-1)">pt-1</div>
+        <div class="div-cell" style="background:var(--viz-div-pt-2)">pt-2</div>
+        <div class="div-cell lt" style="background:var(--viz-div-pt-3)">pt-3</div>
+        <div class="div-cell lt" style="background:var(--viz-div-pt-4)">pt-4</div>
+        <div class="div-cell lt" style="background:var(--viz-div-pt-5)">pt-5</div>
+        <div class="div-cell" style="background:var(--viz-div-pt-6)">pt-6</div>
+        <div class="div-cell" style="background:var(--viz-div-pt-7)">pt-7</div>
+      </div>
+      <div class="div-label">
+        <span class="div-label-end-l">violet end · category A</span>
+        <span class="div-label-mid">neutral center</span>
+        <span class="div-label-end-r">teal end · category B</span>
+      </div>
+
+      <div class="subhead">Diverging tokens</div>
+      <div class="alias-grid">
+        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-red-700</span></div></div><span class="alias-row-meta">Red-Blue · most negative end</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-red-500</span></div></div><span class="alias-row-meta">Red-Blue · negative</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-red-300</span></div></div><span class="alias-row-meta">Red-Blue · slightly negative</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Red-Blue · neutral center</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blue-300</span></div></div><span class="alias-row-meta">Red-Blue · slightly positive</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blue-500</span></div></div><span class="alias-row-meta">Red-Blue · positive</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blue-700</span></div></div><span class="alias-row-meta">Red-Blue · most positive end</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-violet-700</span></div></div><span class="alias-row-meta">Purple-Teal · category A end</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-violet-500</span></div></div><span class="alias-row-meta">Purple-Teal · category A</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-violet-300</span></div></div><span class="alias-row-meta">Purple-Teal · slight A bias</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Purple-Teal · neutral center</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-teal-300</span></div></div><span class="alias-row-meta">Purple-Teal · slight B bias</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-teal-500</span></div></div><span class="alias-row-meta">Purple-Teal · category B</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-teal-700</span></div></div><span class="alias-row-meta">Purple-Teal · category B end</span></div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">When to use which</div>
+        <ul>
+          <li><strong>Red-Blue carries temperature.</strong> Use it when the data has a clear good/bad or above/below interpretation: bid floor performance vs benchmark, eCPM lift vs prior period, fill rate change. Red ends read as "underperforming," blue ends as "outperforming."</li>
+          <li><strong>Purple-Teal is neutral.</strong> Use it when the data has two valid sides without good/bad weighting: device split (mobile vs desktop), bidder share (Bidder A vs Bidder B), audience segmentation. Neither end carries an emotional charge.</li>
+          <li><strong>Neutral center is the fixed pivot.</strong> Both palettes use a slate-tone center step (slate-200 in light mode, slate-700 in dark mode). The center is where "no movement" reads — symmetric distance to either end means symmetric magnitude.</li>
+          <li><strong>Diverging is not a substitute for two-series categorical.</strong> If the two sides are unrelated categories (not magnitudes from a center), use categorical slots 1 and 2 instead.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 05 · RECOMMENDED COMBINATIONS -->
+    <div class="section" id="viz-combinations">
+      <div class="section-head">
+        <div class="section-num">05</div>
+        <div class="section-title">Recommended combinations</div>
+        <div class="section-sub">Curated palettes for charts with 2, 3, or 4 series. These pull from primitives directly — like monochromatic patterns, they're <strong>recommendations, not separate tokens</strong>. Use them when the categorical sequence's sharper neighbor contrast is more than a small chart needs, and you want a calmer, more harmonious look. The default behavior is still to use the categorical sequence — these combinations are an alternative.</div>
+      </div>
+
+      <div class="combo-grid">
+        <div class="combo-card">
+          <div class="combo-card-title">Two-color</div>
+          <div class="combo-card-sub">Cool harmonious — for two-series comparisons</div>
+          <div class="combo-strip" style="grid-template-columns: 1fr 1fr">
+            <div style="background:var(--color-blue-600)">blue-600</div>
+            <div style="background:var(--color-teal-500)">teal-500</div>
+          </div>
+        </div>
+        <div class="combo-card">
+          <div class="combo-card-title">Three-color</div>
+          <div class="combo-card-sub">Cool triad — for three-series comparisons</div>
+          <div class="combo-strip" style="grid-template-columns: 1fr 1fr 1fr">
+            <div style="background:var(--color-blue-600)">blue-600</div>
+            <div style="background:var(--color-teal-500)">teal-500</div>
+            <div style="background:var(--color-violet-500)">violet-500</div>
+          </div>
+        </div>
+        <div class="combo-card">
+          <div class="combo-card-title">Four-color</div>
+          <div class="combo-card-sub">Cool with neutral anchor — for four-series</div>
+          <div class="combo-strip" style="grid-template-columns: 1fr 1fr 1fr 1fr">
+            <div style="background:var(--color-blue-600)">blue-600</div>
+            <div style="background:var(--color-violet-500)">violet-500</div>
+            <div style="background:var(--color-teal-500)">teal-500</div>
+            <div style="background:var(--color-brand-slate-500)">slate-500</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">Categorical vs combinations — which to use</div>
+        <ul>
+          <li><strong>Categorical sequence is the default.</strong> Reach for <code>--viz-cat-1</code>, <code>--viz-cat-2</code>, etc. when you want guaranteed neighbor contrast across any series count up to 12.</li>
+          <li><strong>Combinations are for tonal harmony.</strong> Use them when the chart is small or supporting (KPI mini-bar, sparkline pair, dashboard tile), where the categorical palette's hue jumps would feel loud against surrounding UI.</li>
+          <li><strong>These are patterns — pull from primitives.</strong> Reference <code>--color-blue-600</code> and <code>--color-teal-500</code> directly. No alias tokens for these combinations, same reasoning as monochromatic.</li>
+          <li><strong>Don't mix.</strong> Pick the categorical sequence or a recommended combination — don't combine slot 1 from categorical with a recommended combination color in the same chart.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 06 · STATUS -->
+    <div class="section" id="viz-status">
+      <div class="section-head">
+        <div class="section-num">06</div>
+        <div class="section-title">Status colors</div>
+        <div class="section-sub">Reserved for chart elements that carry semantic state — annotation lines, alert markers, threshold indicators, KPI sparkline directionality (up/down trend coloring). These exist as separate alias tokens distinct from <code>--tag-bg-*</code>; the status alias values are the specific shades that carry state meaning across the entire system. <strong>Never used as a categorical series color.</strong></div>
+      </div>
+
+      <div class="status-row">
+        <div class="status-card">
+          <div class="status-card-swatch" style="background:var(--viz-status-success)"></div>
+          <div class="status-card-meta">
+            <div class="status-card-title">--viz-status-success</div>
+            <div class="status-card-hex">green-700</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="status-card-swatch" style="background:var(--viz-status-warning)"></div>
+          <div class="status-card-meta">
+            <div class="status-card-title">--viz-status-warning</div>
+            <div class="status-card-hex">amber-700</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="status-card-swatch" style="background:var(--viz-status-error)"></div>
+          <div class="status-card-meta">
+            <div class="status-card-title">--viz-status-error</div>
+            <div class="status-card-hex">red-500</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="status-card-swatch" style="background:var(--viz-status-info)"></div>
+          <div class="status-card-meta">
+            <div class="status-card-title">--viz-status-info</div>
+            <div class="status-card-hex">blue-600</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-lbl">How to apply status in charts</div>
+        <ul>
+          <li><strong>Annotations and markers.</strong> A threshold line crossing a chart, an alert dot on a sparkline, a benchmark band — these use status tokens. Success for "above target," warning for "approaching limit," error for "exceeded threshold," info for neutral reference.</li>
+          <li><strong>Sparkline directionality.</strong> KPI cards that color the sparkline by trend (up = success, down = error) reference the status tokens. The sparkline's up-trend isn't a "green series" — it's a status indicator.</li>
+          <li><strong>Reserved values, not reserved hues.</strong> The status alias values (<code>green-700</code>, <code>amber-700</code>, <code>red-500</code>, <code>blue-600</code>) are reserved across the system. Other shades from those hue families — like green-600 in categorical slot 7, or yellow-500 in slot 6 — can appear in charts because they're different shades and Yellow is a different hue from Amber.</li>
+          <li><strong>Avoid hue collision in alerting contexts.</strong> When a chart's subject is performance, errors, or status itself, prefer categorical slots that don't share a hue family with status colors. This is judgment, not a hard rule — but a "bidder performance" chart that uses green-600 in slot 7 should pause and consider whether it might confuse readers.</li>
+          <li><strong>Status values stay constant across modes.</strong> Unlike most aliases, status colors don't shift between light and dark mode. Their meaning is absolute — green is success in any context.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- /tab-dataviz -->
+
+</div>
+<!-- /shell -->
+
+<script>
+  function selectTab(btn) {
+    // Deactivate all tabs and panels
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    // Activate the clicked tab
+    btn.classList.add('active');
+    // Activate matching panel
+    var targetId = btn.getAttribute('data-target');
+    var panel = document.getElementById(targetId);
+    if (panel) panel.classList.add('active');
+    // Scroll to top of doc on tab change
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function toggleTheme() {
+    var html = document.documentElement;
+    var current = html.getAttribute('data-theme') || 'light';
+    var next = current === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    var icon = document.getElementById('theme-icon');
+    var label = document.getElementById('theme-label');
+    if (next === 'dark') {
+      icon.classList.remove('ph-moon');
+      icon.classList.add('ph-sun');
+      label.textContent = 'Light mode';
+    } else {
+      icon.classList.remove('ph-sun');
+      icon.classList.add('ph-moon');
+      label.textContent = 'Dark mode';
+    }
+  }
+</script>
+
+</body>
+</html>
