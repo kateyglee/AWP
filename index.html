@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AWP Design System · v2</title>
+<title>AWP Design System · v3</title>
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
 <link rel="preconnect" href="https://api.fontshare.com">
@@ -14,7 +14,7 @@
 
 <style id="awp-tokens">
 /* ════════════════════════════════════════════════════════════════════
-   AWP DESIGN TOKENS · v2
+   AWP DESIGN TOKENS · v3
    Source of truth: this file. Mirrors Figma variables 1:1.
 
    Architecture:
@@ -51,6 +51,7 @@
   --color-brand-slate-500:  #7c8189;
   --color-brand-slate-600:  #5d6168;
   --color-brand-slate-700:  #4d5057;
+  --color-brand-slate-750:  #40434a;
   --color-brand-slate-800:  #33363a;
   --color-brand-slate-900:  #181a1c;
   --color-brand-slate-950:  #0c0d0e;
@@ -136,7 +137,7 @@
   --color-violet-900:   #311557;
   --color-violet-950:   #1a0a30;
 
-  /* ─ Teal · NEW · data-viz hue */
+  /* ─ Teal · existing primitive (retained for cross-system reference) */
   --color-teal-50:    #f0fdfa;
   --color-teal-100:   #ccfbf1;
   --color-teal-200:   #99f6e4;
@@ -149,31 +150,57 @@
   --color-teal-900:   #134e4a;
   --color-teal-950:   #042f2e;
 
-  /* ─ Pink · NEW · data-viz hue */
-  --color-pink-50:    #fdf2f8;
-  --color-pink-100:   #fce7f3;
-  --color-pink-200:   #fbcfe8;
-  --color-pink-300:   #f9a8d4;
-  --color-pink-400:   #f472b6;
-  --color-pink-500:   #ec4899;
-  --color-pink-600:   #db2777;
-  --color-pink-700:   #be185d;
-  --color-pink-800:   #9d174d;
-  --color-pink-900:   #831843;
-  --color-pink-950:   #500724;
+  /* ─ Steel-Blue · data-viz hue · anchors cat-1 + mono + diverging cool */
+  --color-steel-blue-50:    #eff5fb;
+  --color-steel-blue-100:   #d9e7f3;
+  --color-steel-blue-200:   #b6d0e8;
+  --color-steel-blue-300:   #8db7d9;
+  --color-steel-blue-400:   #689fcd;
+  --color-steel-blue-500:   #4a90c8;
+  --color-steel-blue-600:   #3576ae;
+  --color-steel-blue-700:   #285e8d;
+  --color-steel-blue-800:   #1d456a;
+  --color-steel-blue-900:   #143049;
+  --color-steel-blue-950:   #0b1c2d;
 
-  /* ─ Yellow · NEW · data-viz hue (distinct from Amber) */
-  --color-yellow-50:    #fefce8;
-  --color-yellow-100:   #fef9c3;
-  --color-yellow-200:   #fef08a;
-  --color-yellow-300:   #fde047;
-  --color-yellow-400:   #facc15;
-  --color-yellow-500:   #eab308;
-  --color-yellow-600:   #ca8a04;
-  --color-yellow-700:   #a16207;
-  --color-yellow-800:   #854d0e;
-  --color-yellow-900:   #713f12;
-  --color-yellow-950:   #422006;
+  /* ─ Lavender · data-viz hue · anchors cat-6 + mono + diverging neutral A */
+  --color-lavender-50:    #f8f5fb;
+  --color-lavender-100:   #ede5f3;
+  --color-lavender-200:   #dccae9;
+  --color-lavender-300:   #bca8d4;
+  --color-lavender-400:   #9b83bb;
+  --color-lavender-500:   #7d62a3;
+  --color-lavender-600:   #614b85;
+  --color-lavender-700:   #493866;
+  --color-lavender-800:   #322848;
+  --color-lavender-900:   #1f1830;
+  --color-lavender-950:   #100c1c;
+
+  /* ─ Dusty-Teal · data-viz hue · anchors cat-7 + mono + diverging neutral B */
+  --color-dusty-teal-50:    #f1f8f6;
+  --color-dusty-teal-100:   #dfece8;
+  --color-dusty-teal-200:   #c2dad4;
+  --color-dusty-teal-300:   #94c4bd;
+  --color-dusty-teal-400:   #69a89e;
+  --color-dusty-teal-500:   #4b8b80;
+  --color-dusty-teal-600:   #386f66;
+  --color-dusty-teal-700:   #2a554d;
+  --color-dusty-teal-800:   #1f3d36;
+  --color-dusty-teal-900:   #142621;
+  --color-dusty-teal-950:   #0a1411;
+
+  /* ─ Blush · data-viz hue · anchors cat-8 + diverging warm */
+  --color-blush-50:    #fdf5f7;
+  --color-blush-100:   #f8e7ec;
+  --color-blush-200:   #f0cad4;
+  --color-blush-300:   #e0a4b8;
+  --color-blush-400:   #cb7d96;
+  --color-blush-500:   #b35c79;
+  --color-blush-600:   #97455f;
+  --color-blush-700:   #763449;
+  --color-blush-800:   #562635;
+  --color-blush-900:   #371821;
+  --color-blush-950:   #1d0c11;
 
   /* ─ Radius (Tailwind-aligned, AWP capped at xl for cards) */
   --radius-none:      0px;
@@ -267,7 +294,7 @@
   --surface-raised:                 var(--color-brand-sand-200);
   --surface-elevated:               var(--color-brand-sand-300);
   --surface-card:                   var(--color-white);
-  --surface-modal:                  var(--color-white);
+  --surface-modal:                   var(--color-brand-sand-50);
   --surface-overlay:                rgba(29, 28, 26, 0.40);
 
   /* ─ Surface · semantic states */
@@ -300,7 +327,7 @@
   --border-stroke:                  var(--color-brand-sand-300);
   --border-stroke-light:            var(--color-brand-sand-200);
   --border-stroke-dark:             var(--color-brand-sand-700);
-  --border-focus:                   var(--color-brand-sand-900);
+  --border-focus:                   var(--color-brand-sand-600);
   --border-error:                   var(--color-red-500);
   --border-success:                 var(--color-green-700);
   --border-pending:                 var(--color-amber-700);
@@ -353,36 +380,36 @@
      Slots 1-10 are direct hex values (data-viz only — never used outside charts).
      Slots 11-12 reference existing brand-slate primitives (neutrals stay tied to system).
      Same values in light & dark mode — the palette's luminance works on both canvases. */
-  --viz-cat-1:                      #4a90c8;                          /* steel-blue */
+  --viz-cat-1:                      var(--color-steel-blue-500);      /* steel-blue */
   --viz-cat-2:                      #9bc4e0;                          /* sky-pale */
   --viz-cat-3:                      #9ec882;                          /* sage */
   --viz-cat-4:                      #e8d272;                          /* buttercup */
   --viz-cat-5:                      #d49475;                          /* terracotta */
-  --viz-cat-6:                      #bca8d4;                          /* lavender */
-  --viz-cat-7:                      #94c4bd;                          /* dusty-teal */
-  --viz-cat-8:                      #e0a4b8;                          /* blush */
+  --viz-cat-6:                      var(--color-lavender-300);        /* lavender */
+  --viz-cat-7:                      var(--color-dusty-teal-300);      /* dusty-teal */
+  --viz-cat-8:                      var(--color-blush-300);           /* blush */
   --viz-cat-9:                      #bccd86;                          /* olive-sage */
   --viz-cat-10:                     #e8b894;                          /* peach */
   --viz-cat-11:                     var(--color-brand-slate-400);     /* slate · primitive ref */
   --viz-cat-12:                     var(--color-brand-slate-300);     /* pale-gray · primitive ref */
 
-  /* ─ Data Viz · diverging red-blue (temperature) */
-  --viz-div-rb-1:                   var(--color-red-700);
-  --viz-div-rb-2:                   var(--color-red-500);
-  --viz-div-rb-3:                   var(--color-red-300);
-  --viz-div-rb-4:                   var(--color-brand-slate-200);
-  --viz-div-rb-5:                   var(--color-blue-300);
-  --viz-div-rb-6:                   var(--color-blue-500);
-  --viz-div-rb-7:                   var(--color-blue-700);
+  /* ─ Data Viz · diverging blush-steel (warm / cool — temperature) */
+  --viz-div-bs-1:                   var(--color-blush-700);
+  --viz-div-bs-2:                   var(--color-blush-500);
+  --viz-div-bs-3:                   var(--color-blush-300);
+  --viz-div-bs-4:                   var(--color-brand-slate-200);
+  --viz-div-bs-5:                   var(--color-steel-blue-300);
+  --viz-div-bs-6:                   var(--color-steel-blue-500);
+  --viz-div-bs-7:                   var(--color-steel-blue-700);
 
-  /* ─ Data Viz · diverging purple-teal (no temperature) */
-  --viz-div-pt-1:                   var(--color-violet-700);
-  --viz-div-pt-2:                   var(--color-violet-500);
-  --viz-div-pt-3:                   var(--color-violet-300);
-  --viz-div-pt-4:                   var(--color-brand-slate-200);
-  --viz-div-pt-5:                   var(--color-teal-300);
-  --viz-div-pt-6:                   var(--color-teal-500);
-  --viz-div-pt-7:                   var(--color-teal-700);
+  /* ─ Data Viz · diverging lavender-dusty (no temperature) */
+  --viz-div-ld-1:                   var(--color-lavender-700);
+  --viz-div-ld-2:                   var(--color-lavender-500);
+  --viz-div-ld-3:                   var(--color-lavender-300);
+  --viz-div-ld-4:                   var(--color-brand-slate-200);
+  --viz-div-ld-5:                   var(--color-dusty-teal-300);
+  --viz-div-ld-6:                   var(--color-dusty-teal-500);
+  --viz-div-ld-7:                   var(--color-dusty-teal-700);
 
   /* ─ Shadow (CSS-only · Figma uses parallel Effect Styles) */
   --shadow-sm:                      0 1px 2px rgba(29, 28, 26, 0.04);
@@ -390,6 +417,10 @@
   --shadow-lg:                      0 8px 24px rgba(47, 52, 48, 0.08), 0 2px 6px rgba(47, 52, 48, 0.04);
   --shadow-modal:                   0 40px 40px -10px rgba(47, 52, 48, 0.04);
   --shadow-focus:                   0 0 0 3px rgba(96, 94, 91, 0.07);
+
+  /* ─ Ring (focus / error states · primarily for input fields) */
+  --ring-focus:                     0 0 0 3px rgba(108, 105, 99, 0.20);     /* sand-600 @ 20% */
+  --ring-error:                     0 0 0 3px rgba(192, 56, 42, 0.20);      /* red-500 @ 20% */
 
   /* ─ Backdrop blur */
   --backdrop-blur:                  blur(14px);
@@ -408,9 +439,9 @@
   --surface-base:                   var(--color-brand-slate-900);
   --surface-raised:                 var(--color-brand-slate-800);
   --surface-elevated:               var(--color-brand-slate-700);
-  --surface-card:                   var(--color-brand-slate-800);
-  --surface-modal:                  var(--color-brand-slate-800);
-  --surface-overlay:                rgba(0, 0, 0, 0.6);
+  --surface-card:                   var(--color-brand-slate-750);
+  --surface-modal:                  var(--color-brand-slate-950);
+  --surface-overlay:                rgba(26, 26, 26, 0.60);
 
   /* ─ Surface · semantic states (deeper backgrounds in dark mode) */
   --surface-pending:                var(--color-amber-900);
@@ -442,7 +473,7 @@
   --border-stroke:                  var(--color-brand-slate-700);
   --border-stroke-light:            var(--color-brand-slate-800);
   --border-stroke-dark:             var(--color-brand-slate-400);
-  --border-focus:                   var(--color-brand-slate-50);
+  --border-focus:                   var(--color-brand-slate-300);
   --border-error:                   var(--color-red-400);
   --border-success:                 var(--color-green-400);
   --border-pending:                 var(--color-amber-400);
@@ -495,23 +526,24 @@
      No dark-mode override — desaturated values are defined once in :root and used in both modes.
      Their luminance (~65-75%) reads correctly against both warm-Sand light surface and cool-Slate dark surface. */
 
-  /* ─ Data Viz · diverging red-blue */
-  --viz-div-rb-1:                   var(--color-red-700);
-  --viz-div-rb-2:                   var(--color-red-500);
-  --viz-div-rb-3:                   var(--color-red-300);
-  --viz-div-rb-4:                   var(--color-brand-slate-700);
-  --viz-div-rb-5:                   var(--color-blue-300);
-  --viz-div-rb-6:                   var(--color-blue-500);
-  --viz-div-rb-7:                   var(--color-blue-700);
+  /* ─ Data Viz · diverging blush-steel (warm / cool — temperature) */
+  /* ─ Data Viz · diverging blush-steel */
+  --viz-div-bs-1:                   var(--color-blush-700);
+  --viz-div-bs-2:                   var(--color-blush-500);
+  --viz-div-bs-3:                   var(--color-blush-300);
+  --viz-div-bs-4:                   var(--color-brand-slate-700);
+  --viz-div-bs-5:                   var(--color-steel-blue-300);
+  --viz-div-bs-6:                   var(--color-steel-blue-500);
+  --viz-div-bs-7:                   var(--color-steel-blue-700);
 
-  /* ─ Data Viz · diverging purple-teal */
-  --viz-div-pt-1:                   var(--color-violet-700);
-  --viz-div-pt-2:                   var(--color-violet-500);
-  --viz-div-pt-3:                   var(--color-violet-300);
-  --viz-div-pt-4:                   var(--color-brand-slate-700);
-  --viz-div-pt-5:                   var(--color-teal-300);
-  --viz-div-pt-6:                   var(--color-teal-500);
-  --viz-div-pt-7:                   var(--color-teal-700);
+  /* ─ Data Viz · diverging lavender-dusty */
+  --viz-div-ld-1:                   var(--color-lavender-700);
+  --viz-div-ld-2:                   var(--color-lavender-500);
+  --viz-div-ld-3:                   var(--color-lavender-300);
+  --viz-div-ld-4:                   var(--color-brand-slate-700);
+  --viz-div-ld-5:                   var(--color-dusty-teal-300);
+  --viz-div-ld-6:                   var(--color-dusty-teal-500);
+  --viz-div-ld-7:                   var(--color-dusty-teal-700);
 
   /* ─ Shadow (heavier in dark mode) */
   --shadow-sm:                      0 1px 2px rgba(0, 0, 0, 0.30);
@@ -519,6 +551,10 @@
   --shadow-lg:                      0 8px 24px rgba(0, 0, 0, 0.50);
   --shadow-modal:                   0 40px 40px -10px rgba(0, 0, 0, 0.50);
   --shadow-focus:                   0 0 0 3px rgba(168, 174, 182, 0.20);
+
+  /* ─ Ring (focus / error states · primarily for input fields) */
+  --ring-focus:                     0 0 0 3px rgba(210, 214, 221, 0.20);    /* slate-300 @ 20% */
+  --ring-error:                     0 0 0 3px rgba(220, 91, 77, 0.20);      /* red-400 @ 20% */
 }
 </style>
 
@@ -618,12 +654,41 @@
   }
   .theme-toggle i { font-size: 14px; color: var(--icon-md); }
 
+  /* ─── Sticky bar (tabs + theme toggle) ───────────────────── */
+  .sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--surface-canvas);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding-top: 12px;
+    border-bottom: 1px solid var(--border-stroke);
+    transition: background 0.2s;
+  }
+  /* Faint shadow under sticky bar — appears subtly when scrolled */
+  .sticky-bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 8px;
+    background: linear-gradient(to bottom, rgba(29, 28, 26, 0.04), transparent);
+    pointer-events: none;
+  }
+  [data-theme="dark"] .sticky-bar::after {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), transparent);
+  }
+
   /* ─── Tab navigation ──────────────────────────────────────── */
   .tab-nav {
     display: flex;
     gap: 0;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--border-stroke);
+    border-bottom: none;
   }
   .tab {
     background: transparent;
@@ -675,7 +740,30 @@
 
   /* ─── Tab panels ──────────────────────────────────────────── */
   .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+  .tab-panel.active {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    column-gap: 48px;
+    row-gap: 0;
+    align-items: start;
+  }
+  /* Main content fills first column, toc rail is the second column */
+  .tab-panel.active > :not(.page-toc) {
+    grid-column: 1;
+  }
+  .tab-panel.active > .page-toc {
+    grid-column: 2;
+    grid-row: 1 / span 999;  /* spans all content rows */
+  }
+  /* Narrow viewports: collapse to single column, hide TOC */
+  @media (max-width: 1100px) {
+    .tab-panel.active {
+      grid-template-columns: 1fr;
+    }
+    .tab-panel.active > .page-toc {
+      display: none;
+    }
+  }
 
   /* ─── Page intro (top of each tab) ────────────────────────── */
   .page-intro {
@@ -702,39 +790,52 @@
   }
 
   /* ─── In-page section navigation ──────────────────────────── */
+  /* ─── Page TOC (right-side sticky panel inside grid column) ─── */
   .page-toc {
+    position: sticky;
+    top: 140px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 40px;
-    padding: 12px 16px;
+    flex-direction: column;
+    gap: 2px;
+    padding: 16px 14px;
     background: var(--surface-base);
+    border: 1px solid var(--border-stroke-light);
     border-radius: var(--radius-md);
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
   }
   .page-toc-label {
-    font-family: var(--font-eyebrow);
+    font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-lt);
-    margin-right: 8px;
-    align-self: center;
+    margin-bottom: 8px;
+    padding: 0 8px;
   }
-  .page-toc a {
+  .page-toc .toc-link {
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
-    color: var(--text-md);
-    background: var(--surface-card);
-    padding: 4px 10px;
-    border-radius: var(--radius-sm);
+    color: var(--text-lt);
+    background: transparent;
+    padding: 6px 8px;
+    border-radius: 4px;
     text-decoration: none;
     transition: background 0.15s, color 0.15s;
+    line-height: 1.4;
+    border-left: 2px solid transparent;
+    margin-left: 0;
   }
-  .page-toc a:hover {
+  .page-toc .toc-link:hover {
     background: var(--surface-raised);
+    color: var(--text-md);
+  }
+  .page-toc .toc-link.active {
     color: var(--text-dk);
+    background: var(--surface-raised);
+    border-left-color: var(--text-dk);
   }
 
   /* ─── Section blocks ──────────────────────────────────────── */
@@ -977,7 +1078,7 @@
     width: 32px;
     height: 20px;
     border-radius: 4px;
-    border: 1px solid var(--border-stroke-light);
+    border: 1px solid var(--border-stroke);
     flex-shrink: 0;
   }
   .alias-row-swatch.transparent {
@@ -1456,36 +1557,35 @@
 <div class="shell">
 
   <!-- ════════════════════════════════════════════════════════
-       DOC HEADER
+       DOC HEADER · scrolls away
        ════════════════════════════════════════════════════════ -->
   <div class="doc-head">
     <div class="doc-head-left">
-      <div class="doc-eyebrow">Design System · v2</div>
+      <div class="doc-eyebrow">Design System · v3</div>
       <h1 class="doc-title">AWP Design System</h1>
       <p class="doc-sub">The token system that powers AWP — from primitive color scales through semantic aliases to chart palettes. Source of truth for designers and engineers building the publisher-facing AI agent for programmatic ad ops.</p>
-    </div>
-    <div class="doc-meta">
-      <span class="meta-pill">Light + Dark</span>
-      <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="ph ph-moon" id="theme-icon"></i>
-        <span id="theme-label">Dark mode</span>
-      </button>
     </div>
   </div>
 
   <!-- ════════════════════════════════════════════════════════
-       TAB NAVIGATION
+       STICKY BAR · tabs + theme toggle
        ════════════════════════════════════════════════════════ -->
-  <div class="tab-nav" role="tablist">
-    <button class="tab active" role="tab" data-target="tab-system" onclick="selectTab(this)">
-      <i class="ph ph-stack"></i>
-      <span>System</span>
-      <span class="tab-count">7</span>
-    </button>
-    <button class="tab" role="tab" data-target="tab-dataviz" onclick="selectTab(this)">
-      <i class="ph ph-chart-line"></i>
-      <span>Data Viz</span>
-      <span class="tab-count">6</span>
+  <div class="sticky-bar">
+    <div class="tab-nav" role="tablist">
+      <button class="tab active" role="tab" data-target="tab-system" onclick="selectTab(this)">
+        <i class="ph ph-stack"></i>
+        <span>System</span>
+        <span class="tab-count">7</span>
+      </button>
+      <button class="tab" role="tab" data-target="tab-dataviz" onclick="selectTab(this)">
+        <i class="ph ph-chart-line"></i>
+        <span>Data Viz</span>
+        <span class="tab-count">6</span>
+      </button>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" type="button">
+      <i class="ph ph-moon" id="theme-icon"></i>
+      <span id="theme-label">Dark mode</span>
     </button>
   </div>
 
@@ -1499,15 +1599,15 @@
       <div class="page-intro-text">AWP uses a two-tier token architecture. <strong>Primitives</strong> are the raw color/spacing/radius scales — never referenced in components. <strong>Aliases</strong> are semantic role-based names like <code>--text-dk</code>, <code>--surface-card</code>, <code>--button-bg-primary</code>. Components reference only aliases. Light and dark modes share alias names but point at different primitives, so the same component code renders correctly in both modes.</div>
     </div>
 
-    <div class="page-toc">
+    <div class="page-toc" id="toc-system">
       <span class="page-toc-label">Sections</span>
-      <a href="#sec-architecture">01 · Architecture</a>
-      <a href="#sec-primitives">02 · Color primitives</a>
-      <a href="#sec-foundations">03 · Foundations</a>
-      <a href="#sec-typography">04 · Typography</a>
-      <a href="#sec-aliases">05 · Aliases</a>
-      <a href="#sec-modes">06 · Modes</a>
-      <a href="#sec-implementation">07 · Implementation</a>
+      <a href="#sec-architecture" class="toc-link">01 · Architecture</a>
+      <a href="#sec-primitives" class="toc-link">02 · Color primitives</a>
+      <a href="#sec-typography" class="toc-link">03 · Typography</a>
+      <a href="#sec-aliases" class="toc-link">04 · Aliases</a>
+      <a href="#sec-modes" class="toc-link">05 · Modes</a>
+      <a href="#sec-foundations" class="toc-link">06 · Layout</a>
+      <a href="#sec-implementation" class="toc-link">07 · Implementation</a>
     </div>
 
     <!-- 01 · ARCHITECTURE -->
@@ -1574,7 +1674,7 @@
       <div class="section-head">
         <div class="section-num">02</div>
         <div class="section-title">Color primitives</div>
-        <div class="section-sub">Eleven 11-step scales. <strong>Brand-Sand</strong> and <strong>Brand-Slate</strong> are AWP's two structural neutrals — Sand for warm light surfaces, Slate for cool dark surfaces and all text in both modes. <strong>Amber, Green, Red, Blue, Violet</strong> carry semantic meaning. <strong>Teal, Pink, Yellow</strong> are reserved for data viz. Components never reference primitives directly — they reference aliases. The hex values shown here resolve through the alias layer.</div>
+        <div class="section-sub">Twelve scales, 11 steps each (<strong>Brand-Slate</strong> has a supplementary 12th step at 750 for dark-mode card surfaces). <strong>Brand-Sand</strong> and <strong>Brand-Slate</strong> are AWP's two structural neutrals — Sand for warm light surfaces, Slate for cool dark surfaces and all text in both modes. <strong>Amber, Green, Red, Blue, Violet</strong> carry semantic meaning. <strong>Teal, Steel-Blue, Lavender, Dusty-Teal, Blush</strong> support data viz patterns (categorical anchors, monochromatic ramps, diverging palettes). Components never reference primitives directly — they reference aliases. The hex values shown here resolve through the alias layer.</div>
       </div>
 
       <div class="subhead">Structural neutrals</div>
@@ -1601,7 +1701,7 @@
 <div class="scale-block">
   <div class="scale-head">
     <div class="scale-name">Brand-Slate <span class="scale-tag">Cool neutral</span></div>
-    <div class="scale-desc">Dark-mode surfaces + all text in both modes</div>
+    <div class="scale-desc">Dark-mode surfaces + all text in both modes · 12 steps (includes a supplementary 750 step for surface-card in dark mode)</div>
   </div>
   <div class="scale-row">
     <div class="scale-cell lt" style="background:#f5f7f9"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f5f7f9</span></div>
@@ -1612,6 +1712,7 @@
     <div class="scale-cell dk" style="background:#7c8189"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#7c8189</span></div>
     <div class="scale-cell dk" style="background:#5d6168"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#5d6168</span></div>
     <div class="scale-cell dk" style="background:#4d5057"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#4d5057</span></div>
+    <div class="scale-cell dk" style="background:#40434a"><span class="scale-cell-step">750</span><span class="scale-cell-hex">#40434a</span></div>
     <div class="scale-cell dk" style="background:#33363a"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#33363a</span></div>
     <div class="scale-cell dk" style="background:#181a1c"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#181a1c</span></div>
     <div class="scale-cell dk" style="background:#0c0d0e"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#0c0d0e</span></div>
@@ -1716,11 +1817,10 @@
 </div>
 
 <div class="subhead">Data-viz hues</div>
-<div class="notes-box" style="margin-top:0;margin-bottom:18px"><div class="notes-box-lbl">Why three new scales</div><ul><li>The categorical chart palette needs <strong>12 distinct hues</strong> with maximum neighbor contrast. AWP's existing scales (Slate, Blue, Violet) cover only the cool-end of the spectrum.</li><li><strong>Teal</strong> and <strong>Pink</strong> fill mid-warm and warm gaps. <strong>Yellow</strong> is distinct from Amber — Amber is reserved for the pending/warning semantic role; Yellow is categorical-only.</li><li>These three are used by the data viz layer (categorical, monochromatic, diverging). They do not appear in any non-chart alias token.</li></ul></div>
 <div class="scale-block">
   <div class="scale-head">
-    <div class="scale-name">Teal <span class="scale-tag new">NEW</span></div>
-    <div class="scale-desc">Data viz hue · categorical slots 3, 9 + diverging cool side</div>
+    <div class="scale-name">Teal</div>
+    <div class="scale-desc">Existing primitive (no data-viz token uses it after rebuild — retained for cross-system reference)</div>
   </div>
   <div class="scale-row">
     <div class="scale-cell lt" style="background:#f0fdfa"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f0fdfa</span></div>
@@ -1738,109 +1838,87 @@
 </div>
 <div class="scale-block">
   <div class="scale-head">
-    <div class="scale-name">Pink <span class="scale-tag new">NEW</span></div>
-    <div class="scale-desc">Data viz hue · categorical slots 4, 11 (warm-cool magenta family)</div>
+    <div class="scale-name">Steel-Blue <span class="scale-tag new">NEW</span></div>
+    <div class="scale-desc">Anchors cat-1 (slot 500) · supplies mono palette · supplies cool end of diverging blush-steel</div>
   </div>
   <div class="scale-row">
-    <div class="scale-cell lt" style="background:#fdf2f8"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#fdf2f8</span></div>
-    <div class="scale-cell lt" style="background:#fce7f3"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#fce7f3</span></div>
-    <div class="scale-cell lt" style="background:#fbcfe8"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#fbcfe8</span></div>
-    <div class="scale-cell lt" style="background:#f9a8d4"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#f9a8d4</span></div>
-    <div class="scale-cell lt" style="background:#f472b6"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#f472b6</span></div>
-    <div class="scale-cell dk" style="background:#ec4899"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#ec4899</span></div>
-    <div class="scale-cell dk" style="background:#db2777"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#db2777</span></div>
-    <div class="scale-cell dk" style="background:#be185d"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#be185d</span></div>
-    <div class="scale-cell dk" style="background:#9d174d"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#9d174d</span></div>
-    <div class="scale-cell dk" style="background:#831843"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#831843</span></div>
-    <div class="scale-cell dk" style="background:#500724"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#500724</span></div>
+    <div class="scale-cell lt" style="background:#eff5fb"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#eff5fb</span></div>
+    <div class="scale-cell lt" style="background:#d9e7f3"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#d9e7f3</span></div>
+    <div class="scale-cell lt" style="background:#b6d0e8"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#b6d0e8</span></div>
+    <div class="scale-cell lt" style="background:#8db7d9"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#8db7d9</span></div>
+    <div class="scale-cell lt" style="background:#689fcd"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#689fcd</span></div>
+    <div class="scale-cell dk" style="background:#4a90c8"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#4a90c8</span></div>
+    <div class="scale-cell dk" style="background:#3576ae"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#3576ae</span></div>
+    <div class="scale-cell dk" style="background:#285e8d"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#285e8d</span></div>
+    <div class="scale-cell dk" style="background:#1d456a"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#1d456a</span></div>
+    <div class="scale-cell dk" style="background:#143049"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#143049</span></div>
+    <div class="scale-cell dk" style="background:#0b1c2d"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#0b1c2d</span></div>
   </div>
 </div>
 <div class="scale-block">
   <div class="scale-head">
-    <div class="scale-name">Yellow <span class="scale-tag new">NEW</span></div>
-    <div class="scale-desc">Data viz hue · categorical slot 6 (distinct from semantic Amber)</div>
+    <div class="scale-name">Lavender <span class="scale-tag new">NEW</span></div>
+    <div class="scale-desc">Anchors cat-6 (slot 300) · supplies mono palette · supplies one end of diverging lavender-dusty</div>
   </div>
   <div class="scale-row">
-    <div class="scale-cell lt" style="background:#fefce8"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#fefce8</span></div>
-    <div class="scale-cell lt" style="background:#fef9c3"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#fef9c3</span></div>
-    <div class="scale-cell lt" style="background:#fef08a"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#fef08a</span></div>
-    <div class="scale-cell lt" style="background:#fde047"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#fde047</span></div>
-    <div class="scale-cell lt" style="background:#facc15"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#facc15</span></div>
-    <div class="scale-cell dk" style="background:#eab308"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#eab308</span></div>
-    <div class="scale-cell dk" style="background:#ca8a04"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#ca8a04</span></div>
-    <div class="scale-cell dk" style="background:#a16207"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#a16207</span></div>
-    <div class="scale-cell dk" style="background:#854d0e"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#854d0e</span></div>
-    <div class="scale-cell dk" style="background:#713f12"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#713f12</span></div>
-    <div class="scale-cell dk" style="background:#422006"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#422006</span></div>
+    <div class="scale-cell lt" style="background:#f8f5fb"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f8f5fb</span></div>
+    <div class="scale-cell lt" style="background:#ede5f3"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#ede5f3</span></div>
+    <div class="scale-cell lt" style="background:#dccae9"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#dccae9</span></div>
+    <div class="scale-cell lt" style="background:#bca8d4"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#bca8d4</span></div>
+    <div class="scale-cell lt" style="background:#9b83bb"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#9b83bb</span></div>
+    <div class="scale-cell dk" style="background:#7d62a3"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#7d62a3</span></div>
+    <div class="scale-cell dk" style="background:#614b85"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#614b85</span></div>
+    <div class="scale-cell dk" style="background:#493866"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#493866</span></div>
+    <div class="scale-cell dk" style="background:#322848"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#322848</span></div>
+    <div class="scale-cell dk" style="background:#1f1830"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#1f1830</span></div>
+    <div class="scale-cell dk" style="background:#100c1c"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#100c1c</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Dusty-Teal <span class="scale-tag new">NEW</span></div>
+    <div class="scale-desc">Anchors cat-7 (slot 300) · supplies mono palette · supplies other end of diverging lavender-dusty</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#f1f8f6"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#f1f8f6</span></div>
+    <div class="scale-cell lt" style="background:#dfece8"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#dfece8</span></div>
+    <div class="scale-cell lt" style="background:#c2dad4"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#c2dad4</span></div>
+    <div class="scale-cell lt" style="background:#94c4bd"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#94c4bd</span></div>
+    <div class="scale-cell lt" style="background:#69a89e"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#69a89e</span></div>
+    <div class="scale-cell dk" style="background:#4b8b80"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#4b8b80</span></div>
+    <div class="scale-cell dk" style="background:#386f66"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#386f66</span></div>
+    <div class="scale-cell dk" style="background:#2a554d"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#2a554d</span></div>
+    <div class="scale-cell dk" style="background:#1f3d36"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#1f3d36</span></div>
+    <div class="scale-cell dk" style="background:#142621"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#142621</span></div>
+    <div class="scale-cell dk" style="background:#0a1411"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#0a1411</span></div>
+  </div>
+</div>
+<div class="scale-block">
+  <div class="scale-head">
+    <div class="scale-name">Blush <span class="scale-tag new">NEW</span></div>
+    <div class="scale-desc">Anchors cat-8 (slot 300) · supplies warm end of diverging blush-steel</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-cell lt" style="background:#fdf5f7"><span class="scale-cell-step">50</span><span class="scale-cell-hex">#fdf5f7</span></div>
+    <div class="scale-cell lt" style="background:#f8e7ec"><span class="scale-cell-step">100</span><span class="scale-cell-hex">#f8e7ec</span></div>
+    <div class="scale-cell lt" style="background:#f0cad4"><span class="scale-cell-step">200</span><span class="scale-cell-hex">#f0cad4</span></div>
+    <div class="scale-cell lt" style="background:#e0a4b8"><span class="scale-cell-step">300</span><span class="scale-cell-hex">#e0a4b8</span></div>
+    <div class="scale-cell lt" style="background:#cb7d96"><span class="scale-cell-step">400</span><span class="scale-cell-hex">#cb7d96</span></div>
+    <div class="scale-cell dk" style="background:#b35c79"><span class="scale-cell-step">500</span><span class="scale-cell-hex">#b35c79</span></div>
+    <div class="scale-cell dk" style="background:#97455f"><span class="scale-cell-step">600</span><span class="scale-cell-hex">#97455f</span></div>
+    <div class="scale-cell dk" style="background:#763449"><span class="scale-cell-step">700</span><span class="scale-cell-hex">#763449</span></div>
+    <div class="scale-cell dk" style="background:#562635"><span class="scale-cell-step">800</span><span class="scale-cell-hex">#562635</span></div>
+    <div class="scale-cell dk" style="background:#371821"><span class="scale-cell-step">900</span><span class="scale-cell-hex">#371821</span></div>
+    <div class="scale-cell dk" style="background:#1d0c11"><span class="scale-cell-step">950</span><span class="scale-cell-hex">#1d0c11</span></div>
   </div>
 </div>
 
     </div>
 
-    <!-- 03 · FOUNDATIONS -->
-    <div class="section" id="sec-foundations">
-      <div class="section-head">
-        <div class="section-num">03</div>
-        <div class="section-title">Foundations</div>
-        <div class="section-sub">Spacing, radius, and breakpoint scales. All values follow the 4px grid. Aligned with Tailwind's defaults so engineering can reach for utility classes when needed.</div>
-      </div>
-
-      <div class="foundation-grid">
-        <div class="foundation-card">
-          <div class="foundation-card-title">Spacing</div>
-          <div class="foundation-card-sub">4px base. Use semantic increments — never arbitrary values.</div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-0_5</span><span class="foundation-row-val">2px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-1</span><span class="foundation-row-val">4px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-1_5</span><span class="foundation-row-val">6px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-2</span><span class="foundation-row-val">8px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-2_5</span><span class="foundation-row-val">10px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-3</span><span class="foundation-row-val">12px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-3_5</span><span class="foundation-row-val">14px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-4</span><span class="foundation-row-val">16px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-5</span><span class="foundation-row-val">20px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-6</span><span class="foundation-row-val">24px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-7</span><span class="foundation-row-val">28px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-8</span><span class="foundation-row-val">32px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-9</span><span class="foundation-row-val">36px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-10</span><span class="foundation-row-val">40px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-11</span><span class="foundation-row-val">44px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-12</span><span class="foundation-row-val">48px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-14</span><span class="foundation-row-val">56px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-16</span><span class="foundation-row-val">64px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-20</span><span class="foundation-row-val">80px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-24</span><span class="foundation-row-val">96px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--spacing-28</span><span class="foundation-row-val">112px</span></div>
-        </div>
-
-        <div class="foundation-card">
-          <div class="foundation-card-title">Radius</div>
-          <div class="foundation-card-sub">Cards cap at <code style="font-family:var(--font-mono);font-size:11px;background:var(--surface-base);padding:1px 4px;border-radius:3px">--radius-xl</code> (10px). Pills are an exception at 7.5px.</div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius-none</span><span class="foundation-row-val">0px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius-sm</span><span class="foundation-row-val">4px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius / -md</span><span class="foundation-row-val">6px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius-lg</span><span class="foundation-row-val">8px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius-xl</span><span class="foundation-row-val">10px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius-2xl</span><span class="foundation-row-val">12px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius-3xl</span><span class="foundation-row-val">16px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--radius-full</span><span class="foundation-row-val">9999px</span></div>
-        </div>
-
-        <div class="foundation-card">
-          <div class="foundation-card-title">Breakpoints</div>
-          <div class="foundation-card-sub">Tailwind-aligned. AWP is desktop-first; mobile is responsive-not-broken for MVP.</div>
-          <div class="foundation-row"><span class="foundation-row-name">--bp-sm</span><span class="foundation-row-val">640px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--bp-md</span><span class="foundation-row-val">768px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--bp-lg</span><span class="foundation-row-val">1024px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--bp-xl</span><span class="foundation-row-val">1280px</span></div>
-          <div class="foundation-row"><span class="foundation-row-name">--bp-2xl</span><span class="foundation-row-val">1536px</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 04 · TYPOGRAPHY -->
+    <!-- 03 · TYPOGRAPHY -->
     <div class="section" id="sec-typography">
       <div class="section-head">
-        <div class="section-num">04</div>
+        <div class="section-num">03</div>
         <div class="section-title">Typography</div>
         <div class="section-sub">Two families, two purposes. <strong>Satoshi</strong> for human-authored content (titles, body, buttons). <strong>JetBrains Mono</strong> for AI-generated, calculated, or system content (data values, status pills, parameter paths, IDs, metadata). Token names describe the role — the family is enforced by the system. The complete scale spans 9px (in-card labels) to 36px (display).</div>
       </div>
@@ -1976,16 +2054,14 @@
           <li><strong>Family is automatic.</strong> Tokens in the human-authored group always render in Satoshi; tokens in the system / AI group always render in JetBrains Mono. Components reference the role; the system enforces the family.</li>
           <li><strong>The split is meaningful.</strong> When a publisher sees JetBrains Mono, they know "this is computed by the system or pulled from data." When they see Satoshi, they know "this is presented to me by the product."</li>
           <li><strong>Caps treatment is part of the role.</strong> Pill, Eyebrow, and Label SM are always uppercase — the typography token carries the case transformation.</li>
-          <li><strong>No 13px sizes.</strong> Satoshi sizes are 11 / 12 / 14 / 16 / 20 / 24 / 28 / 36. Mono sizes are 9 / 10 / 11 / 12 / 14 / 16. Anything that previously sat at 13px migrates up to 14px.</li>
-          <li><strong>"Reg" and "Med" variants</strong> at the same size give designers an emphasis dial without changing the type ramp. Body, Body LG, and Caption all have both.</li>
         </ul>
       </div>
     </div>
 
-    <!-- 05 · ALIASES -->
+    <!-- 04 · ALIASES -->
     <div class="section" id="sec-aliases">
       <div class="section-head">
-        <div class="section-num">05</div>
+        <div class="section-num">04</div>
         <div class="section-title">Semantic aliases</div>
         <div class="section-sub">Components reference these names. Each alias maps to one primitive in light mode and (usually) a different primitive in dark mode. Naming follows AWP's role pattern: <code>--text-dk</code>, <code>--surface-card</code>, <code>--button-bg-primary</code>. The swatches below show the current mode — toggle dark mode to see how they shift.</div>
       </div>
@@ -1996,9 +2072,9 @@
         <div class="alias-row"><span class="alias-row-name">--surface-base</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-base)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-100</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-900</span></div></div><span class="alias-row-meta">Primary workspaces, code blocks, neutral panels</span></div>
         <div class="alias-row"><span class="alias-row-name">--surface-raised</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-raised)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Nested controls, segmented controls, input chips</span></div>
         <div class="alias-row"><span class="alias-row-name">--surface-elevated</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-elevated)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-300</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Hover targets, dividers between diff rows</span></div>
-        <div class="alias-row"><span class="alias-row-name">--surface-card</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-white</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Cards on canvas — the brightest surface in light mode</span></div>
-        <div class="alias-row"><span class="alias-row-name">--surface-modal</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-modal)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-white</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Modal dialogs, lifted popovers</span></div>
-        <div class="alias-row"><span class="alias-row-name">--surface-overlay</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-overlay)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">rgba(29,28,26,0.40)</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">rgba(0,0,0,0.6)</span></div></div><span class="alias-row-meta">Modal backdrop scrim</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-card</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-white</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-750</span></div></div><span class="alias-row-meta">Cards on canvas — the brightest surface in light mode</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-modal</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-modal)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-50</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-950</span></div></div><span class="alias-row-meta">Modal dialogs, lifted popovers</span></div>
+        <div class="alias-row"><span class="alias-row-name">--surface-overlay</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-overlay);backdrop-filter:var(--backdrop-blur)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">rgba(29,28,26,0.40)</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">rgba(26,26,26,0.60)</span></div></div><span class="alias-row-meta">Modal backdrop scrim — pair with <code>--backdrop-blur</code></span></div>
       </div>
 
       <div class="subhead">Surface · semantic states</div>
@@ -2036,7 +2112,7 @@
         <div class="alias-row"><span class="alias-row-name">--border-stroke</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-stroke)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-300</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Default border for cards, modals, structured panels</span></div>
         <div class="alias-row"><span class="alias-row-name">--border-stroke-light</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-stroke-light)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-800</span></div></div><span class="alias-row-meta">Subtle dividers between rows / sections</span></div>
         <div class="alias-row"><span class="alias-row-name">--border-stroke-dark</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-stroke-dark)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div></div><span class="alias-row-meta">Emphasized border / divider</span></div>
-        <div class="alias-row"><span class="alias-row-name">--border-focus</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-focus)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-900</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-50</span></div></div><span class="alias-row-meta">Input focus ring / active outline</span></div>
+        <div class="alias-row"><span class="alias-row-name">--border-focus</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-focus)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-sand-600</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-300</span></div></div><span class="alias-row-meta">Input focus ring / active outline</span></div>
         <div class="alias-row"><span class="alias-row-name">--border-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-red-500</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-red-400</span></div></div><span class="alias-row-meta">Error border for inputs / containers</span></div>
         <div class="alias-row"><span class="alias-row-name">--border-success</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-success)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-green-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-green-400</span></div></div><span class="alias-row-meta">Success border (e.g., recommended cards)</span></div>
         <div class="alias-row"><span class="alias-row-name">--border-pending</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--border-pending)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-amber-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-amber-400</span></div></div><span class="alias-row-meta">Pending border</span></div>
@@ -2085,20 +2161,23 @@
         <div class="alias-row"><span class="alias-row-name">--tag-text-info</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--tag-text-info)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-blue-700</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-blue-300</span></div></div><span class="alias-row-meta">Info pill text</span></div>
       </div>
 
-      <div class="subhead">Shadow &amp; backdrop</div>
+      <div class="subhead">Shadow, ring &amp; backdrop</div>
       <div class="alias-grid">
         <div class="alias-row"><span class="alias-row-name">--shadow-sm</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-sm)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Subtle lift — tooltips, micro elevation</span></div>
         <div class="alias-row"><span class="alias-row-name">--shadow</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Default lift — small popovers</span></div>
         <div class="alias-row"><span class="alias-row-name">--shadow-lg</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-lg)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Lifted popovers (Decisions panel, Modify popup)</span></div>
         <div class="alias-row"><span class="alias-row-name">--shadow-modal</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-modal)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Modal dialogs only</span></div>
-        <div class="alias-row"><span class="alias-row-name">--shadow-focus</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-focus)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Focus ring</span></div>
-        <div class="alias-row"><span class="alias-row-name">--backdrop-blur</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-overlay);backdrop-filter:var(--backdrop-blur)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">blur(14px)</span></div></div><span class="alias-row-meta">Glassmorphism — modal backdrops, floating elements</span></div>
+        <div class="alias-row"><span class="alias-row-name">--shadow-focus</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--shadow-focus)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-note">CSS composite</span></div></div><span class="alias-row-meta">Soft general-purpose focus shadow (use ring tokens for inputs)</span></div>
+        <div class="alias-row"><span class="alias-row-name">--ring-focus</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--ring-focus)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">sand-600 @ 20%</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">slate-300 @ 20%</span></div></div><span class="alias-row-meta">Input field focus ring · 3px outer glow</span></div>
+        <div class="alias-row"><span class="alias-row-name">--ring-error</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-card);box-shadow:var(--ring-error)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">red-500 @ 20%</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">red-400 @ 20%</span></div></div><span class="alias-row-meta">Input field error ring · 3px outer glow</span></div>
+        <div class="alias-row"><span class="alias-row-name">--backdrop-blur</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--surface-overlay);backdrop-filter:var(--backdrop-blur)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">blur(14px)</span></div></div><span class="alias-row-meta">Glassmorphism — always paired with <code>--surface-overlay</code></span></div>
       </div>
 
       <div class="notes-box">
         <div class="notes-box-lbl">Implementation notes</div>
         <ul>
           <li><strong>Reference aliases only.</strong> Component CSS should never reference primitives like <code>--color-brand-sand-700</code>. Reaching for primitives breaks dark mode and ties components to a specific palette.</li>
+          <li><strong>Modal scrim = surface-overlay + backdrop-blur.</strong> The two tokens function as a single pattern. Modal backdrops always use both: <code>background: var(--surface-overlay)</code> for the dim, <code>backdrop-filter: var(--backdrop-blur)</code> for the glassmorphism. They're separate tokens only because they apply to different CSS properties — there's no scenario in AWP where you use one without the other.</li>
           <li><strong>Tertiary buttons are CSS-only conveniences.</strong> <code>--button-bg-tertiary</code> resolves to <code>transparent</code> — Figma can't hold "transparent" as a paint variable, so this token lives in CSS only. The hover, text, and disabled states all have proper Figma variables.</li>
           <li><strong>Icon tokens use Brand-Slate in both modes.</strong> Icons match text legibility, regardless of whether the surrounding surface is warm Sand or cool Slate.</li>
           <li><strong>Shadow tokens are CSS-only.</strong> Figma's Effect Styles don't auto-swap with Variable modes. Designers maintain parallel Effect Styles named <code>shadow/lt/sm</code>, <code>shadow/lt/md</code>, etc., and swap manually when toggling modes.</li>
@@ -2106,10 +2185,10 @@
       </div>
     </div>
 
-    <!-- 06 · MODES -->
+    <!-- 05 · MODES -->
     <div class="section" id="sec-modes">
       <div class="section-head">
-        <div class="section-num">06</div>
+        <div class="section-num">05</div>
         <div class="section-title">Light &amp; dark modes</div>
         <div class="section-sub">The same component code renders correctly in both modes because it references aliases — and the alias values flip when <code>data-theme="dark"</code> is applied to the document root. Below: a proposal card built once, rendered twice. Component code references <code>--surface-card</code>, <code>--text-dk</code>, <code>--tag-bg-pending</code> — those resolve differently per mode.</div>
       </div>
@@ -2144,6 +2223,66 @@
           <li><strong>Buttons invert.</strong> Primary buttons go dark-on-light in light mode; light-on-dark in dark mode.</li>
           <li><strong>Components don't change.</strong> The proposal card above uses identical CSS — only the alias values resolve to different primitives.</li>
         </ul>
+      </div>
+    </div>
+
+    <!-- 06 · LAYOUT -->
+    <div class="section" id="sec-foundations">
+      <div class="section-head">
+        <div class="section-num">06</div>
+        <div class="section-title">Layout</div>
+        <div class="section-sub">Spacing, radius, and breakpoint scales. All values follow the 4px grid. Aligned with Tailwind's defaults so engineering can reach for utility classes when needed.</div>
+      </div>
+
+      <div class="foundation-grid">
+        <div class="foundation-card">
+          <div class="foundation-card-title">Spacing</div>
+          <div class="foundation-card-sub">4px base. Use semantic increments — never arbitrary values.</div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-0_5</span><span class="foundation-row-val">2px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-1</span><span class="foundation-row-val">4px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-1_5</span><span class="foundation-row-val">6px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-2</span><span class="foundation-row-val">8px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-2_5</span><span class="foundation-row-val">10px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-3</span><span class="foundation-row-val">12px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-3_5</span><span class="foundation-row-val">14px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-4</span><span class="foundation-row-val">16px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-5</span><span class="foundation-row-val">20px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-6</span><span class="foundation-row-val">24px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-7</span><span class="foundation-row-val">28px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-8</span><span class="foundation-row-val">32px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-9</span><span class="foundation-row-val">36px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-10</span><span class="foundation-row-val">40px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-11</span><span class="foundation-row-val">44px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-12</span><span class="foundation-row-val">48px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-14</span><span class="foundation-row-val">56px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-16</span><span class="foundation-row-val">64px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-20</span><span class="foundation-row-val">80px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-24</span><span class="foundation-row-val">96px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--spacing-28</span><span class="foundation-row-val">112px</span></div>
+        </div>
+
+        <div class="foundation-card">
+          <div class="foundation-card-title">Radius</div>
+          <div class="foundation-card-sub">Cards cap at <code style="font-family:var(--font-mono);font-size:11px;background:var(--surface-base);padding:1px 4px;border-radius:3px">--radius-xl</code> (10px). Pills are an exception at 7.5px.</div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-none</span><span class="foundation-row-val">0px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-sm</span><span class="foundation-row-val">4px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius / -md</span><span class="foundation-row-val">6px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-lg</span><span class="foundation-row-val">8px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-xl</span><span class="foundation-row-val">10px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-2xl</span><span class="foundation-row-val">12px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-3xl</span><span class="foundation-row-val">16px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--radius-full</span><span class="foundation-row-val">9999px</span></div>
+        </div>
+
+        <div class="foundation-card">
+          <div class="foundation-card-title">Breakpoints</div>
+          <div class="foundation-card-sub">Tailwind-aligned. AWP is desktop-first; mobile is responsive-not-broken for MVP.</div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-sm</span><span class="foundation-row-val">640px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-md</span><span class="foundation-row-val">768px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-lg</span><span class="foundation-row-val">1024px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-xl</span><span class="foundation-row-val">1280px</span></div>
+          <div class="foundation-row"><span class="foundation-row-name">--bp-2xl</span><span class="foundation-row-val">1536px</span></div>
+        </div>
       </div>
     </div>
 
@@ -2182,7 +2321,7 @@
         <div class="notes-box-lbl">Source-of-truth contract</div>
         <ul>
           <li><strong>Figma variables and CSS variables stay 1:1.</strong> Every primitive and alias in this doc has a matching Figma variable with the same name. When tokens change, both update together.</li>
-          <li><strong>Three exceptions live in CSS only.</strong> <code>--button-bg-tertiary</code> (transparent), <code>--shadow-*</code> (Effect Styles in Figma swap manually), and <code>--backdrop-blur</code> (filter, not paint) — all called out in their respective sections.</li>
+          <li><strong>Four exceptions live in CSS only.</strong> <code>--button-bg-tertiary</code> (transparent, can't be a Figma paint variable), <code>--surface-overlay</code> (rgba with alpha — Figma variables don't carry their own opacity), <code>--shadow-*</code> (composites — Figma uses parallel Effect Styles that swap manually), and <code>--backdrop-blur</code> (filter, not paint) — all called out in their respective sections.</li>
           <li><strong>Designers reach for the alias name first.</strong> If no alias exists for the role you need, ask whether a new alias should be added rather than reaching for a primitive.</li>
           <li><strong>Engineers ship with aliases too.</strong> Tailwind utilities like <code>bg-surface-card</code> or <code>text-dk</code> map directly through the same custom property layer.</li>
         </ul>
@@ -2191,6 +2330,7 @@
 
   </div>
   <!-- /tab-system -->
+
 
   <!-- ════════════════════════════════════════════════════════
        TAB 2 · DATA VIZ
@@ -2202,14 +2342,14 @@
       <div class="page-intro-text">AWP's data viz system is structured around four palette types — categorical (12 colors in strict sequence), monochromatic (single-hue intensity scales), diverging (two opposing scales meeting at a neutral center), and status (semantic state, separate from data). Inspired by IBM Carbon's palette framework and adapted to AWP's neutral system. Categorical and diverging palettes have dedicated alias tokens. Monochromatic and recommended combinations use primitive references directly — they're patterns, not separate tokens.</div>
     </div>
 
-    <div class="page-toc">
+    <div class="page-toc" id="toc-dataviz">
       <span class="page-toc-label">Sections</span>
-      <a href="#viz-architecture">01 · Architecture</a>
-      <a href="#viz-categorical">02 · Categorical</a>
-      <a href="#viz-mono">03 · Monochromatic</a>
-      <a href="#viz-diverging">04 · Diverging</a>
-      <a href="#viz-combinations">05 · Combinations</a>
-      <a href="#viz-status">06 · Status</a>
+      <a href="#viz-architecture" class="toc-link">01 · Architecture</a>
+      <a href="#viz-categorical" class="toc-link">02 · Categorical</a>
+      <a href="#viz-mono" class="toc-link">03 · Monochromatic</a>
+      <a href="#viz-diverging" class="toc-link">04 · Diverging</a>
+      <a href="#viz-combinations" class="toc-link">05 · Combinations</a>
+      <a href="#viz-status" class="toc-link">06 · Status</a>
     </div>
 
     <!-- 01 · DATA VIZ ARCHITECTURE -->
@@ -2234,7 +2374,7 @@
         <div class="intro-card">
           <div class="intro-card-eyebrow">Palette · 03</div>
           <div class="intro-card-title">Diverging</div>
-          <div class="intro-card-text">Two opposing scales meeting at a neutral center. Two options: red-blue (carries temperature association) and purple-teal (no temperature, neutral). 7 steps each.</div>
+          <div class="intro-card-text">Two opposing scales meeting at a neutral center. Two options: blush-steel (carries temperature) and lavender-dusty (no temperature). 7 steps each.</div>
         </div>
         <div class="intro-card">
           <div class="intro-card-eyebrow">Palette · 04</div>
@@ -2246,7 +2386,6 @@
       <div class="notes-box">
         <div class="notes-box-lbl">Ground rules</div>
         <ul>
-          <li><strong>The status alias values are reserved.</strong> The exact shades used by status tokens (green-700, red-500, amber-700, blue-600) carry meaning across the entire system. Other shades from the same hue family can appear in the categorical palette — but if a chart's subject matter is performance or alerting, avoid those hues even at different shades.</li>
           <li><strong>Monochromatic is not categorical with opacity.</strong> Mono palettes use primitive ramp steps directly (e.g., blue-100 through blue-700), not transparency. Opacity introduces visual noise from underlying surface tone.</li>
           <li><strong>Categorical sequence is non-negotiable.</strong> Always start at slot 1. Two-series charts use slots 1 + 2. Don't skip slots, don't reorder, don't reuse out of sequence.</li>
           <li><strong>There is no slot 13.</strong> The categorical palette stops at 12. When data has more than 12 distinct categories, the chart needs a different strategy — not more colors. Reusing or generating new categorical colors past slot 12 causes false meaning collisions.</li>
@@ -2259,7 +2398,7 @@
       <div class="section-head">
         <div class="section-num">02</div>
         <div class="section-title">Categorical sequence</div>
-        <div class="section-sub">12 colors, applied in strict order. The palette is intentionally <strong>desaturated</strong> — chalky and dusty rather than vivid — so that charts feel calm against AWP's warm-Sand light surface and cool-Slate dark surface. Slots 1–10 are direct hex values that live only in <code>--viz-cat-*</code> aliases (they don't pull from any primitive scale because they're chart-only by design). Slots 11–12 reference existing brand-slate primitives. Same values render in both light and dark mode — the luminance works on both canvases. Single-series charts use <code>--viz-cat-1</code>; two-series adds slot 2; etc. The sequence is non-negotiable.</div>
+        <div class="section-sub">12 colors, applied in strict order. The palette is intentionally <strong>desaturated</strong> — chalky and dusty rather than vivid — so that charts feel calm against AWP's warm-Sand light surface and cool-Slate dark surface. <strong>Slots 1, 6, 7, 8</strong> reference dedicated primitive ramps (steel-blue, lavender, dusty-teal, blush) because they're also used by monochromatic and diverging palettes. <strong>Slots 2, 3, 4, 5, 9, 10</strong> are direct hex values — they're only used as categorical anchors. <strong>Slots 11, 12</strong> reference existing brand-slate primitives. Same values render in both light and dark mode — the luminance works on both canvases. Single-series charts use <code>--viz-cat-1</code>; two-series adds slot 2; etc. The sequence is non-negotiable.</div>
       </div>
 
       <div class="cat-grid">
@@ -2278,14 +2417,14 @@
       </div>
 
       <div class="alias-grid">
-        <div class="alias-row"><span class="alias-row-name">--viz-cat-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#4a90c8 · steel-blue</span></div></div><span class="alias-row-meta">Anchor — single-series default</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-steel-blue-500</span></div></div><span class="alias-row-meta">Anchor — single-series default · primitive ref</span></div>
         <div class="alias-row"><span class="alias-row-name">--viz-cat-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#9bc4e0 · sky-pale</span></div></div><span class="alias-row-meta">Adds with slot 1 for two-series charts</span></div>
         <div class="alias-row"><span class="alias-row-name">--viz-cat-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#9ec882 · sage</span></div></div><span class="alias-row-meta">Three-series</span></div>
         <div class="alias-row"><span class="alias-row-name">--viz-cat-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#e8d272 · buttercup</span></div></div><span class="alias-row-meta">Four-series</span></div>
         <div class="alias-row"><span class="alias-row-name">--viz-cat-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#d49475 · terracotta</span></div></div><span class="alias-row-meta">Five-series</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-cat-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#bca8d4 · lavender</span></div></div><span class="alias-row-meta">Six-series</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-cat-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#94c4bd · dusty-teal</span></div></div><span class="alias-row-meta">Seven-series</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-cat-8</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-8)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#e0a4b8 · blush</span></div></div><span class="alias-row-meta">Eight-series</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-lavender-300</span></div></div><span class="alias-row-meta">Six-series · primitive ref</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-dusty-teal-300</span></div></div><span class="alias-row-meta">Seven-series · primitive ref</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-cat-8</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-8)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blush-300</span></div></div><span class="alias-row-meta">Eight-series · primitive ref</span></div>
         <div class="alias-row"><span class="alias-row-name">--viz-cat-9</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-9)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#bccd86 · olive-sage</span></div></div><span class="alias-row-meta">Nine-series</span></div>
         <div class="alias-row"><span class="alias-row-name">--viz-cat-10</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-10)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">#e8b894 · peach</span></div></div><span class="alias-row-meta">Ten-series</span></div>
         <div class="alias-row"><span class="alias-row-name">--viz-cat-11</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-cat-11)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-brand-slate-400</span></div></div><span class="alias-row-meta">Eleven-series · primitive ref</span></div>
@@ -2297,18 +2436,17 @@
         <ul>
           <li><strong>Always start at slot 1.</strong> Single-series charts use <code>--viz-cat-1</code>. Two-series adds slot 2. Etc. The sequence guarantees adequate neighbor contrast — skipping or reordering breaks that guarantee.</li>
           <li><strong>The order is the contrast structure.</strong> Slot 1 (steel-blue) is intentionally slightly more saturated than the rest — it gives the primary series visual weight. Slots 2–10 sit at uniform desaturation; slots 11–12 are neutrals.</li>
-          <li><strong>Stops at 12 — no slot 13.</strong> When data has more than 12 distinct categories, the chart needs a different strategy — not more colors. Reusing or generating new categorical colors past slot 12 causes false meaning collisions.</li>
         </ul>
       </div>
 
       <div class="notes-box">
-        <div class="notes-box-lbl">Why these aren't primitives</div>
+        <div class="notes-box-lbl">Which slots reference primitives, and why</div>
         <ul>
-          <li><strong>Slots 1–10 are direct hex values</strong> in <code>--viz-cat-*</code> aliases, with no primitive layer. Categorical chart colors are inherently chart-only — promoting them to primitives would imply they could be used as button backgrounds, surfaces, or text colors, which would break their chart-only intent.</li>
-          <li><strong>Mnemonic names</strong> (steel-blue, sage, terracotta, etc.) live only in comments and docs. They are <strong>not</strong> exposed as CSS variable names. The categorical contract is positional — <code>--viz-cat-1</code> through <code>--viz-cat-12</code> — because position is the contract, not the hue.</li>
-          <li><strong>Slots 11–12 reference existing brand-slate primitives</strong> (slate-400 and slate-300). Slate is structural and is correctly reused across the system; the neutrals stay tied to the system rather than duplicated.</li>
+          <li><strong>Slots 1, 6, 7, 8</strong> reference dedicated primitive ramps (steel-blue, lavender, dusty-teal, blush). They earn primitives because something downstream — monochromatic palettes, diverging palettes — needs multiple steps from the same hue ramp, not just the single anchor value.</li>
+          <li><strong>Slots 2, 3, 4, 5, 9, 10</strong> stay as direct hex values. They're used only as their categorical anchor — nothing else in the data viz system pulls from those hue ramps. Promoting them to primitives would create 60+ unused tokens.</li>
+          <li><strong>Slots 11, 12</strong> reference existing brand-slate primitives. Slate is structural and is correctly reused across the system; the neutrals stay tied to the system rather than duplicated.</li>
+          <li><strong>Mnemonic names</strong> (steel-blue, sage, terracotta, etc.) live in primitive scale names and CSS comments only. They are <strong>not</strong> exposed as cat alias names. The categorical contract is positional — <code>--viz-cat-1</code> through <code>--viz-cat-12</code> — because position is the contract, not the hue.</li>
           <li><strong>Same values in light and dark mode.</strong> The desaturated palette's luminance (~65–75%) reads correctly against both warm-Sand light surface and cool-Slate dark surface, so no mode override is needed.</li>
-          <li><strong>No collision with status colors.</strong> The new categorical contains no green, amber, or red — the hue families reserved for semantic state are entirely outside the chart palette.</li>
         </ul>
       </div>
     </div>
@@ -2318,7 +2456,7 @@
       <div class="section-head">
         <div class="section-num">03</div>
         <div class="section-title">Monochromatic patterns</div>
-        <div class="section-sub">Single-hue intensity ramps for charts where ordinal weight or magnitude matters more than category — heatmaps, density plots, ranked bar charts, treemaps. <strong>These are patterns, not separate tokens.</strong> Pull steps directly from the primitive ramps. Four hues are sanctioned for monochromatic use: Slate (default), Blue, Teal, and Violet. Red, Amber, Green, and Yellow are excluded — their hue family carries semantic meaning that would mislead in a non-status chart.</div>
+        <div class="section-sub">Single-hue intensity ramps for charts where ordinal weight or magnitude matters more than category — heatmaps, density plots, ranked bar charts, treemaps. <strong>These are patterns, not separate tokens.</strong> Pull steps directly from the primitive ramps. Four hues are sanctioned for monochromatic use: <strong>Slate</strong> (default neutral), <strong>Steel-Blue, Lavender, Dusty-Teal</strong> (categorical-source ramps that match the rest of the chart vocabulary).</div>
       </div>
 
       <div class="mono-block">
@@ -2339,59 +2477,58 @@
 
       <div class="mono-block">
         <div class="mono-block-head">
-          <div class="mono-block-name">Blue</div>
-          <div class="mono-block-sub">--color-blue-100 → -700</div>
+          <div class="mono-block-name">Steel-Blue</div>
+          <div class="mono-block-sub">--color-steel-blue-100 → -700</div>
         </div>
         <div class="mono-row">
-          <div class="mono-cell lt" style="background:var(--color-blue-100)">100</div>
-          <div class="mono-cell lt" style="background:var(--color-blue-200)">200</div>
-          <div class="mono-cell lt" style="background:var(--color-blue-300)">300</div>
-          <div class="mono-cell lt" style="background:var(--color-blue-400)">400</div>
-          <div class="mono-cell dk" style="background:var(--color-blue-500)">500</div>
-          <div class="mono-cell dk" style="background:var(--color-blue-600)">600</div>
-          <div class="mono-cell dk" style="background:var(--color-blue-700)">700</div>
+          <div class="mono-cell lt" style="background:var(--color-steel-blue-100)">100</div>
+          <div class="mono-cell lt" style="background:var(--color-steel-blue-200)">200</div>
+          <div class="mono-cell lt" style="background:var(--color-steel-blue-300)">300</div>
+          <div class="mono-cell lt" style="background:var(--color-steel-blue-400)">400</div>
+          <div class="mono-cell dk" style="background:var(--color-steel-blue-500)">500</div>
+          <div class="mono-cell dk" style="background:var(--color-steel-blue-600)">600</div>
+          <div class="mono-cell dk" style="background:var(--color-steel-blue-700)">700</div>
         </div>
       </div>
 
       <div class="mono-block">
         <div class="mono-block-head">
-          <div class="mono-block-name">Teal</div>
-          <div class="mono-block-sub">--color-teal-100 → -700</div>
+          <div class="mono-block-name">Lavender</div>
+          <div class="mono-block-sub">--color-lavender-100 → -700</div>
         </div>
         <div class="mono-row">
-          <div class="mono-cell lt" style="background:var(--color-teal-100)">100</div>
-          <div class="mono-cell lt" style="background:var(--color-teal-200)">200</div>
-          <div class="mono-cell lt" style="background:var(--color-teal-300)">300</div>
-          <div class="mono-cell lt" style="background:var(--color-teal-400)">400</div>
-          <div class="mono-cell dk" style="background:var(--color-teal-500)">500</div>
-          <div class="mono-cell dk" style="background:var(--color-teal-600)">600</div>
-          <div class="mono-cell dk" style="background:var(--color-teal-700)">700</div>
+          <div class="mono-cell lt" style="background:var(--color-lavender-100)">100</div>
+          <div class="mono-cell lt" style="background:var(--color-lavender-200)">200</div>
+          <div class="mono-cell lt" style="background:var(--color-lavender-300)">300</div>
+          <div class="mono-cell lt" style="background:var(--color-lavender-400)">400</div>
+          <div class="mono-cell dk" style="background:var(--color-lavender-500)">500</div>
+          <div class="mono-cell dk" style="background:var(--color-lavender-600)">600</div>
+          <div class="mono-cell dk" style="background:var(--color-lavender-700)">700</div>
         </div>
       </div>
 
       <div class="mono-block">
         <div class="mono-block-head">
-          <div class="mono-block-name">Violet</div>
-          <div class="mono-block-sub">--color-violet-100 → -700</div>
+          <div class="mono-block-name">Dusty-Teal</div>
+          <div class="mono-block-sub">--color-dusty-teal-100 → -700</div>
         </div>
         <div class="mono-row">
-          <div class="mono-cell lt" style="background:var(--color-violet-100)">100</div>
-          <div class="mono-cell lt" style="background:var(--color-violet-200)">200</div>
-          <div class="mono-cell lt" style="background:var(--color-violet-300)">300</div>
-          <div class="mono-cell lt" style="background:var(--color-violet-400)">400</div>
-          <div class="mono-cell dk" style="background:var(--color-violet-500)">500</div>
-          <div class="mono-cell dk" style="background:var(--color-violet-600)">600</div>
-          <div class="mono-cell dk" style="background:var(--color-violet-700)">700</div>
+          <div class="mono-cell lt" style="background:var(--color-dusty-teal-100)">100</div>
+          <div class="mono-cell lt" style="background:var(--color-dusty-teal-200)">200</div>
+          <div class="mono-cell lt" style="background:var(--color-dusty-teal-300)">300</div>
+          <div class="mono-cell lt" style="background:var(--color-dusty-teal-400)">400</div>
+          <div class="mono-cell dk" style="background:var(--color-dusty-teal-500)">500</div>
+          <div class="mono-cell dk" style="background:var(--color-dusty-teal-600)">600</div>
+          <div class="mono-cell dk" style="background:var(--color-dusty-teal-700)">700</div>
         </div>
       </div>
 
       <div class="notes-box">
-        <div class="notes-box-lbl">Why no tokens for monochromatic</div>
+        <div class="notes-box-lbl">How monochromatic works</div>
         <ul>
-          <li><strong>The pattern is the contract, not a name.</strong> A mono palette is "steps 100 through 700 of a sanctioned hue." Encoding that as 28 alias tokens (4 hues × 7 steps) would duplicate the primitive ramps and add maintenance overhead with zero semantic benefit — the alias would just be a rename of the primitive.</li>
-          <li><strong>Pull from primitives directly in chart code.</strong> Reference <code>--color-blue-100</code> through <code>--color-blue-700</code> (or whichever hue is chosen). This is the one place in the system where component code can reach for primitives.</li>
+          <li><strong>The pattern is the contract, not a token name.</strong> A mono palette is "steps 100 through 700 of a sanctioned primitive ramp." Encoding that as 28 alias tokens (4 hues × 7 steps) would duplicate the primitives with zero semantic benefit.</li>
+          <li><strong>Pull from primitives directly in chart code.</strong> Reference <code>--color-steel-blue-100</code> through <code>--color-steel-blue-700</code> (or whichever sanctioned ramp). This is the one place in the system where component code can reach for primitives.</li>
           <li><strong>Use Slate by default.</strong> When the chart subject doesn't suggest a hue, use Slate. It carries no associations and works in both light and dark modes without re-tuning.</li>
-          <li><strong>Four hues, not all of them.</strong> Red, Amber, Green, and Yellow are excluded from monochromatic use — those hue families carry status semantics. A "red heatmap" reads as "errors" even when it isn't.</li>
           <li><strong>Step direction depends on encoding.</strong> For "more is more important" (heatmap intensity), darkest step represents the highest value. For "less is less data" (density plots), lightest step is sparse data.</li>
         </ul>
       </div>
@@ -2402,64 +2539,64 @@
       <div class="section-head">
         <div class="section-num">04</div>
         <div class="section-title">Diverging palettes</div>
-        <div class="section-sub">Two opposing scales meeting at a neutral center. Use when data has a meaningful midpoint and movement in either direction matters (above/below benchmark, before/after change, gain/loss). Two diverging palettes are sanctioned: <strong>Red-Blue</strong> carries temperature association — red is "hot" or "negative", blue is "cool" or "positive". <strong>Purple-Teal</strong> has no temperature — use when the data shouldn't read as good/bad.</div>
+        <div class="section-sub">Two opposing scales meeting at a neutral center. Use when data has a meaningful midpoint and movement in either direction matters (above/below benchmark, before/after change, gain/loss). Two diverging palettes are sanctioned: <strong>Blush-Steel</strong> carries temperature association — blush is "warm/negative", steel-blue is "cool/positive". <strong>Lavender-Dusty</strong> has no temperature — use when the data shouldn't read as good/bad. Both palettes pull from the new categorical-source primitive ramps.</div>
       </div>
 
-      <div class="subhead">Red-Blue · temperature</div>
+      <div class="subhead">Blush-Steel · temperature</div>
       <div class="div-row">
-        <div class="div-cell" style="background:var(--viz-div-rb-1)">rb-1</div>
-        <div class="div-cell" style="background:var(--viz-div-rb-2)">rb-2</div>
-        <div class="div-cell lt" style="background:var(--viz-div-rb-3)">rb-3</div>
-        <div class="div-cell lt" style="background:var(--viz-div-rb-4)">rb-4</div>
-        <div class="div-cell lt" style="background:var(--viz-div-rb-5)">rb-5</div>
-        <div class="div-cell" style="background:var(--viz-div-rb-6)">rb-6</div>
-        <div class="div-cell" style="background:var(--viz-div-rb-7)">rb-7</div>
+        <div class="div-cell" style="background:var(--viz-div-bs-1)">bs-1</div>
+        <div class="div-cell" style="background:var(--viz-div-bs-2)">bs-2</div>
+        <div class="div-cell lt" style="background:var(--viz-div-bs-3)">bs-3</div>
+        <div class="div-cell lt" style="background:var(--viz-div-bs-4)">bs-4</div>
+        <div class="div-cell lt" style="background:var(--viz-div-bs-5)">bs-5</div>
+        <div class="div-cell" style="background:var(--viz-div-bs-6)">bs-6</div>
+        <div class="div-cell" style="background:var(--viz-div-bs-7)">bs-7</div>
       </div>
       <div class="div-label">
-        <span class="div-label-end-l">red end · negative / hot</span>
+        <span class="div-label-end-l">blush end · negative / warm</span>
         <span class="div-label-mid">neutral center</span>
-        <span class="div-label-end-r">blue end · positive / cool</span>
+        <span class="div-label-end-r">steel-blue end · positive / cool</span>
       </div>
 
-      <div class="subhead">Purple-Teal · neutral</div>
+      <div class="subhead">Lavender-Dusty · neutral</div>
       <div class="div-row">
-        <div class="div-cell" style="background:var(--viz-div-pt-1)">pt-1</div>
-        <div class="div-cell" style="background:var(--viz-div-pt-2)">pt-2</div>
-        <div class="div-cell lt" style="background:var(--viz-div-pt-3)">pt-3</div>
-        <div class="div-cell lt" style="background:var(--viz-div-pt-4)">pt-4</div>
-        <div class="div-cell lt" style="background:var(--viz-div-pt-5)">pt-5</div>
-        <div class="div-cell" style="background:var(--viz-div-pt-6)">pt-6</div>
-        <div class="div-cell" style="background:var(--viz-div-pt-7)">pt-7</div>
+        <div class="div-cell" style="background:var(--viz-div-ld-1)">ld-1</div>
+        <div class="div-cell" style="background:var(--viz-div-ld-2)">ld-2</div>
+        <div class="div-cell lt" style="background:var(--viz-div-ld-3)">ld-3</div>
+        <div class="div-cell lt" style="background:var(--viz-div-ld-4)">ld-4</div>
+        <div class="div-cell lt" style="background:var(--viz-div-ld-5)">ld-5</div>
+        <div class="div-cell" style="background:var(--viz-div-ld-6)">ld-6</div>
+        <div class="div-cell" style="background:var(--viz-div-ld-7)">ld-7</div>
       </div>
       <div class="div-label">
-        <span class="div-label-end-l">violet end · category A</span>
+        <span class="div-label-end-l">lavender end · category A</span>
         <span class="div-label-mid">neutral center</span>
-        <span class="div-label-end-r">teal end · category B</span>
+        <span class="div-label-end-r">dusty-teal end · category B</span>
       </div>
 
       <div class="subhead">Diverging tokens</div>
       <div class="alias-grid">
-        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-red-700</span></div></div><span class="alias-row-meta">Red-Blue · most negative end</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-red-500</span></div></div><span class="alias-row-meta">Red-Blue · negative</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-red-300</span></div></div><span class="alias-row-meta">Red-Blue · slightly negative</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Red-Blue · neutral center</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blue-300</span></div></div><span class="alias-row-meta">Red-Blue · slightly positive</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blue-500</span></div></div><span class="alias-row-meta">Red-Blue · positive</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-rb-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-rb-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blue-700</span></div></div><span class="alias-row-meta">Red-Blue · most positive end</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-violet-700</span></div></div><span class="alias-row-meta">Purple-Teal · category A end</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-violet-500</span></div></div><span class="alias-row-meta">Purple-Teal · category A</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-violet-300</span></div></div><span class="alias-row-meta">Purple-Teal · slight A bias</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Purple-Teal · neutral center</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-teal-300</span></div></div><span class="alias-row-meta">Purple-Teal · slight B bias</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-teal-500</span></div></div><span class="alias-row-meta">Purple-Teal · category B</span></div>
-        <div class="alias-row"><span class="alias-row-name">--viz-div-pt-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-pt-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-teal-700</span></div></div><span class="alias-row-meta">Purple-Teal · category B end</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-bs-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-bs-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blush-700</span></div></div><span class="alias-row-meta">Blush-Steel · most negative end</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-bs-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-bs-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blush-500</span></div></div><span class="alias-row-meta">Blush-Steel · negative</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-bs-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-bs-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-blush-300</span></div></div><span class="alias-row-meta">Blush-Steel · slightly negative</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-bs-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-bs-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Blush-Steel · neutral center</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-bs-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-bs-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-steel-blue-300</span></div></div><span class="alias-row-meta">Blush-Steel · slightly positive</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-bs-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-bs-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-steel-blue-500</span></div></div><span class="alias-row-meta">Blush-Steel · positive</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-bs-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-bs-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-steel-blue-700</span></div></div><span class="alias-row-meta">Blush-Steel · most positive end</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-ld-1</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-ld-1)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-lavender-700</span></div></div><span class="alias-row-meta">Lavender-Dusty · category A end</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-ld-2</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-ld-2)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-lavender-500</span></div></div><span class="alias-row-meta">Lavender-Dusty · category A</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-ld-3</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-ld-3)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-lavender-300</span></div></div><span class="alias-row-meta">Lavender-Dusty · slight A bias</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-ld-4</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-ld-4)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">LT</span><span class="alias-row-resolves-token">--color-brand-slate-200</span></div><div class="alias-row-resolves-line"><span class="alias-row-resolves-mode">DK</span><span class="alias-row-resolves-token">--color-brand-slate-700</span></div></div><span class="alias-row-meta">Lavender-Dusty · neutral center</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-ld-5</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-ld-5)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-dusty-teal-300</span></div></div><span class="alias-row-meta">Lavender-Dusty · slight B bias</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-ld-6</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-ld-6)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-dusty-teal-500</span></div></div><span class="alias-row-meta">Lavender-Dusty · category B</span></div>
+        <div class="alias-row"><span class="alias-row-name">--viz-div-ld-7</span><div class="alias-row-swatch-wrap"><div class="alias-row-swatch" style="background:var(--viz-div-ld-7)"></div></div><div class="alias-row-resolves"><div class="alias-row-resolves-line same"><span class="alias-row-resolves-mode">LT/DK</span><span class="alias-row-resolves-token">--color-dusty-teal-700</span></div></div><span class="alias-row-meta">Lavender-Dusty · category B end</span></div>
       </div>
 
       <div class="notes-box">
         <div class="notes-box-lbl">When to use which</div>
         <ul>
-          <li><strong>Red-Blue carries temperature.</strong> Use it when the data has a clear good/bad or above/below interpretation: bid floor performance vs benchmark, eCPM lift vs prior period, fill rate change. Red ends read as "underperforming," blue ends as "outperforming."</li>
-          <li><strong>Purple-Teal is neutral.</strong> Use it when the data has two valid sides without good/bad weighting: device split (mobile vs desktop), bidder share (Bidder A vs Bidder B), audience segmentation. Neither end carries an emotional charge.</li>
+          <li><strong>Blush-Steel carries temperature.</strong> Use it when the data has a clear good/bad or above/below interpretation: bid floor performance vs benchmark, eCPM lift vs prior period, fill rate change. Blush ends read as "underperforming," steel-blue ends as "outperforming."</li>
+          <li><strong>Lavender-Dusty is neutral.</strong> Use it when the data has two valid sides without good/bad weighting: device split (mobile vs desktop), bidder share (Bidder A vs Bidder B), audience segmentation. Neither end carries an emotional charge.</li>
           <li><strong>Neutral center is the fixed pivot.</strong> Both palettes use a slate-tone center step (slate-200 in light mode, slate-700 in dark mode). The center is where "no movement" reads — symmetric distance to either end means symmetric magnitude.</li>
           <li><strong>Diverging is not a substitute for two-series categorical.</strong> If the two sides are unrelated categories (not magnitudes from a center), use categorical slots 1 and 2 instead.</li>
         </ul>
@@ -2471,35 +2608,35 @@
       <div class="section-head">
         <div class="section-num">05</div>
         <div class="section-title">Recommended combinations</div>
-        <div class="section-sub">Curated palettes for charts with 2, 3, or 4 series. These pull from primitives directly — like monochromatic patterns, they're <strong>recommendations, not separate tokens</strong>. Use them when the categorical sequence's sharper neighbor contrast is more than a small chart needs, and you want a calmer, more harmonious look. The default behavior is still to use the categorical sequence — these combinations are an alternative.</div>
+        <div class="section-sub">Curated palettes for charts with 2, 3, or 4 series. These pull from the <strong>categorical aliases</strong> — they use specific cat slot positions in deliberate combinations, not new tokens. Use them when the natural neighbor pairing in the categorical sequence isn't the most visually balanced choice for the data, or when you want a tested combination known to feel calm.</div>
       </div>
 
       <div class="combo-grid">
         <div class="combo-card">
           <div class="combo-card-title">Two-color</div>
-          <div class="combo-card-sub">Cool harmonious — for two-series comparisons</div>
+          <div class="combo-card-sub">Steel-blue + sage — anchor + complementary</div>
           <div class="combo-strip" style="grid-template-columns: 1fr 1fr">
-            <div style="background:var(--color-blue-600)">blue-600</div>
-            <div style="background:var(--color-teal-500)">teal-500</div>
+            <div style="background:var(--viz-cat-1)">cat-1</div>
+            <div style="background:var(--viz-cat-3)">cat-3</div>
           </div>
         </div>
         <div class="combo-card">
           <div class="combo-card-title">Three-color</div>
-          <div class="combo-card-sub">Cool triad — for three-series comparisons</div>
+          <div class="combo-card-sub">+ buttercup — warm accent rounds out the triad</div>
           <div class="combo-strip" style="grid-template-columns: 1fr 1fr 1fr">
-            <div style="background:var(--color-blue-600)">blue-600</div>
-            <div style="background:var(--color-teal-500)">teal-500</div>
-            <div style="background:var(--color-violet-500)">violet-500</div>
+            <div style="background:var(--viz-cat-1)">cat-1</div>
+            <div style="background:var(--viz-cat-3)">cat-3</div>
+            <div style="background:var(--viz-cat-4)">cat-4</div>
           </div>
         </div>
         <div class="combo-card">
           <div class="combo-card-title">Four-color</div>
-          <div class="combo-card-sub">Cool with neutral anchor — for four-series</div>
+          <div class="combo-card-sub">+ sky-pale — light blue completes the set without adding hue</div>
           <div class="combo-strip" style="grid-template-columns: 1fr 1fr 1fr 1fr">
-            <div style="background:var(--color-blue-600)">blue-600</div>
-            <div style="background:var(--color-violet-500)">violet-500</div>
-            <div style="background:var(--color-teal-500)">teal-500</div>
-            <div style="background:var(--color-brand-slate-500)">slate-500</div>
+            <div style="background:var(--viz-cat-1)">cat-1</div>
+            <div style="background:var(--viz-cat-3)">cat-3</div>
+            <div style="background:var(--viz-cat-4)">cat-4</div>
+            <div style="background:var(--viz-cat-2)">cat-2</div>
           </div>
         </div>
       </div>
@@ -2507,10 +2644,10 @@
       <div class="notes-box">
         <div class="notes-box-lbl">Categorical vs combinations — which to use</div>
         <ul>
-          <li><strong>Categorical sequence is the default.</strong> Reach for <code>--viz-cat-1</code>, <code>--viz-cat-2</code>, etc. when you want guaranteed neighbor contrast across any series count up to 12.</li>
-          <li><strong>Combinations are for tonal harmony.</strong> Use them when the chart is small or supporting (KPI mini-bar, sparkline pair, dashboard tile), where the categorical palette's hue jumps would feel loud against surrounding UI.</li>
-          <li><strong>These are patterns — pull from primitives.</strong> Reference <code>--color-blue-600</code> and <code>--color-teal-500</code> directly. No alias tokens for these combinations, same reasoning as monochromatic.</li>
-          <li><strong>Don't mix.</strong> Pick the categorical sequence or a recommended combination — don't combine slot 1 from categorical with a recommended combination color in the same chart.</li>
+          <li><strong>Categorical sequence is the default.</strong> Reach for <code>--viz-cat-1</code>, <code>--viz-cat-2</code>, etc. when you want the standard neighbor contrast across any series count up to 12.</li>
+          <li><strong>Combinations are tested groupings.</strong> Use them when you want a known-balanced pairing — particularly when the data is small (2–4 series) and the chart is supporting context, not the page's focus.</li>
+          <li><strong>These reference categorical aliases.</strong> Reference <code>--viz-cat-1</code>, <code>--viz-cat-3</code>, <code>--viz-cat-4</code>, <code>--viz-cat-2</code> directly. No new tokens for combinations.</li>
+          <li><strong>Don't mix combinations and sequence.</strong> Pick one approach for the chart — don't combine combo slots with non-combo cat slots in the same chart.</li>
         </ul>
       </div>
     </div>
@@ -2573,37 +2710,102 @@
 <!-- /shell -->
 
 <script>
-  function selectTab(btn) {
-    // Deactivate all tabs and panels
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    // Activate the clicked tab
-    btn.classList.add('active');
-    // Activate matching panel
-    var targetId = btn.getAttribute('data-target');
-    var panel = document.getElementById(targetId);
-    if (panel) panel.classList.add('active');
-    // Scroll to top of doc on tab change
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }
+function selectTab(btn) {
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.tab-panel');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  for (var j = 0; j < panels.length; j++) panels[j].classList.remove('active');
+  btn.classList.add('active');
+  var targetId = btn.getAttribute('data-target');
+  var panel = document.getElementById(targetId);
+  if (panel) panel.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Reset active section indicator after a beat
+  setTimeout(updateTocActive, 50);
+}
 
-  function toggleTheme() {
-    var html = document.documentElement;
-    var current = html.getAttribute('data-theme') || 'light';
-    var next = current === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', next);
-    var icon = document.getElementById('theme-icon');
-    var label = document.getElementById('theme-label');
+function toggleTheme() {
+  var html = document.documentElement;
+  var current = html.getAttribute('data-theme');
+  var next = (current === 'dark') ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  var icon = document.getElementById('theme-icon');
+  var label = document.getElementById('theme-label');
+  if (icon) {
     if (next === 'dark') {
       icon.classList.remove('ph-moon');
       icon.classList.add('ph-sun');
-      label.textContent = 'Light mode';
     } else {
       icon.classList.remove('ph-sun');
       icon.classList.add('ph-moon');
-      label.textContent = 'Dark mode';
     }
   }
+  if (label) {
+    label.textContent = (next === 'dark') ? 'Light mode' : 'Dark mode';
+  }
+}
+
+// ─── TOC active-section tracking ─────────────────────────────
+function updateTocActive() {
+  // Find currently visible TOC (inside the active tab-panel)
+  var activePanel = document.querySelector('.tab-panel.active');
+  if (!activePanel) return;
+  var visibleToc = activePanel.querySelector('.page-toc');
+  if (!visibleToc) return;
+  // Find which section is currently in view
+  var links = visibleToc.querySelectorAll('.toc-link');
+  var scrollPos = window.scrollY + 180; // offset for sticky bar + breathing room
+  var currentId = null;
+  for (var k = 0; k < links.length; k++) {
+    var href = links[k].getAttribute('href');
+    if (!href || href.charAt(0) !== '#') continue;
+    var section = document.getElementById(href.substring(1));
+    if (section && section.offsetTop <= scrollPos) {
+      currentId = href.substring(1);
+    }
+  }
+  // Apply .active class
+  for (var m = 0; m < links.length; m++) {
+    var h = links[m].getAttribute('href');
+    if (h && h.substring(1) === currentId) {
+      links[m].classList.add('active');
+    } else {
+      links[m].classList.remove('active');
+    }
+  }
+}
+
+// Smooth-scroll on TOC link click (with offset for sticky bar)
+function handleTocClick(e) {
+  var href = e.currentTarget.getAttribute('href');
+  if (!href || href.charAt(0) !== '#') return;
+  e.preventDefault();
+  var section = document.getElementById(href.substring(1));
+  if (section) {
+    var y = section.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
+// ─── Init ───
+(function() {
+  // Wire up TOC click handlers
+  var links = document.querySelectorAll('.toc-link');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', handleTocClick);
+  }
+  // Wire up scroll tracking
+  var scrollTimer = null;
+  window.addEventListener('scroll', function() {
+    if (scrollTimer) return;
+    scrollTimer = setTimeout(function() {
+      updateTocActive();
+      scrollTimer = null;
+    }, 80);
+  });
+  // Initial active state
+  updateTocActive();
+})();
 </script>
 
 </body>
