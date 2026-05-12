@@ -1437,6 +1437,56 @@
     color: var(--text-lt);
   }
 
+  /* ─── Charts-in-context blocks ───────────────────────────── */
+  .chart-block {
+    background: var(--surface-card);
+    border: 1px solid var(--border-stroke-light);
+    border-radius: var(--radius-md);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  .chart-block-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-stroke-light);
+  }
+  .chart-block-name {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dk);
+  }
+  .chart-block-tokens {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-lt);
+    text-align: right;
+    line-height: 1.5;
+  }
+  .chart-block-viz {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .chart-block-viz svg {
+    max-width: 100%;
+    height: auto;
+  }
+  .chart-block-note {
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-md);
+  }
+  .chart-block-note strong {
+    color: var(--text-dk);
+    font-weight: 600;
+  }
+
   /* ─── Architecture diagram ───────────────────────────────── */
   .arch {
     background: var(--surface-card);
@@ -1580,7 +1630,7 @@
       <button class="tab" role="tab" data-target="tab-dataviz" onclick="selectTab(this)">
         <i class="ph ph-chart-line"></i>
         <span>Data Viz</span>
-        <span class="tab-count">6</span>
+        <span class="tab-count">7</span>
       </button>
     </div>
     <button class="theme-toggle" onclick="toggleTheme()" type="button">
@@ -2350,6 +2400,7 @@
       <a href="#viz-diverging" class="toc-link">04 · Diverging</a>
       <a href="#viz-combinations" class="toc-link">05 · Combinations</a>
       <a href="#viz-status" class="toc-link">06 · Status</a>
+      <a href="#viz-incontext" class="toc-link">07 · Charts in context</a>
     </div>
 
     <!-- 01 · DATA VIZ ARCHITECTURE -->
@@ -2701,6 +2752,438 @@
           <li><strong>Status values stay constant across modes.</strong> Unlike most aliases, status colors don't shift between light and dark mode. Their meaning is absolute — green is success in any context.</li>
         </ul>
       </div>
+    </div>
+
+    <!-- 07 · CHARTS IN CONTEXT -->
+    <div class="section" id="viz-incontext">
+      <div class="section-head">
+        <div class="section-num">07</div>
+        <div class="section-title">Charts in context</div>
+        <div class="section-sub">How each architecture renders in actual chart contexts. These are visual references — not full chart specs — showing how the token palettes translate to real data viz. Each example uses the actual tokens; toggle dark mode to see them flip.</div>
+      </div>
+
+      <div class="subhead">Categorical</div>
+
+      <div class="chart-block">
+        <div class="chart-block-head">
+          <div class="chart-block-name">Categorical · Revenue by SSP</div>
+          <div class="chart-block-tokens">--viz-cat-1, --viz-cat-3, --viz-cat-4,<br>--viz-cat-2, --viz-cat-5</div>
+        </div>
+        <div class="chart-block-viz">
+          <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px;">
+            <!-- Y-axis gridlines -->
+            <line x1="56" y1="40" x2="588" y2="40" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="90" x2="588" y2="90" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="140" x2="588" y2="140" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="190" x2="588" y2="190" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <!-- X-axis baseline -->
+            <line x1="56" y1="240" x2="588" y2="240" stroke="var(--border-stroke)" stroke-width="1"/>
+            <!-- Y-axis labels -->
+            <text x="48" y="44" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$100k</text>
+            <text x="48" y="94" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$75k</text>
+            <text x="48" y="144" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$50k</text>
+            <text x="48" y="194" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$25k</text>
+            <text x="48" y="244" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$0</text>
+            <!-- Bars -->
+            <rect x="98"  y="70"  width="62" height="170" fill="var(--viz-cat-1)" rx="2"/>
+            <rect x="200" y="98"  width="62" height="142" fill="var(--viz-cat-3)" rx="2"/>
+            <rect x="302" y="128" width="62" height="112" fill="var(--viz-cat-4)" rx="2"/>
+            <rect x="404" y="156" width="62" height="84"  fill="var(--viz-cat-2)" rx="2"/>
+            <rect x="506" y="186" width="62" height="54"  fill="var(--viz-cat-5)" rx="2"/>
+            <!-- Bar value labels -->
+            <text x="129" y="63"  text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="var(--text-dk)">$85k</text>
+            <text x="231" y="91"  text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="var(--text-dk)">$71k</text>
+            <text x="333" y="121" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="var(--text-dk)">$56k</text>
+            <text x="435" y="149" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="var(--text-dk)">$42k</text>
+            <text x="537" y="179" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="var(--text-dk)">$27k</text>
+            <!-- X-axis labels -->
+            <text x="129" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Magnite</text>
+            <text x="231" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">PubMatic</text>
+            <text x="333" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Index</text>
+            <text x="435" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Rubicon</text>
+            <text x="537" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Triple Lift</text>
+          </svg>
+        </div>
+        <div class="chart-block-note">
+          <strong>When to use:</strong> Comparing distinct, unrelated categories (here: five SSPs). Each bar is its own thing — no implied ordering or shared dimension. The recommended 5-color combination (1, 3, 4, 2, 5) keeps adjacent bars visually distinct without any pair feeling overly related.
+        </div>
+      </div>
+
+      <!-- NEW: Categorical stacked bar -->
+      <div class="chart-block">
+        <div class="chart-block-head">
+          <div class="chart-block-name">Categorical · Quarterly revenue by SSP (stacked)</div>
+          <div class="chart-block-tokens">--viz-cat-1, --viz-cat-3, --viz-cat-4,<br>--viz-cat-2, --viz-cat-5</div>
+        </div>
+        <div class="chart-block-viz">
+          <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px;">
+            <!-- Y-axis gridlines -->
+            <line x1="56" y1="40"  x2="588" y2="40"  stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="90"  x2="588" y2="90"  stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="140" x2="588" y2="140" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="190" x2="588" y2="190" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="240" x2="588" y2="240" stroke="var(--border-stroke)" stroke-width="1"/>
+            <!-- Y-axis labels -->
+            <text x="48" y="44"  text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$400k</text>
+            <text x="48" y="94"  text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$300k</text>
+            <text x="48" y="144" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$200k</text>
+            <text x="48" y="194" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$100k</text>
+            <text x="48" y="244" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$0</text>
+
+            <!-- Q1 stack -->
+            <rect x="108" y="80"  width="80" height="50" fill="var(--viz-cat-1)" rx="1"/>
+            <rect x="108" y="130" width="80" height="42" fill="var(--viz-cat-3)" rx="1"/>
+            <rect x="108" y="172" width="80" height="32" fill="var(--viz-cat-4)" rx="1"/>
+            <rect x="108" y="204" width="80" height="22" fill="var(--viz-cat-2)" rx="1"/>
+            <rect x="108" y="226" width="80" height="14" fill="var(--viz-cat-5)" rx="1"/>
+            <!-- Q2 stack -->
+            <rect x="228" y="74"  width="80" height="52" fill="var(--viz-cat-1)" rx="1"/>
+            <rect x="228" y="126" width="80" height="44" fill="var(--viz-cat-3)" rx="1"/>
+            <rect x="228" y="170" width="80" height="34" fill="var(--viz-cat-4)" rx="1"/>
+            <rect x="228" y="204" width="80" height="22" fill="var(--viz-cat-2)" rx="1"/>
+            <rect x="228" y="226" width="80" height="14" fill="var(--viz-cat-5)" rx="1"/>
+            <!-- Q3 stack -->
+            <rect x="348" y="68"  width="80" height="56" fill="var(--viz-cat-1)" rx="1"/>
+            <rect x="348" y="124" width="80" height="46" fill="var(--viz-cat-3)" rx="1"/>
+            <rect x="348" y="170" width="80" height="34" fill="var(--viz-cat-4)" rx="1"/>
+            <rect x="348" y="204" width="80" height="22" fill="var(--viz-cat-2)" rx="1"/>
+            <rect x="348" y="226" width="80" height="14" fill="var(--viz-cat-5)" rx="1"/>
+            <!-- Q4 stack -->
+            <rect x="468" y="60"  width="80" height="62" fill="var(--viz-cat-1)" rx="1"/>
+            <rect x="468" y="122" width="80" height="48" fill="var(--viz-cat-3)" rx="1"/>
+            <rect x="468" y="170" width="80" height="34" fill="var(--viz-cat-4)" rx="1"/>
+            <rect x="468" y="204" width="80" height="22" fill="var(--viz-cat-2)" rx="1"/>
+            <rect x="468" y="226" width="80" height="14" fill="var(--viz-cat-5)" rx="1"/>
+
+            <!-- X-axis labels -->
+            <text x="148" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Q1</text>
+            <text x="268" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Q2</text>
+            <text x="388" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Q3</text>
+            <text x="508" y="262" text-anchor="middle" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Q4</text>
+
+            <!-- Legend -->
+            <g transform="translate(56, 290)">
+              <rect x="0"   y="0" width="10" height="10" fill="var(--viz-cat-1)" rx="2"/>
+              <text x="14" y="9" font-family="Satoshi, sans-serif" font-size="10.5" fill="var(--text-md)">Magnite</text>
+              <rect x="82"  y="0" width="10" height="10" fill="var(--viz-cat-3)" rx="2"/>
+              <text x="96" y="9" font-family="Satoshi, sans-serif" font-size="10.5" fill="var(--text-md)">PubMatic</text>
+              <rect x="174" y="0" width="10" height="10" fill="var(--viz-cat-4)" rx="2"/>
+              <text x="188" y="9" font-family="Satoshi, sans-serif" font-size="10.5" fill="var(--text-md)">Index</text>
+              <rect x="240" y="0" width="10" height="10" fill="var(--viz-cat-2)" rx="2"/>
+              <text x="254" y="9" font-family="Satoshi, sans-serif" font-size="10.5" fill="var(--text-md)">Rubicon</text>
+              <rect x="320" y="0" width="10" height="10" fill="var(--viz-cat-5)" rx="2"/>
+              <text x="334" y="9" font-family="Satoshi, sans-serif" font-size="10.5" fill="var(--text-md)">Triple Lift</text>
+            </g>
+          </svg>
+        </div>
+        <div class="chart-block-note">
+          <strong>When to use:</strong> Comparing composition across a categorical dimension (here: quarter). Each segment is a distinct category; the stack shows the whole and its parts. Same five tokens as the simple bar chart — categorical handles both the "compare across" pattern <em>and</em> the "see the breakdown" pattern when you stack them.
+        </div>
+      </div>
+
+
+      <div class="subhead">Monochromatic</div>
+
+      <div class="chart-block">
+        <div class="chart-block-head">
+          <div class="chart-block-name">Monochromatic · Bid response time distribution</div>
+          <div class="chart-block-tokens">slate-200 → slate-700<br>(mono-slate pattern)</div>
+        </div>
+        <div class="chart-block-viz">
+          <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px;">
+            <!-- Stacked horizontal bar -->
+            <rect x="56" y="58" width="244" height="44" fill="var(--color-brand-slate-200)"/>
+            <rect x="300" y="58" width="146" height="44" fill="var(--color-brand-slate-400)"/>
+            <rect x="446" y="58" width="80"  height="44" fill="var(--color-brand-slate-500)"/>
+            <rect x="526" y="58" width="42"  height="44" fill="var(--color-brand-slate-600)"/>
+            <rect x="568" y="58" width="20"  height="44" fill="var(--color-brand-slate-700)"/>
+            <!-- Segment value labels (inside bars where there's room) -->
+            <text x="178" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-brand-slate-700)">46%</text>
+            <text x="373" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-brand-slate-50)">27%</text>
+            <text x="486" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-brand-slate-50)">15%</text>
+            <!-- Legend -->
+            <g transform="translate(56, 130)">
+              <rect x="0"  y="0" width="12" height="12" fill="var(--color-brand-slate-200)" rx="2"/>
+              <text x="18" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">&lt;50ms</text>
+              <rect x="92" y="0" width="12" height="12" fill="var(--color-brand-slate-400)" rx="2"/>
+              <text x="110" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">50–100ms</text>
+              <rect x="200" y="0" width="12" height="12" fill="var(--color-brand-slate-500)" rx="2"/>
+              <text x="218" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">100–150ms</text>
+              <rect x="316" y="0" width="12" height="12" fill="var(--color-brand-slate-600)" rx="2"/>
+              <text x="334" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">150–200ms</text>
+              <rect x="432" y="0" width="12" height="12" fill="var(--color-brand-slate-700)" rx="2"/>
+              <text x="450" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">200ms+</text>
+            </g>
+            <!-- Title context -->
+            <text x="56" y="40" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="var(--text-lt)" letter-spacing="0.04em">RESPONSE TIME — 24H DISTRIBUTION</text>
+          </svg>
+        </div>
+        <div class="chart-block-note">
+          <strong>When to use:</strong> The values share an underlying dimension (here: response time bins of the same metric). Darker = more intense. Pulled straight from the slate primitive scale at steps 200, 400, 500, 600, 700 — monochromatic is a <em>pattern</em>, not a tokenized alias.
+        </div>
+      </div>
+
+      <!-- NEW: Monochromatic — Steel-Blue variant -->
+      <div class="chart-block">
+        <div class="chart-block-head">
+          <div class="chart-block-name">Monochromatic · Fill rate distribution by ad unit</div>
+          <div class="chart-block-tokens">steel-blue-200 → steel-blue-700<br>(mono-steel-blue pattern)</div>
+        </div>
+        <div class="chart-block-viz">
+          <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px;">
+            <rect x="56"  y="58" width="220" height="44" fill="var(--color-steel-blue-200)"/>
+            <rect x="276" y="58" width="170" height="44" fill="var(--color-steel-blue-400)"/>
+            <rect x="446" y="58" width="100" height="44" fill="var(--color-steel-blue-500)"/>
+            <rect x="546" y="58" width="32"  height="44" fill="var(--color-steel-blue-600)"/>
+            <rect x="578" y="58" width="10"  height="44" fill="var(--color-steel-blue-700)"/>
+
+            <text x="166" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-steel-blue-800)">41%</text>
+            <text x="361" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-steel-blue-50)">32%</text>
+            <text x="496" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-steel-blue-50)">19%</text>
+
+            <g transform="translate(56, 130)">
+              <rect x="0"   y="0" width="12" height="12" fill="var(--color-steel-blue-200)" rx="2"/>
+              <text x="18"  y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">90%+</text>
+              <rect x="86"  y="0" width="12" height="12" fill="var(--color-steel-blue-400)" rx="2"/>
+              <text x="104" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">75–90%</text>
+              <rect x="190" y="0" width="12" height="12" fill="var(--color-steel-blue-500)" rx="2"/>
+              <text x="208" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">50–75%</text>
+              <rect x="296" y="0" width="12" height="12" fill="var(--color-steel-blue-600)" rx="2"/>
+              <text x="314" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">25–50%</text>
+              <rect x="402" y="0" width="12" height="12" fill="var(--color-steel-blue-700)" rx="2"/>
+              <text x="420" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">&lt;25%</text>
+            </g>
+
+            <text x="56" y="40" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="var(--text-lt)" letter-spacing="0.04em">FILL RATE — ALL AD UNITS</text>
+          </svg>
+        </div>
+        <div class="chart-block-note">
+          <strong>When to use:</strong> Same mono pattern, different anchor color. Use a non-default mono palette when the chart needs to feel <em>thematically tied</em> to a specific data domain (here: a delivery / yield metric uses cool steel-blue). The intensity progression carries the same meaning as mono-slate — darker = higher intensity — but the hue adds context.
+        </div>
+      </div>
+
+      <!-- NEW: Monochromatic — Dusty-Teal variant -->
+      <div class="chart-block">
+        <div class="chart-block-head">
+          <div class="chart-block-name">Monochromatic · Session duration distribution</div>
+          <div class="chart-block-tokens">dusty-teal-200 → dusty-teal-700<br>(mono-dusty-teal pattern)</div>
+        </div>
+        <div class="chart-block-viz">
+          <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px;">
+            <rect x="56"  y="58" width="252" height="44" fill="var(--color-dusty-teal-200)"/>
+            <rect x="308" y="58" width="156" height="44" fill="var(--color-dusty-teal-400)"/>
+            <rect x="464" y="58" width="80"  height="44" fill="var(--color-dusty-teal-500)"/>
+            <rect x="544" y="58" width="32"  height="44" fill="var(--color-dusty-teal-600)"/>
+            <rect x="576" y="58" width="12"  height="44" fill="var(--color-dusty-teal-700)"/>
+
+            <text x="182" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-dusty-teal-800)">47%</text>
+            <text x="386" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-dusty-teal-50)">29%</text>
+            <text x="504" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--color-dusty-teal-50)">15%</text>
+
+            <g transform="translate(56, 130)">
+              <rect x="0"   y="0" width="12" height="12" fill="var(--color-dusty-teal-200)" rx="2"/>
+              <text x="18"  y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">&lt;1min</text>
+              <rect x="80"  y="0" width="12" height="12" fill="var(--color-dusty-teal-400)" rx="2"/>
+              <text x="98"  y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">1–3min</text>
+              <rect x="180" y="0" width="12" height="12" fill="var(--color-dusty-teal-500)" rx="2"/>
+              <text x="198" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">3–10min</text>
+              <rect x="290" y="0" width="12" height="12" fill="var(--color-dusty-teal-600)" rx="2"/>
+              <text x="308" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">10–30min</text>
+              <rect x="410" y="0" width="12" height="12" fill="var(--color-dusty-teal-700)" rx="2"/>
+              <text x="428" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">30min+</text>
+            </g>
+
+            <text x="56" y="40" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="var(--text-lt)" letter-spacing="0.04em">SESSION DURATION — 24H DISTRIBUTION</text>
+          </svg>
+        </div>
+        <div class="chart-block-note">
+          <strong>When to use:</strong> Pick an anchor color that fits the data semantics — dusty-teal works for engagement / quality / health metrics. Default to mono-slate unless there's a reason to differentiate. The same primitive scales are available for any of the four data-viz palettes (slate, steel-blue, lavender, dusty-teal, blush) when you need a themed mono ramp.
+        </div>
+      </div>
+
+
+      <div class="subhead">Diverging</div>
+
+      <div class="chart-block">
+        <div class="chart-block-head">
+          <div class="chart-block-name">Diverging · eCPM change vs baseline</div>
+          <div class="chart-block-tokens">--viz-div-bs-1 → --viz-div-bs-7<br>(blush ↔ steel-blue)</div>
+        </div>
+        <div class="chart-block-viz">
+          <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px;">
+            <!-- Heatmap: 5 bidders (rows) × 6 months (cols) -->
+            <!-- Cell size: 70w × 36h, starting at (110, 40) -->
+            <!-- Row 1: Magnite -->
+            <rect x="110" y="40" width="68" height="34" fill="var(--viz-div-bs-7)" rx="2"/>
+            <rect x="182" y="40" width="68" height="34" fill="var(--viz-div-bs-6)" rx="2"/>
+            <rect x="254" y="40" width="68" height="34" fill="var(--viz-div-bs-6)" rx="2"/>
+            <rect x="326" y="40" width="68" height="34" fill="var(--viz-div-bs-7)" rx="2"/>
+            <rect x="398" y="40" width="68" height="34" fill="var(--viz-div-bs-5)" rx="2"/>
+            <rect x="470" y="40" width="68" height="34" fill="var(--viz-div-bs-6)" rx="2"/>
+            <!-- Row 2: PubMatic -->
+            <rect x="110" y="78" width="68" height="34" fill="var(--viz-div-bs-5)" rx="2"/>
+            <rect x="182" y="78" width="68" height="34" fill="var(--viz-div-bs-4)" rx="2"/>
+            <rect x="254" y="78" width="68" height="34" fill="var(--viz-div-bs-5)" rx="2"/>
+            <rect x="326" y="78" width="68" height="34" fill="var(--viz-div-bs-6)" rx="2"/>
+            <rect x="398" y="78" width="68" height="34" fill="var(--viz-div-bs-5)" rx="2"/>
+            <rect x="470" y="78" width="68" height="34" fill="var(--viz-div-bs-4)" rx="2"/>
+            <!-- Row 3: Index -->
+            <rect x="110" y="116" width="68" height="34" fill="var(--viz-div-bs-4)" rx="2"/>
+            <rect x="182" y="116" width="68" height="34" fill="var(--viz-div-bs-3)" rx="2"/>
+            <rect x="254" y="116" width="68" height="34" fill="var(--viz-div-bs-4)" rx="2"/>
+            <rect x="326" y="116" width="68" height="34" fill="var(--viz-div-bs-4)" rx="2"/>
+            <rect x="398" y="116" width="68" height="34" fill="var(--viz-div-bs-3)" rx="2"/>
+            <rect x="470" y="116" width="68" height="34" fill="var(--viz-div-bs-3)" rx="2"/>
+            <!-- Row 4: Rubicon -->
+            <rect x="110" y="154" width="68" height="34" fill="var(--viz-div-bs-3)" rx="2"/>
+            <rect x="182" y="154" width="68" height="34" fill="var(--viz-div-bs-2)" rx="2"/>
+            <rect x="254" y="154" width="68" height="34" fill="var(--viz-div-bs-3)" rx="2"/>
+            <rect x="326" y="154" width="68" height="34" fill="var(--viz-div-bs-2)" rx="2"/>
+            <rect x="398" y="154" width="68" height="34" fill="var(--viz-div-bs-1)" rx="2"/>
+            <rect x="470" y="154" width="68" height="34" fill="var(--viz-div-bs-2)" rx="2"/>
+            <!-- Row 5: Triple Lift -->
+            <rect x="110" y="192" width="68" height="34" fill="var(--viz-div-bs-2)" rx="2"/>
+            <rect x="182" y="192" width="68" height="34" fill="var(--viz-div-bs-1)" rx="2"/>
+            <rect x="254" y="192" width="68" height="34" fill="var(--viz-div-bs-1)" rx="2"/>
+            <rect x="326" y="192" width="68" height="34" fill="var(--viz-div-bs-2)" rx="2"/>
+            <rect x="398" y="192" width="68" height="34" fill="var(--viz-div-bs-1)" rx="2"/>
+            <rect x="470" y="192" width="68" height="34" fill="var(--viz-div-bs-1)" rx="2"/>
+
+            <!-- Row labels -->
+            <text x="100" y="62"  text-anchor="end" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Magnite</text>
+            <text x="100" y="100" text-anchor="end" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">PubMatic</text>
+            <text x="100" y="138" text-anchor="end" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Index</text>
+            <text x="100" y="176" text-anchor="end" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Rubicon</text>
+            <text x="100" y="214" text-anchor="end" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Triple Lift</text>
+
+            <!-- Column labels -->
+            <text x="144" y="32" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Jan</text>
+            <text x="216" y="32" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Feb</text>
+            <text x="288" y="32" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Mar</text>
+            <text x="360" y="32" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Apr</text>
+            <text x="432" y="32" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">May</text>
+            <text x="504" y="32" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Jun</text>
+
+            <!-- Scale legend at bottom -->
+            <g transform="translate(110, 252)">
+              <rect x="0"   y="0" width="40" height="10" fill="var(--viz-div-bs-1)"/>
+              <rect x="40"  y="0" width="40" height="10" fill="var(--viz-div-bs-2)"/>
+              <rect x="80"  y="0" width="40" height="10" fill="var(--viz-div-bs-3)"/>
+              <rect x="120" y="0" width="40" height="10" fill="var(--viz-div-bs-4)"/>
+              <rect x="160" y="0" width="40" height="10" fill="var(--viz-div-bs-5)"/>
+              <rect x="200" y="0" width="40" height="10" fill="var(--viz-div-bs-6)"/>
+              <rect x="240" y="0" width="40" height="10" fill="var(--viz-div-bs-7)"/>
+              <text x="0"   y="24" text-anchor="start"  font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">−3%</text>
+              <text x="140" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">baseline</text>
+              <text x="280" y="24" text-anchor="end"    font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">+3%</text>
+            </g>
+          </svg>
+        </div>
+        <div class="chart-block-note">
+          <strong>When to use:</strong> Values have a meaningful midpoint and split into two directions (here: eCPM change above and below baseline). Blush carries "below" / steel-blue carries "above" — the temperature reinforces the directional meaning. Always use diverging when there's a real zero or baseline to split around. If there isn't, use monochromatic instead.
+        </div>
+      </div>
+
+      <div class="subhead">Recommended combinations</div>
+
+      <!-- NEW: Recommended combinations — 4-color line chart -->
+      <div class="chart-block">
+        <div class="chart-block-name" style="display:none"></div>
+        <div class="chart-block-head">
+          <div class="chart-block-name">Recommended combinations · Bidder eCPM trends</div>
+          <div class="chart-block-tokens">4-color combo:<br>--viz-cat-1, --viz-cat-3, --viz-cat-4, --viz-cat-2</div>
+        </div>
+        <div class="chart-block-viz">
+          <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px;">
+            <!-- Gridlines -->
+            <line x1="56" y1="40"  x2="588" y2="40"  stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="90"  x2="588" y2="90"  stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="140" x2="588" y2="140" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="190" x2="588" y2="190" stroke="var(--border-stroke-light)" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="56" y1="240" x2="588" y2="240" stroke="var(--border-stroke)" stroke-width="1"/>
+
+            <!-- Y-axis labels -->
+            <text x="48" y="44"  text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$3.20</text>
+            <text x="48" y="94"  text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$2.40</text>
+            <text x="48" y="144" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$1.60</text>
+            <text x="48" y="194" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$0.80</text>
+            <text x="48" y="244" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">$0</text>
+
+            <!-- Magnite (cat-1) — strong, trending up -->
+            <polyline points="98,90 178,82 258,72 338,68 418,56 498,50 578,42"
+                      fill="none" stroke="var(--viz-cat-1)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="98"  cy="90" r="3.5" fill="var(--viz-cat-1)"/>
+            <circle cx="178" cy="82" r="3.5" fill="var(--viz-cat-1)"/>
+            <circle cx="258" cy="72" r="3.5" fill="var(--viz-cat-1)"/>
+            <circle cx="338" cy="68" r="3.5" fill="var(--viz-cat-1)"/>
+            <circle cx="418" cy="56" r="3.5" fill="var(--viz-cat-1)"/>
+            <circle cx="498" cy="50" r="3.5" fill="var(--viz-cat-1)"/>
+            <circle cx="578" cy="42" r="3.5" fill="var(--viz-cat-1)"/>
+
+            <!-- PubMatic (cat-3) — mid, gentle climb -->
+            <polyline points="98,135 178,128 258,132 338,118 418,108 498,112 578,98"
+                      fill="none" stroke="var(--viz-cat-3)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="98"  cy="135" r="3.5" fill="var(--viz-cat-3)"/>
+            <circle cx="178" cy="128" r="3.5" fill="var(--viz-cat-3)"/>
+            <circle cx="258" cy="132" r="3.5" fill="var(--viz-cat-3)"/>
+            <circle cx="338" cy="118" r="3.5" fill="var(--viz-cat-3)"/>
+            <circle cx="418" cy="108" r="3.5" fill="var(--viz-cat-3)"/>
+            <circle cx="498" cy="112" r="3.5" fill="var(--viz-cat-3)"/>
+            <circle cx="578" cy="98"  r="3.5" fill="var(--viz-cat-3)"/>
+
+            <!-- Index (cat-4) — slow rise -->
+            <polyline points="98,170 178,168 258,162 338,158 418,150 498,148 578,140"
+                      fill="none" stroke="var(--viz-cat-4)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="98"  cy="170" r="3.5" fill="var(--viz-cat-4)"/>
+            <circle cx="178" cy="168" r="3.5" fill="var(--viz-cat-4)"/>
+            <circle cx="258" cy="162" r="3.5" fill="var(--viz-cat-4)"/>
+            <circle cx="338" cy="158" r="3.5" fill="var(--viz-cat-4)"/>
+            <circle cx="418" cy="150" r="3.5" fill="var(--viz-cat-4)"/>
+            <circle cx="498" cy="148" r="3.5" fill="var(--viz-cat-4)"/>
+            <circle cx="578" cy="140" r="3.5" fill="var(--viz-cat-4)"/>
+
+            <!-- Rubicon (cat-2) — declining -->
+            <polyline points="98,195 178,200 258,205 338,210 418,212 498,218 578,222"
+                      fill="none" stroke="var(--viz-cat-2)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="98"  cy="195" r="3.5" fill="var(--viz-cat-2)"/>
+            <circle cx="178" cy="200" r="3.5" fill="var(--viz-cat-2)"/>
+            <circle cx="258" cy="205" r="3.5" fill="var(--viz-cat-2)"/>
+            <circle cx="338" cy="210" r="3.5" fill="var(--viz-cat-2)"/>
+            <circle cx="418" cy="212" r="3.5" fill="var(--viz-cat-2)"/>
+            <circle cx="498" cy="218" r="3.5" fill="var(--viz-cat-2)"/>
+            <circle cx="578" cy="222" r="3.5" fill="var(--viz-cat-2)"/>
+
+            <!-- X-axis labels -->
+            <text x="98"  y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Jan</text>
+            <text x="178" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Feb</text>
+            <text x="258" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Mar</text>
+            <text x="338" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Apr</text>
+            <text x="418" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">May</text>
+            <text x="498" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Jun</text>
+            <text x="578" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-lt)">Jul</text>
+
+            <!-- Legend -->
+            <g transform="translate(56, 280)">
+              <line x1="0"  y1="6" x2="18" y2="6" stroke="var(--viz-cat-1)" stroke-width="2.5"/>
+              <circle cx="9" cy="6" r="3" fill="var(--viz-cat-1)"/>
+              <text x="24" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Magnite</text>
+              <line x1="92" y1="6" x2="110" y2="6" stroke="var(--viz-cat-3)" stroke-width="2.5"/>
+              <circle cx="101" cy="6" r="3" fill="var(--viz-cat-3)"/>
+              <text x="116" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">PubMatic</text>
+              <line x1="194" y1="6" x2="212" y2="6" stroke="var(--viz-cat-4)" stroke-width="2.5"/>
+              <circle cx="203" cy="6" r="3" fill="var(--viz-cat-4)"/>
+              <text x="218" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Index</text>
+              <line x1="276" y1="6" x2="294" y2="6" stroke="var(--viz-cat-2)" stroke-width="2.5"/>
+              <circle cx="285" cy="6" r="3" fill="var(--viz-cat-2)"/>
+              <text x="300" y="10" font-family="Satoshi, sans-serif" font-size="11" fill="var(--text-md)">Rubicon</text>
+            </g>
+          </svg>
+        </div>
+        <div class="chart-block-note">
+          <strong>When to use:</strong> A multi-series chart with 4 lines, using the recommended 4-color combination (1, 3, 4, 2). The combo is chosen for visual separation — adjacent lines never share the same hue family. If you only have 2 or 3 series, use the 2-color (1 + 3) or 3-color (1 + 3 + 4) subset; same logic, fewer lines.
+        </div>
+      </div>
+
     </div>
 
   </div>
