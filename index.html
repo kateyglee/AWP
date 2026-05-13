@@ -889,6 +889,38 @@
     color: var(--text-lt);
     margin: 28px 0 12px;
   }
+  .subhead-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 28px 0 12px;
+  }
+  .subhead-row .subhead {
+    margin: 0;
+  }
+  .font-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-md);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid var(--border-stroke-light);
+    border-radius: var(--radius-sm);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .font-download:hover {
+    background: var(--surface-raised);
+    border-color: var(--border-stroke);
+    color: var(--text-dk);
+  }
+  .font-download i {
+    font-size: 12px;
+  }
 
   /* ─── Notes & callouts ────────────────────────────────────── */
   .notes-box {
@@ -1973,7 +2005,13 @@
         <div class="section-sub">Two families, two purposes. <strong>Satoshi</strong> for human-authored content (titles, body, buttons). <strong>JetBrains Mono</strong> for AI-generated, calculated, or system content (data values, status pills, parameter paths, IDs, metadata). Token names describe the role — the family is enforced by the system. The complete scale spans 9px (in-card labels) to 36px (display).</div>
       </div>
 
-      <div class="subhead">Satoshi · human-authored</div>
+      <div class="subhead-row">
+        <div class="subhead">Satoshi · human-authored</div>
+        <a class="font-download" href="https://www.fontshare.com/fonts/satoshi" target="_blank" rel="noopener noreferrer">
+          <i class="ph ph-download-simple"></i>
+          Download Satoshi
+        </a>
+      </div>
 
       <div class="type-table">
         <div class="type-row">
@@ -2048,7 +2086,13 @@
         </div>
       </div>
 
-      <div class="subhead">JetBrains Mono · system / AI</div>
+      <div class="subhead-row">
+        <div class="subhead">JetBrains Mono · system / AI</div>
+        <a class="font-download" href="https://fonts.google.com/specimen/JetBrains+Mono" target="_blank" rel="noopener noreferrer">
+          <i class="ph ph-download-simple"></i>
+          Download JetBrains Mono
+        </a>
+      </div>
 
       <div class="type-table">
         <div class="type-row">
