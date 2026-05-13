@@ -1736,23 +1736,18 @@
       <div class="intro-grid">
         <div class="intro-card">
           <div class="intro-card-eyebrow">Principle</div>
-          <div class="intro-card-title">Color is reserved for state</div>
-          <div class="intro-card-text">Surfaces and text are warm/cool neutrals. Saturated color appears only on status pills, impact tags, diff additions, errors, and chart data. The interface looks calm in light mode and focused in dark mode because color carries meaning, never decoration.</div>
+          <div class="intro-card-title">Aliases are the contract</div>
+          <div class="intro-card-text">Components reach for <code>--surface-card</code> and <code>--text-dk</code>, never <code>--color-brand-sand-50</code> or <code>--color-brand-slate-700</code>. The alias layer is what makes light/dark mode work, what keeps the system theme-able, and what decouples engineering from the primitive palette. If you reach for a primitive in component code, you've broken the contract.</div>
         </div>
         <div class="intro-card">
           <div class="intro-card-eyebrow">Principle</div>
-          <div class="intro-card-title">Tone replaces borders</div>
-          <div class="intro-card-text">Surface tone shifts (canvas → base → raised → elevated → card) carry structure. Border tokens exist but are used sparingly — only where tonal contrast alone is insufficient. Cards lift through brightness, not shadow.</div>
+          <div class="intro-card-title">Color is reserved for state and data</div>
+          <div class="intro-card-text">Surfaces and text are warm/cool neutrals. Saturated color appears only on status pills, impact tags, diff additions, errors, and chart data. The interface looks calm because color carries meaning, never decoration. When the agent surfaces a chart full of color, it pulls focus by contrast with the quiet shell around it.</div>
         </div>
         <div class="intro-card">
           <div class="intro-card-eyebrow">Principle</div>
-          <div class="intro-card-title">Two type families, two purposes</div>
-          <div class="intro-card-text">Satoshi for human-authored content (titles, body, buttons). JetBrains Mono for system or AI-calculated content (data values, IDs, status pills, parameter paths). When a publisher sees mono, they know "this is computed by the system." The split is meaningful, not decorative.</div>
-        </div>
-        <div class="intro-card">
-          <div class="intro-card-eyebrow">Principle</div>
-          <div class="intro-card-title">State-based naming</div>
-          <div class="intro-card-text">Tags and pills are named for the state they represent (<code>pending</code>, <code>success</code>, <code>error</code>, <code>info</code>, <code>neutral</code>) — never the color. The alias layer handles which color a state maps to. If brand color shifts, the state name doesn't change.</div>
+          <div class="intro-card-title">Two type families, two roles</div>
+          <div class="intro-card-text"><strong>Satoshi</strong> for prose and UI — titles, body copy, button labels, AI conversational text. <strong>JetBrains Mono</strong> for data and system values — numbers, timestamps, IDs, paths, hex codes, status pills. The split is by content type, not by author. When a publisher sees mono inline in a sentence, they know "this is a computed value."</div>
         </div>
       </div>
     </div>
@@ -2008,11 +2003,11 @@
       <div class="section-head">
         <div class="section-num">03</div>
         <div class="section-title">Typography</div>
-        <div class="section-sub">Two families, two purposes. <strong>Satoshi</strong> for human-authored content (titles, body, buttons). <strong>JetBrains Mono</strong> for AI-generated, calculated, or system content (data values, status pills, parameter paths, IDs, metadata). Token names describe the role — the family is enforced by the system. The complete scale spans 9px (in-card labels) to 36px (display).</div>
+        <div class="section-sub">Two families, two purposes. <strong>Satoshi</strong> for prose and UI (titles, body copy, button labels, AI conversational text). <strong>JetBrains Mono</strong> for data and system values (numbers, timestamps, IDs, paths, hex codes, status pills). The split is by content type, not by author — AI prose stays in Satoshi; only computed/structured values switch to mono. The complete scale spans 9px (in-card labels) to 36px (display).</div>
       </div>
 
       <div class="subhead-row">
-        <div class="subhead">Satoshi · human-authored</div>
+        <div class="subhead">Satoshi · prose &amp; UI</div>
         <a class="font-download" href="https://www.fontshare.com/fonts/satoshi" target="_blank" rel="noopener noreferrer">
           <i class="ph ph-download-simple"></i>
           Download Satoshi
@@ -2093,7 +2088,7 @@
       </div>
 
       <div class="subhead-row">
-        <div class="subhead">JetBrains Mono · system / AI</div>
+        <div class="subhead">JetBrains Mono · data &amp; system values</div>
         <a class="font-download" href="https://fonts.google.com/specimen/JetBrains+Mono" target="_blank" rel="noopener noreferrer">
           <i class="ph ph-download-simple"></i>
           Download JetBrains Mono
@@ -2151,7 +2146,7 @@
       <div class="notes-box">
         <div class="notes-box-lbl">Family rules</div>
         <ul>
-          <li><strong>Family is automatic.</strong> Tokens in the human-authored group always render in Satoshi; tokens in the system / AI group always render in JetBrains Mono. Components reference the role; the system enforces the family.</li>
+          <li><strong>Family is automatic.</strong> Tokens in the prose/UI group always render in Satoshi; tokens in the data/system group always render in JetBrains Mono. Components reference the role; the system enforces the family.</li>
           <li><strong>The split is meaningful.</strong> When a publisher sees JetBrains Mono, they know "this is computed by the system or pulled from data." When they see Satoshi, they know "this is presented to me by the product."</li>
           <li><strong>Caps treatment is part of the role.</strong> Pill, Eyebrow, and Label SM are always uppercase — the typography token carries the case transformation.</li>
         </ul>
